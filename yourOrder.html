@@ -2,13 +2,22 @@
 
     <head>
 
-        <title>Your Order</title>
+        <title>**order**</title>
+        <link href="customer.css" rel="stylesheet" type="text/css"/>
+        <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 
     </head>
 
     <body>
+        <h>Your Order</h>
 
-        <table>
+        <table class="menu">
+        <tr>
+        <th>Item</th>
+        <th>Ingredients</th>
+        <th>Price</th>
+        </tr>
 
         <?php
 
@@ -48,9 +57,9 @@
 
             // close mysql
             $connection -> close ();
-            echo "<tr><td>";
+            echo "<tr><th colspan=3>";
             echo "<a href=/~jdrahoza/subdir/eecs448/proj03/yourOrderSubmitted.php?table_num=$table_num>confirm</a>";
-            echo "</tr></td>";
+            echo "</th></tr>";
 
         ?>
 

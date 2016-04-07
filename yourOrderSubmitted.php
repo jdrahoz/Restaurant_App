@@ -1,5 +1,10 @@
 <?php
 
+echo "<title>**submitted**</title>";
+echo "<link href='customer.css' rel='stylesheet' type='text/css'/>";
+echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>";
+echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";
+
 // get table number
 $table_num = $_GET["table_num"];
 $table_name = "Table_$table_num";
@@ -24,22 +29,22 @@ for ($i = 0; $i < $num; $i++) {
 	// variables
 	$row = $result -> fetch_assoc ();
 	$name = $row ["Name"];
-	$ingredients = $row ["Ingredients"];
 	$alterations = "";
 	$price = $row ["Price"];
 	$idNum = $row ["IDNum"];
-	$ordered = $row ["Ordered"];
 
 	// insert into orders to cook table
-	$insert = "INSERT INTO OrdersToCook (Item, TableNum, Alterations, Price, IDNum) VALUES ('$name', '$table_num', '$alterations', '$price', '$idNum')";
+	$insert = "INSERT INTO OrdersToCook (Item, TableNum, Alterations, Price) VALUES ('$name', '$table_num', '$alterations', '$price')";
 	$result_2 = $connection -> query ($insert);
 
 }
 
-echo "your order has been submitted";
-
+echo "<h>Your order</h> <p>has been submitted!</p>";
 echo "<br>";
-echo "<a href=/~jdrahoza/subdir/eecs448/proj03/enjoyYourMeal.html?table_num=$table_num>food is here</a>";
+
+// redirect link
+echo "<a href=/~jdrahoza/subdir/eecs448/proj03/enjoyYourMeal.html?table_num=$table_num>food is here?</a>";
+
 
 // close mysql
 $connection -> close ();
