@@ -1,0 +1,27 @@
+<html>
+<?php
+
+
+    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+    // check connection
+    if ($connection === false) {
+    	echo "connect failed";
+    	exit ();
+    }
+    //print out the accounting table
+    $query = "SELECT * FROM Accounting";
+    if($result = $connection->query($query)){
+      echo "<table>";
+      while ($row = $result->fetch_assoc()) {
+          echo "<tr><td>".$row['Name']."</td><td>".$row['Orders']."</td><td>".$row['Price']."</td></tr>";
+        }
+
+      echo "</table>";
+    }
+    echo "<tr><td>";
+    echo "<a href=/~oalzubbi/Project2/admin.html>Back to Admin Menu</a>";
+    echo "</tr></td>";
+
+    ?>
+</html>
