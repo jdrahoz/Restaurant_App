@@ -4,7 +4,20 @@
  </head>
  <body>
 
-    <form action = "MenuAlteration.php" method = "post">
+   <form action="MenuAlteration.php" id="add" method = "post">
+        Name<br>
+         <input type="text" name="name" ><br>
+         Ingredients<br>
+         <input type="text" name="ingredients" ><br>
+         Price<br>
+         <input type="number" name="price" ><br>
+   <input type="submit" value="Add Menu Item">
+   </form>
+
+
+
+
+    <form action = "MenuAlteration.php" id="delete" method = "post">
 
     <table name="Menu">
         <tr>
