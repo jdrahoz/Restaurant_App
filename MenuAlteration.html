@@ -1,0 +1,53 @@
+<html>
+ <head>
+  <title>Admin-Menu Alteration</title>
+ </head>
+ <body>
+
+    <form action = "MenuAlteration.php" method = "post">
+
+    <table name="Menu">
+        <tr>
+        <td>Delete?</td>
+        <td>Name</td>
+        <td>Ingredients</td>
+        <td>Price</td>
+        </tr>
+
+       <?php
+            $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+        if ($mysqli->connect_errno)
+        {
+            echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
+            exit();
+        }
+
+        $select = "SELECT Name, Ingredients, Price FROM Menu";
+        $result = $mysqli -> query($select);
+        $num = $result -> num_rows;
+
+        for($i=0; $i<$num; $i++)
+        {
+            $row = $result -> fetch_assoc();
+            $Name = $row ["Name"];
+            $Ingredients = $row["Ingredients"];
+            $Price = $row["Price"];
+            echo "<tr>";
+            echo "<td><input type='checkbox' name='menu[]' value=".$Name."></td>";
+            echo "<td>$Name</td>";
+            echo "<td>$Ingredients</td>";
+            echo "<td>$Price</td>";
+            echo "</tr>";
+        }
+
+       $mysqli->close();
+
+       ?>
+    </table>
+
+    <input type="submit" value="Delete" >
+    </form>
+
+ </body>
+</html>
