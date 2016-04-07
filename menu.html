@@ -11,6 +11,12 @@
 		<table>
         <form action="yourOrder.php" method="post" id="form">
 
+			<tr>
+			<td>Table Number</td>
+			<td><input type='text' name='table_num' value='0'></td>
+			</tr>
+
+
             <?php
 
                 // open mysql
@@ -33,8 +39,9 @@
 					$name = $row ["Name"];
 					$ingredients = $row ["Ingredients"];
 					$price = $row ["Price"];
+                    $idNum = $row ["IDNum"];
 					echo "<tr>";
-					echo "<td><input type='text' name='$name'></td>";
+					echo "<td><input type='text' name=$idNum value=0></td>";
 					echo "<td>".$name."</td>";
 					echo "<td>".$ingredients."</td>";
 					echo "<td>".$price."</td>";

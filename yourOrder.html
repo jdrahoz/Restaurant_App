@@ -1,0 +1,48 @@
+<html>
+
+    <head>
+
+        <title>Your Order</title>
+
+    </head>
+
+    <body>
+
+        <?php
+
+            // open mysql
+            $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+            // check connection
+            if ($connection === false) {
+                echo "connect failed";
+                exit ();
+            }
+
+            // get table of menu items
+            $select = "SELECT * FROM Table_1";
+            $result = $connection -> query ($select);
+            $num = $result -> num_rows;
+
+            // print table of menu items
+            for ($i = 0; $i < $num; $i++) {
+                $row = $result -> fetch_assoc ();
+                $name = $row ["Name"];
+                $ingredients = $row ["Ingredients"];
+                $price = $row ["Price"];
+                $idNum = $row ["IDNum"];
+                echo "<tr>";
+                echo "<td>".$name."</td>";
+                echo "<td>".$ingredients."</td>";
+                echo "<td>".$price."</td>";
+                echo "</tr>";
+            }
+
+            // close mysql
+            $connection -> close ();
+
+        ?>
+
+    </body>
+
+</html>
