@@ -8,7 +8,13 @@
 
     <body>
 
+        <table>
+
         <?php
+
+            // get table number
+            $table_num = $_GET["table_num"];
+            $table_name = "Table_$table_num";
 
             // open mysql
             $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -19,8 +25,10 @@
                 exit ();
             }
 
+            $table_name = "Table_" . $table_num;
+
             // get table of menu items
-            $select = "SELECT * FROM Table_1";
+            $select = "SELECT * FROM $table_name";
             $result = $connection -> query ($select);
             $num = $result -> num_rows;
 
@@ -40,8 +48,13 @@
 
             // close mysql
             $connection -> close ();
+            echo "<tr><td>";
+            echo "<a href=/~jdrahoza/subdir/eecs448/proj03/yourOrderSubmitted.php?table_num=$table_num>confirm</a>";
+            echo "</tr></td>";
 
         ?>
+
+        </table>
 
     </body>
 
