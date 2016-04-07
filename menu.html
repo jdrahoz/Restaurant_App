@@ -1,0 +1,60 @@
+<html>
+
+    <head>
+
+        <title>Menu</title>
+
+    </head>
+
+    <body>
+
+		<table>
+        <form action="yourOrder.php" method="post" id="form">
+
+            <?php
+
+                // open mysql
+                $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                // check connection
+                if ($connection === false) {
+                	echo "connect failed";
+                	exit ();
+                }
+
+				// get table of menu items
+				$select = "SELECT * FROM Menu";
+				$result = $connection -> query ($select);
+				$num = $result -> num_rows;
+
+				// print table of menu items
+				for ($i = 0; $i < $num; $i++) {
+					$row = $result -> fetch_assoc ();
+					$name = $row ["Name"];
+					$ingredients = $row ["Ingredients"];
+					$price = $row ["Price"];
+					echo "<tr>";
+					echo "<td><input type='text' name='$name'></td>";
+					echo "<td>".$name."</td>";
+					echo "<td>".$ingredients."</td>";
+					echo "<td>".$price."</td>";
+					echo "</tr>";
+				}
+
+				// close mysql
+				$connection -> close ();
+
+            ?>
+
+        </select>
+
+		<tr><td>
+        <input type="submit" value="Send to Cart">
+		</tr></td>
+
+		</form>
+		</table>
+
+    </body>
+
+</html>
