@@ -23,18 +23,19 @@
             exit();
         }
 
-        $select = "SELECT Name, Ingredients, Price FROM Menu";
+        $select = "SELECT IDNum,Name, Ingredients, Price FROM Menu";
         $result = $mysqli -> query($select);
         $num = $result -> num_rows;
 
         for($i=0; $i<$num; $i++)
         {
             $row = $result -> fetch_assoc();
+            $IDNum = $row["IDNum"];
             $Name = $row ["Name"];
             $Ingredients = $row["Ingredients"];
             $Price = $row["Price"];
             echo "<tr>";
-            echo "<td><input type='checkbox' name='menu[]' value=".$Name."></td>";
+            echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
             echo "<td>$Name</td>";
             echo "<td>$Ingredients</td>";
             echo "<td>$Price</td>";

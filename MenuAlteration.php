@@ -14,11 +14,12 @@ $menuArray = $_POST["menu"];
 
         for($i=0; $i<count($menuArray);$i++)
         {
-            $delete = "DELETE FROM Menu WHERE Name = '$menuArray[$i]'";
+            $delete = "DELETE FROM Menu WHERE IDNum = '$menuArray[$i]'";
             $mysqli->query($delete);
             echo $menuArray[$i];
         }
 
        $mysqli->close();
+
 
 ?>
