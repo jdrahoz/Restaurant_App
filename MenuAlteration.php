@@ -10,16 +10,13 @@ $menuArray = $_POST["menu"];
             exit();
         }
 
-        echo "Deleted the following posts:<br>";
-
         for($i=0; $i<count($menuArray);$i++)
         {
             $delete = "DELETE FROM Menu WHERE IDNum = '$menuArray[$i]'";
             $mysqli->query($delete);
-            echo $menuArray[$i];
         }
 
        $mysqli->close();
 
-
+       header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/MenuAlteration.html');
 ?>
