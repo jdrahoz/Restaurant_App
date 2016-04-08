@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
  <head>
   <title>Admin-Menu Alteration</title>
@@ -65,3 +66,85 @@
 
  </body>
 </html>
+||||||| merged common ancestors
+=======
+<html>
+ <head>
+  <title>Admin-Menu Alteration</title>
+ </head>
+ <body>
+
+#Form used to add items to Menu table
+   <form action="MenuAlterationAdd.php" name="add" method = "post">
+        #inputs take in name, ingredients, and price
+        Name<br>
+         <input type="text" name="name" ><br>
+         Ingredients<br>
+         <input type="text" name="ingredients" ><br>
+         Price<br>
+         <input type="number" name="price" ><br>
+    #this button will call MenuAlterationAdd.php
+   <input type="submit" value="Add Menu Item">
+   </form>
+
+
+
+#Form used to delete items from Menu table if checked upon submit button
+<form action = "MenuAlterationDelete.php" name="delete" method = "post">
+    #Creates headers for table
+    <table name="Menu">
+        <tr>
+        <td>Delete?</td>
+        <td>Name</td>
+        <td>Ingredients</td>
+        <td>Price</td>
+        </tr>
+
+        #Opens a connection to sql and prints information
+       <?php
+            $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+        #if connection does not work
+        if ($mysqli->connect_errno)
+        {
+            echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
+            exit();
+        }
+
+        #takes info from Menu table and prints it into html table
+        $select = "SELECT IDNum,Name, Ingredients, Price FROM Menu";
+        $result = $mysqli -> query($select);
+        $num = $result -> num_rows;
+
+        for($i=0; $i<$num; $i++)
+        {
+            $row = $result -> fetch_assoc();
+            $IDNum = $row["IDNum"];
+            $Name = $row ["Name"];
+            $Ingredients = $row["Ingredients"];
+            $Price = $row["Price"];
+            echo "<tr>";
+            echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
+            echo "<td>$Name</td>";
+            echo "<td>$Ingredients</td>";
+            echo "<td>$Price</td>";
+            echo "</tr>";
+        }
+
+       $mysqli->close();
+
+       ?>
+    </table>
+
+    #on submit calls MenuAlterationDelete.php
+    <input type="submit" value="Delete" >
+    </form>
+
+    <br>
+    <br>
+    <a href="http://people.eecs.ku.edu/~jdrahoza/subdir/eecs448/proj03/adminFrontPage.html">Admin Homepage</a><br>
+
+
+ </body>
+</html>
+>>>>>>> 61ee88b72e0965d90d19eca7bb30a3149bbc786a
