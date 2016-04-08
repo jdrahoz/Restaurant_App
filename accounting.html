@@ -35,7 +35,6 @@
        echo "<td>$Price</td>";
        echo "<td>$Tax</td>";
        echo "<td>$Time</td>";
-
        echo "</tr>";
    }
    // display total
@@ -43,7 +42,14 @@
    echo "<td colspan=3>$total</td>";
    echo "</table>";
 
-
    $connection -> close();
+
+    // add form to narrow down dates
+    echo "<form id=form method=post action='accounting.php'>";
+    echo "<p>start date</p><input type=date name='start'>";
+    echo "<p>end date</p><input type=date name='end'>";
+    echo "<input type=submit>";
+    echo "<br>";
+    echo "</form>";
 
 ?>
