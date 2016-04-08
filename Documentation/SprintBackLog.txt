@@ -1,0 +1,51 @@
+Create menu table in mysql(small)
+-with columns Name varchar(50), Ingredients varchar(250), Prics double, IDNum int(11) with auto increment
+
+Create OrdersToCook table in mysql(small)
+-columns: item varchar(255), tableNum int(11), Alterations varchar(250)(can be null), price double, IDNum int(11)(auto increment)
+
+Create Accounting table in mysql(small)
+-columns: item varchar(50), tablenum int(11), alterations varchar(250), price double, tax double, IDNum int(11)(autoIncrement), time timestamp
+
+Create customerFrontPage.html(small)
+-front end display
+-link to menu.html
+
+menu.html(medium)
+-create and fill html table from menu table in sql
+-create fields for user to enter table num and quantity of food items
+-on enter link to yourOrder.html
+-onsubmit send order to newly generated cart sql table for each table
+
+yourOrder.html(medium)
+-display front end orders for customer to confirm
+-allow users to put in additional requests on items
+-onsubmit send order from Cart to OrdersToCook table
+
+enjoyYourMeal.html(small)
+-have link for customer to either place an additional order or to pay
+
+yourBill.php(medium)
+-creates html table with values pulled from Bill_Table_#
+-link to pay
+-upon paying, sends information to accounting table
+
+thankYou.html(small)
+-simple front end display
+
+adminFrontPage.html(small)
+-links to menu alteration, kitchen, accounting
+
+MenuAlteration.html(medium)
+-create form to add new menu information(item, ingredients, price) to Menu table
+-create form to delete from Menu table
+
+kitchen.html(medium)
+-create form to display entries(item, alterations, tableNum) from OrdersToCook Table
+-onsubmit of form create bill for each table and its orders that are done
+-deletes item(s) from OrdersToCook
+
+accounting.html(large)
+-displays every order(item name, alterations, tableNum, price, tax, date) that has been paid for and the total to date.
+-has a form that takes in a start date and end date
+-onsubmit queries accounting table for all entries between the dates entered
