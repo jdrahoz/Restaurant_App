@@ -10,6 +10,7 @@
     </head>
 
     <body>
+
         <h>Your Order</h>
 
         <table class="menu">
@@ -17,13 +18,17 @@
         <th>Item</th>
         <th>Ingredients</th>
         <th>Price</th>
+        <th>Requests</th>
         </tr>
+
+        <form id="form" method="post" action="yourOrderSubmitted.php">
 
         <?php
 
             // get table number
             $table_num = $_GET["table_num"];
             $table_name = "Table_$table_num";
+            echo "<input type='hidden' name='table_num' value=$table_num>";
 
             // open mysql
             $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -33,8 +38,6 @@
                 echo "connect failed";
                 exit ();
             }
-
-            $table_name = "Table_" . $table_num;
 
             // get table of menu items
             $select = "SELECT * FROM $table_name";
@@ -52,16 +55,19 @@
                 echo "<td>".$name."</td>";
                 echo "<td>".$ingredients."</td>";
                 echo "<td>".$price."</td>";
+                echo "<td><input type=text name=$idNum></td>";
                 echo "</tr>";
             }
 
             // close mysql
             $connection -> close ();
-            echo "<tr><th colspan=3>";
-            echo "<a href=/~jdrahoza/subdir/eecs448/proj03/yourOrderSubmitted.php?table_num=$table_num>confirm</a>";
+            echo "<tr><th colspan=4>";
+            echo "<input type=submit value='confirm'>";
             echo "</th></tr>";
 
         ?>
+
+        </form>
 
         </table>
 

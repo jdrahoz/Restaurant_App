@@ -23,7 +23,7 @@ if ($table_num == 0) {
 $show = "SHOW TABLES LIKE $table_name";
 $result = $connection -> query ($show);
 if ($result -> num_rows == 0) {
-	$create = "CREATE TABLE $table_name (Name varchar (50), Ingredients varchar (250), Price double, IDNum int (11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
+	$create = "CREATE TABLE $table_name (Name varchar (50), Ingredients varchar (250), Alterations varchar (250), Price double, IDNum int (11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
 	$result = $connection -> query ($create);
 }
 
@@ -41,6 +41,7 @@ for ($i = 0; $i < $num; $i++) {
 	$ingredients = $row ["Ingredients"];
 	$price = $row ["Price"];
 	$idNum = $row ["IDNum"];
+	$alterations = "";
 
 	// set quantity
 	$quantity = $_POST [$idNum];
@@ -48,7 +49,7 @@ for ($i = 0; $i < $num; $i++) {
 
 	// insert into table by quantity
 	for ($j = 0; $j < $quantity; $j++) {
-		$insert = "INSERT INTO $table_name (Name, Ingredients, Price) VALUES ('$name', '$ingredients', '$price')";
+		$insert = "INSERT INTO $table_name (Name, Ingredients, Alterations, Price) VALUES ('$name', '$ingredients', '$alterations', '$price')";
 		$result_2 = $connection -> query ($insert);
 	}
 

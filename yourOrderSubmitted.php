@@ -6,7 +6,7 @@ echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet
 echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";
 
 // get table number
-$table_num = $_GET["table_num"];
+$table_num = $_POST["table_num"];
 $table_name = "Table_$table_num";
 
 // open mysql
@@ -29,18 +29,22 @@ for ($i = 0; $i < $num; $i++) {
 	// variables
 	$row = $result -> fetch_assoc ();
 	$name = $row ["Name"];
-	$alterations = "";
 	$price = $row ["Price"];
 	$idNum = $row ["IDNum"];
+	$alterations = $_POST [$idNum];
 
 	// insert into orders to cook table
 	$insert = "INSERT INTO OrdersToCook (Item, TableNum, Alterations, Price) VALUES ('$name', '$table_num', '$alterations', '$price')";
 	$result_2 = $connection -> query ($insert);
 
+	// update orders in table table
+	$update = "UPDATE $table_name SET Alterations='$alterations' WHERE IDNum='$idNum'";
+	$result_2 = $connection -> query ($update);
+
 }
 
+// display message
 echo "<h>Your order</h> <p>has been submitted!</p>";
-echo "<br>";
 
 // redirect link
 echo "<a href=/~jdrahoza/subdir/eecs448/proj03/enjoyYourMeal.html?table_num=$table_num>food is here?</a>";
