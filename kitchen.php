@@ -55,5 +55,5 @@ $kitchen = $_POST["kitchen"];
        $mysqli->close();
 
        //kitchen.html refreshed after php is done
-       header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
+       header('Location: http://people.eecs.ku.edu/~jdrahoza/subdir/eecs448/proj03/kitchen.html');
 ?>
