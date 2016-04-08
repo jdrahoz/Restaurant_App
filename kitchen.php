@@ -29,11 +29,14 @@ $kitchen = $_POST["kitchen"];
             $TableNum = $row["TableNum"];
             $Alterations = $row["Alterations"];
             $Price = $row["Price"];
+
             $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price) VALUES ('$Item', '$TableNum','$Alterations','$Price')";
             $mysqli -> query($insert);
+
             $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
             $mysqli->query($delete);
         }
        $mysqli->close();
+
        header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
 ?>
