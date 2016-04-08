@@ -43,10 +43,8 @@ $kitchen = $_POST["kitchen"];
             $Alterations = $row["Alterations"];
             $Price = $row["Price"];
 
-#insert is not working
             $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price) VALUES ('$Item', '$TableNum','$Alterations','$Price')";
             $mysqli -> query($insert);
-#insert is not working
 
             $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
             $mysqli->query($delete);
