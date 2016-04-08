@@ -1,0 +1,111 @@
+body {
+
+    background-color:white;
+    margin:20px;
+    font-family:"Arial";
+
+}
+
+h.main {
+
+    font: 400 130px/0.8 'Cookie', Helvetica, sans-serif;
+    letter-spacing:2px;
+    padding:20px;
+    margin:10px;
+
+}
+
+h {
+
+    font: 400 130px 'Cookie', Helvetica, sans-serif;
+    font-size: 100px;
+    letter-spacing:2px;
+    padding:20px;
+    margin:10px;
+
+}
+
+p {
+
+   display:inline;
+   color:black;
+   font-size:15px;
+   margin: 10px
+   text-decoration: none;
+
+}
+
+input[type=number] {
+
+    width:40px;
+    margin:5px;
+
+}
+
+input[type=submit] {
+
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    margin:20px;
+    padding:10px;
+    background:lightgrey;
+
+}
+
+input[type=submit]:hover {
+
+    padding:10px;
+    background:white;
+
+}
+
+table {
+
+    margin:50px;
+    width:50%;
+
+}
+
+table.table_num {
+
+    width:25%;
+
+}
+
+table.menu {
+
+    width:75%;
+
+}
+
+table, th, tr, td {
+
+    border:1px solid black;
+
+}
+
+th, th:visited, a, a:visited {
+
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    text-decoration:none;
+    color:black;
+    background-color:lightgrey;
+    text-align:right;
+    padding:5px;
+
+}
+
+a, a:visited, a:hover {
+    margin:20px;
+}
+
+a:hover {
+    color:white;
+}
+
+tr, td {
+
+    text-align:center;
+    padding:5px;
+}

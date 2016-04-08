@@ -2,20 +2,31 @@
 
     <head>
 
-        <title>Menu</title>
-
-    </head>
+        <title>**menu**</title>
+        <link href="customer.css" rel="stylesheet" type="text/css"/>
+        <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 
     <body>
 
-		<table>
+        <h class="main">the Menu</h>
+
         <form action="yourOrder.php" method="post" id="form">
 
+            <table class="table_num">
 			<tr>
-			<td>Table Number</td>
-			<td><input type='text' name='table_num' value='0'></td>
+			<th>table number</th>
+			<td><input type='number' name='table_num' value=1 min=1 max=10></td>
 			</tr>
+            </table>
 
+            <table class="menu">
+            <tr>
+            <th>quantity</th>
+            <th>item</th>
+            <th>ingredients</th>
+            <th>price</th>
+            </tr>
 
             <?php
 
@@ -36,15 +47,15 @@
 				// print table of menu items
 				for ($i = 0; $i < $num; $i++) {
 					$row = $result -> fetch_assoc ();
-					$name = $row ["Name"];
+					$item = $row ["Name"];
 					$ingredients = $row ["Ingredients"];
 					$price = $row ["Price"];
                     $idNum = $row ["IDNum"];
 					echo "<tr>";
-					echo "<td><input type='text' name=$idNum value=0></td>";
-					echo "<td>".$name."</td>";
+					echo "<td><input type='number' name=$idNum value=0 min=0 max=10></td>";
+					echo "<td>".$item."</td>";
 					echo "<td>".$ingredients."</td>";
-					echo "<td>".$price."</td>";
+					echo "<td>$".$price."</td>";
 					echo "</tr>";
 				}
 
@@ -55,12 +66,12 @@
 
         </select>
 
-		<tr><td>
-        <input type="submit" value="Send to Cart">
-		</tr></td>
+		<tr><th colspan=4>
+        <input type="submit" value="send to cart">
+        </th></td>
+        </table>
 
 		</form>
-		</table>
 
     </body>
 
