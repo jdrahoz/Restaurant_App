@@ -3,10 +3,6 @@
     $start_date = $_POST["start"];
     $end_date = $_POST["end"];
 
-    if ($end_date < $start_date) {
-        exit ();
-    }
-
     // open mysql
     $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 

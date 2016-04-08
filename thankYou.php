@@ -1,6 +1,8 @@
 <?php
 
 echo "<title>**BILL**</title>";
+
+// links for styling
 echo "<link href='customer.css' rel='stylesheet' type='text/css'/>";
 echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>";
 echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";
@@ -30,7 +32,6 @@ $select = "SELECT * FROM $table_name";
 $result = $connection -> query ($select);
 $num = $result -> num_rows;
 $subtotal = 0;
-
 
 // get menu items with submitted quantities
 for ($i = 0; $i < $num; $i++) {
