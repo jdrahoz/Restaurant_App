@@ -1,0 +1,25 @@
+h {
+
+    font-size:30px;
+
+}
+
+p {
+
+    font-size:20px;
+
+}
+
+table {
+
+    margin:50px;
+    width:500px;
+
+}
+
+
+table, th, tr, td {
+
+    border:1px solid black;
+
+}

@@ -1,84 +1,39 @@
-<<<<<<< HEAD
 <?php
-$kitchen = $_POST["kitchen"];
-     $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-        if ($mysqli->connect_errno)
-        {
-            echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
-            exit();
-        }
-        for($i=0; $i<count($kitchen);$i++)
-        {
-            #Select from Orders to Cook using kitchen array
-            $checkTableNum = "SELECT TableNum From OrdersToCook WHERE IDNum = '$kitchen[$i]'";
-            $result = $mysqli -> query($checkTableNum);
-           $row = $result -> fetch_assoc ();
-            $table_num = $row ["TableNum"];
-            $table_name = "Bill_Table_$table_num";
-            $show = "SHOW TABLES LIKE '$table_name'";
-            $result = $mysqli -> query ($show);
-            if ($result -> num_rows == 0)
-            {
-              #Create new table based on table number
-            $create = "CREATE TABLE $table_name (Item varchar(50), TableNum int(11), Alterations varchar(250), Price double, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
-            $result = $mysqli -> query ($create);
-          }
-            $select ="SELECT Item,TableNum,Alterations,Price FROM OrdersToCook WHERE IDNum='$kitchen[$i]'";
-            $result = $mysqli ->  query($select);
-            $row = $result -> fetch_assoc();
-            $Item = $row["Item"];
-            $TableNum = $row["TableNum"];
-            $Alterations = $row["Alterations"];
-            $Price = $row["Price"];
-
-            $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price) VALUES ('$Item', '$TableNum','$Alterations','$Price')";
-            $mysqli -> query($insert);
-
-            $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
-            $mysqli->query($delete);
-        }
-       $mysqli->close();
-
-       header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
-?>
-||||||| merged common ancestors
-=======
-<?php
-#retrieves kitchen array from kitchen.html
+//retrieves kitchen array from kitchen.html
 $kitchen = $_POST["kitchen"];
 
-    #opens sql connection
+    //opens sql connection
      $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-    #if connection fails
+    //if connection fails
     if ($mysqli->connect_errno)
     {
         echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
         exit();
     }
 
-        #increments through kitchen array
+        //increments through kitchen array
         for($i=0; $i<count($kitchen);$i++)
         {
-            #Select from Orders to Cook using kitchen array
+            //Select from Orders to Cook using kitchen array
             $checkTableNum = "SELECT TableNum From OrdersToCook WHERE IDNum = '$kitchen[$i]'";
             $result = $mysqli -> query($checkTableNum);
             $row = $result -> fetch_assoc ();
             $table_num = $row ["TableNum"];
-            #creates table name
+            //creates table name
             $table_name = "Bill_Table_$table_num";
-            #checks to see if a table exists already
+            //checks to see if a table exists already
             $show = "SHOW TABLES LIKE '$table_name'";
             $result = $mysqli -> query ($show);
 
-            #if table doesn't exist create new
+            //if table doesn't exist create new
             if ($result -> num_rows == 0)
             {
-              #Create new table based on table number
+              //Create new table based on table number
               $create = "CREATE TABLE $table_name (Item varchar(50), TableNum int(11), Alterations varchar(250), Price double, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
               $result = $mysqli -> query ($create);
             }
 
-            #selects information from OrdersToCook table
+            //selects information from OrdersToCook table
             $select ="SELECT Item,TableNum,Alterations,Price FROM OrdersToCook WHERE IDNum='$kitchen[$i]'";
             $result = $mysqli ->  query($select);
             $row = $result -> fetch_assoc();
@@ -87,19 +42,18 @@ $kitchen = $_POST["kitchen"];
             $Alterations = $row["Alterations"];
             $Price = $row["Price"];
 
-            #inserts information selected into the bill table
+            //inserts information selected into the bill table
             $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price) VALUES ('$Item', '$TableNum','$Alterations','$Price')";
             $mysqli -> query($insert);
 
-            #deletes information from OrdersToCookTable
+            //deletes information from OrdersToCookTable
             $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
             $mysqli->query($delete);
         }
 
-        #close connection
+        //close connection
        $mysqli->close();
 
-       #kitchen.html refreshed after php is done
+       //kitchen.html refreshed after php is done
        header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
 ?>
->>>>>>> 61ee88b72e0965d90d19eca7bb30a3149bbc786a
