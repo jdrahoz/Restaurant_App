@@ -44,9 +44,9 @@ $kitchen = $_POST["kitchen"];
             $Price = $row["Price"];
 
 #insert is not working
-            $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price VALUES ('$Item', '$TableNum','$Alterations','$Price')";
+            $insert = "INSERT INTO $table_name (Item,TableNum,Alterations,Price) VALUES ('$Item', '$TableNum','$Alterations','$Price')";
             $mysqli -> query($insert);
-
+#insert is not working
 
             $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
             $mysqli->query($delete);
@@ -54,5 +54,5 @@ $kitchen = $_POST["kitchen"];
 
        $mysqli->close();
 
-       #header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
+       header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/kitchen.html');
 ?>
