@@ -4,21 +4,24 @@
  </head>
  <body>
 
+#Form used to add items to Menu table
    <form action="MenuAlterationAdd.php" name="add" method = "post">
+        #inputs take in name, ingredients, and price
         Name<br>
          <input type="text" name="name" ><br>
          Ingredients<br>
          <input type="text" name="ingredients" ><br>
          Price<br>
          <input type="number" name="price" ><br>
+    #this button will call MenuAlterationAdd.php
    <input type="submit" value="Add Menu Item">
    </form>
 
 
 
-
-    <form action = "MenuAlterationDelete.php" name="delete" method = "post">
-
+#Form used to delete items from Menu table if checked upon submit button
+<form action = "MenuAlterationDelete.php" name="delete" method = "post">
+    #Creates headers for table
     <table name="Menu">
         <tr>
         <td>Delete?</td>
@@ -27,15 +30,18 @@
         <td>Price</td>
         </tr>
 
+        #Opens a connection to sql and prints information
        <?php
             $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
+        #if connection does not work
         if ($mysqli->connect_errno)
         {
             echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
             exit();
         }
 
+        #takes info from Menu table and prints it into html table
         $select = "SELECT IDNum,Name, Ingredients, Price FROM Menu";
         $result = $mysqli -> query($select);
         $num = $result -> num_rows;
@@ -60,6 +66,7 @@
        ?>
     </table>
 
+    #on submit calls MenuAlterationDelete.php
     <input type="submit" value="Delete" >
     </form>
 

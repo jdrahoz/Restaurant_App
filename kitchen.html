@@ -1,5 +1,6 @@
 <?php
 
+#declares info for an auto refresh
   $page = $_SERVER['PHP_SELF'];
   $sec = "30";
 
@@ -7,14 +8,16 @@
 
 <html>
  <head>
-  <title>Admin-Menu Alteration</title>
+  <title>Admin-Kitchen</title>
+  #refreshes the page every 30 seconds
   <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
  </head>
  <body>
 
-
+   #form that takes the checked items and sends them to a bill table
     <form action = "kitchen.php" id="done" method = "post">
 
+      #table headers
     <table name="Kitchen">
         <tr>
         <td>Done?</td>
@@ -24,18 +27,22 @@
         </tr>
 
        <?php
+        #opens an sql connection
             $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
+        #if sql connection fails
         if ($mysqli->connect_errno)
         {
             echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
             exit();
         }
 
+        #Selects info from OrdersToCook table
         $select = "SELECT Item,TableNum,Alterations,Price,IDNum FROM OrdersToCook";
         $result = $mysqli -> query($select);
         $num = $result -> num_rows;
 
+        #prints info selected into a table
         for($i=0; $i<$num; $i++)
         {
             $row = $result -> fetch_assoc();
@@ -48,18 +55,20 @@
 
 
             echo "<tr>";
+            #stores items checked into an array
             echo "<td><input type='checkbox' name='kitchen[]' value=".$IDNum."></td>";
             echo "<td>$Item</td>";
             echo "<td>$Alterations</td>";
             echo "<td>$TableNum</td>";
             echo "</tr>";
         }
-
+        #closes sql connection
        $mysqli->close();
 
        ?>
     </table>
 
+    #on submit calls kitchen.php
     <input type="submit" value="Done" >
     </form>
 
