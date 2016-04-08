@@ -6,22 +6,15 @@ echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet
 echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";
 
 // get table number
-$table_num = $_GET["table_num"];
+$table_num = $_POST["table_num"];
 $table_name = "Bill_Table_$table_num";
 
 // echo header
-echo "<h class=main>the Bill</h>";
+echo "<h class=main>Thank You!</h>";
+echo "<br><br><br>";
+echo "<a>Have a great day.</a>";
 
-// echo form
-echo "<form id='form' method='post' action='thankYou.php'>";
-echo "<input type='hidden' name='table_num' value=$table_num>";
-
-// echo table
-echo "<table>";
-echo "<tr>";
-echo "<th>item</th>";
-echo "<th>price</th>";
-echo "</tr>";
+// send rows from bill table to accounting table
 
 // open mysql
 $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -45,41 +38,19 @@ for ($i = 0; $i < $num; $i++) {
 	// variables
 	$row = $result -> fetch_assoc ();
 	$item = $row ["Item"];
+	$alterations = $row ["Alterations"];
 	$price = $row ["Price"];
+	$idNum = $row ["IDNum"];
 
-	// echo table of ordered items
-	echo "<tr>";
-	echo "<td>".$item."</td>";
-	echo "<td>$".$price."</td>";
-	echo "</tr>";
+	// insert into accounting table
+	$insert = "INSERT INTO Accounting (Item, TableNum, Alterations, Price) VALUES ('$item', '$table_num', '$alterations', '$price')";
+	$result_2 = $connection -> query ($insert);
 
-	// update subtotal
-	$subtotal = $subtotal + $price;
+	// update orders in bill table
+	$delete = "DELETE FROM $table_name WHERE IDNum='$idNum'";
+	$result_2 = $connection -> query ($delete);
 
 }
 
-// calculate tax and total
-$tax = $subtotal * 0.09;
-$total = $subtotal + $tax;
-
-// echo table of totals
-echo "<tr><td></td><td></td></tr>";
-echo "<tr><th>subtotal</th>";
-echo "<td>$$subtotal</td></tr>";
-echo "<tr><th>tax</th>";
-echo "<td>$$tax</td></tr>";
-echo "<tr><th>total</th>";
-echo "<td>$$total</td></tr>";
-
-// echo submit button
-echo "<tr><th colspan=2>";
-echo "<input type=submit value='paid?'>";
-echo "</th></tr>";
-
-echo "</table>";
-echo "</form>";
-
 // close mysql
 $connection -> close ();
-
-?>

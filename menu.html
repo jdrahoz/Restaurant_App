@@ -47,13 +47,13 @@
 				// print table of menu items
 				for ($i = 0; $i < $num; $i++) {
 					$row = $result -> fetch_assoc ();
-					$name = $row ["Name"];
+					$item = $row ["Name"];
 					$ingredients = $row ["Ingredients"];
 					$price = $row ["Price"];
                     $idNum = $row ["IDNum"];
 					echo "<tr>";
 					echo "<td><input type='number' name=$idNum value=0 min=0 max=10></td>";
-					echo "<td>".$name."</td>";
+					echo "<td>".$item."</td>";
 					echo "<td>".$ingredients."</td>";
 					echo "<td>$".$price."</td>";
 					echo "</tr>";
