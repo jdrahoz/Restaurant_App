@@ -13,8 +13,10 @@
     $query = "SELECT * FROM Accounting";
     if($result = $connection->query($query)){
       echo "<table>";
+      echo "<th>Name</th><th>Number of Orders</th><th>Price</th><th>Gross</th>";
       while ($row = $result->fetch_assoc()) {
-          echo "<tr><td>".$row['Name']."</td><td>".$row['Orders']."</td><td>".$row['Price']."</td></tr>";
+          $gross = $row['Price'] * $row['Orders'];
+          echo "<tr><td>".$row['Name']."</td><td>".$row['Orders']."</td><td>".$row['Price']."</td><td>".$gross."</td></tr>";
         }
 
       echo "</table>";
