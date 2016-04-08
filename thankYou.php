@@ -40,10 +40,11 @@ for ($i = 0; $i < $num; $i++) {
 	$item = $row ["Item"];
 	$alterations = $row ["Alterations"];
 	$price = $row ["Price"];
+	$tax = $price * 0.09;
 	$idNum = $row ["IDNum"];
 
 	// insert into accounting table
-	$insert = "INSERT INTO Accounting (Item, TableNum, Alterations, Price) VALUES ('$item', '$table_num', '$alterations', '$price')";
+	$insert = "INSERT INTO Accounting (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
 	$result_2 = $connection -> query ($insert);
 
 	// update orders in bill table

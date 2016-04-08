@@ -1,0 +1,49 @@
+<?php
+
+   // open mysql
+   $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+   // check connection
+   if ($connection === false) {
+      echo "connect failed";
+      exit ();
+   }
+   //print out the accounting table
+   $query = "SELECT * FROM Accounting";
+   $result = $connection->query($query);
+   $num = $result -> num_rows;
+
+   // display table of all ordered items
+   $total = 0;
+   echo "<table>";
+   for($i=0; $i<$num; $i++)
+   {
+       $row = $result -> fetch_assoc();
+       $Item = $row["Item"];
+       $Time = $row["Time"];
+       $Alterations = $row ["Alterations"];
+       $Price = $row["Price"];
+       $Tax = $row["Tax"];
+       $TableNum = $row["TableNum"];
+
+       $total = $total + $Price + $Tax;
+
+       echo "<tr>";
+       echo "<td>$Item</td>";
+       echo "<td>$Alterations</td>";
+       echo "<td>$TableNum</td>";
+       echo "<td>$Price</td>";
+       echo "<td>$Tax</td>";
+       echo "<td>$Time</td>";
+
+       echo "</tr>";
+   }
+   // display total
+   echo "<tr><td colspan=3>Total</td>";
+   echo "<td colspan=3>$total</td>";
+   echo "</table>";
+
+
+   $connection -> close();
+
+?>
