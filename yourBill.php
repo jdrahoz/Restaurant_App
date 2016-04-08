@@ -1,6 +1,8 @@
 <?php
 
 echo "<title>**BILL**</title>";
+
+// links for styling
 echo "<link href='customer.css' rel='stylesheet' type='text/css'/>";
 echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>";
 echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";

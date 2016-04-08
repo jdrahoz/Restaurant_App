@@ -3,6 +3,8 @@
     <head>
 
         <title>**order**</title>
+
+        # links for styling
         <link href="customer.css" rel="stylesheet" type="text/css"/>
         <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
@@ -11,8 +13,10 @@
 
     <body>
 
+        # print title
         <h>Your Order</h>
 
+        # print table of ordered items
         <table class="menu">
         <tr>
         <th>Item</th>
@@ -55,6 +59,7 @@
                 echo "<td>".$item."</td>";
                 echo "<td>".$ingredients."</td>";
                 echo "<td>".$price."</td>";
+                // allow for input of special requests
                 echo "<td><input type=text name=$idNum></td>";
                 echo "</tr>";
             }

@@ -3,6 +3,8 @@
     <head>
 
         <title>**menu**</title>
+
+        # links for styling
         <link href="customer.css" rel="stylesheet" type="text/css"/>
         <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
@@ -11,8 +13,10 @@
 
         <h class="main">the Menu</h>
 
+        # form to get table number and ordered items
         <form action="yourOrder.php" method="post" id="form">
 
+            # get table number
             <table class="table_num">
 			<tr>
 			<th>table number</th>
@@ -20,6 +24,7 @@
 			</tr>
             </table>
 
+            # get selected menu items
             <table class="menu">
             <tr>
             <th>quantity</th>
@@ -52,6 +57,7 @@
 					$price = $row ["Price"];
                     $idNum = $row ["IDNum"];
 					echo "<tr>";
+                    // allow input of quantities
 					echo "<td><input type='number' name=$idNum value=0 min=0 max=10></td>";
 					echo "<td>".$item."</td>";
 					echo "<td>".$ingredients."</td>";
@@ -66,6 +72,7 @@
 
         </select>
 
+        # add submit button
 		<tr><th colspan=4>
         <input type="submit" value="send to cart">
         </th></td>

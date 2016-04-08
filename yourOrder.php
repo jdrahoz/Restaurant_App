@@ -57,7 +57,6 @@ for ($i = 0; $i < $num; $i++) {
 // close mysql
 $connection -> close ();
 
-
 // redirect to html file
 header ("Location: /~jdrahoza/subdir/eecs448/proj03/yourOrder.html?table_num=$table_num");
 
