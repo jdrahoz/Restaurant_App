@@ -14,7 +14,7 @@ $table_name = "Bill_Table_$table_num";
 // echo header
 echo "<h class=main>Thank You!</h>";
 echo "<br><br><br>";
-echo "<a>Have a great day.</a>";
+echo "<a href='customerFrontPage.html'>Have a great day.</a>";
 
 // send rows from bill table to accounting table
 

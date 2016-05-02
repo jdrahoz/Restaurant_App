@@ -50,7 +50,7 @@ echo "<h>Your order</h> <p>has been submitted!</p>";
 
 // redirect link
 echo "<br><br><br>";
-echo "<a href=/~jdrahoza/subdir/eecs448/proj03/enjoyYourMeal.html?table_num=$table_num>food is here?</a>";
+echo "<a href=enjoyYourMeal.html?table_num=$table_num>food is here?</a>";
 
 // close mysql
 $connection -> close ();
