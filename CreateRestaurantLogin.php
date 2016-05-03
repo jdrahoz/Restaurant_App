@@ -74,7 +74,7 @@ $restaurantName = $_POST["restaurant"];
           if ($result -> num_rows == 0)
           {
             //Create new table based on table number
-            $create = "CREATE TABLE $table_name (Item varchar(250), TableNum int(11), Alterations varchar(250) NULL, Price double, theTime TIMESTAMP DEFAULT NOW(),IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
+            $create = "CREATE TABLE $table_name (Item varchar(250), TableNum int(11), Alterations varchar(250) NULL, Price double, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
             $result = $mysqli -> query ($create);
           }
 
@@ -89,7 +89,7 @@ $restaurantName = $_POST["restaurant"];
           if ($result -> num_rows == 0)
           {
             //Create new table based on table number
-            $create = "CREATE TABLE $table_name (Item varchar(50), TableNum int(11), Alterations varchar(250) NULL, Price double, Tax double, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
+            $create = "CREATE TABLE $table_name (Item varchar(50), TableNum int(11), Alterations varchar(250) NULL, Price double, Tax double,theTime TIMESTAMP DEFAULT NOW(), IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
             $result = $mysqli -> query ($create);
           }
           else {
