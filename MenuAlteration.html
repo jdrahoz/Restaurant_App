@@ -11,9 +11,9 @@
          <input type="text" name="ingredients" ><br>
          Price<br>
          <input type="number" name="price" ><br>
-		 Subcategory<br>
+		       Subcategory<br>
          <input type="text" name="subcategory" ><br>
-		 Image<br>
+		       Image<br>
          <input type="file" name="image" ><br>
    <input type="submit" value="Add Menu Item">
    </form>
@@ -53,15 +53,15 @@
             $Name = $row ["Name"];
             $Ingredients = $row["Ingredients"];
             $Price = $row["Price"];
-			$Subcategory = $row["Subcategory"];
-			$Image = $row["Image"];
+      			$Subcategory = $row["Subcategory"];
+
             echo "<tr>";
             echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
             echo "<td>$Name</td>";
             echo "<td>$Ingredients</td>";
             echo "<td>$Price</td>";
-			echo "<td>$Subcategory</td>";
-			echo "<td><img height='300' width='300' src='data:image;base64,".$Image."'></td>";
+      			echo "<td>$Subcategory</td>";
+      			echo '<td><<img src=getImage.php?id=$IDNum></td>';
             echo "</tr>";
         }
 
