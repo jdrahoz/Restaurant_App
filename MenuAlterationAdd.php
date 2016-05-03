@@ -5,11 +5,16 @@ $Name = $_POST["name"];
 $Ingredients = $_POST["ingredients"];
 $Price = $_POST["price"];
 $Subcategory = $_POST["subcategory"];
-//$Image = $_POST["image"];
+$file = $_FILES['image']['tmp_name'];
 
-//mess with Image
-$Image=$_FILES["image"]["name"];
-$Imagetmp=addslashes(file_get_contents($_FILES['image']['tmp_name']));
+//gets the contents of the file
+//addslashes prevents sql injection
+  $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+  //File name
+  $image_name=addslashes($_FILES['image']['name']);
+  //image size of temporary file information (returns false if not an image)
+  $image_size=getimagesize($_FILES['image']['tmp_name']);
+
 
     //opens connection to sql
      $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -20,7 +25,7 @@ $Imagetmp=addslashes(file_get_contents($_FILES['image']['tmp_name']));
             echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
             exit();
         }
-	
+
         //check table for name
       	$select = "SELECT * FROM Menu WHERE Name = '$Name'";
       	$result = $mysqli -> query($select);
@@ -33,7 +38,7 @@ $Imagetmp=addslashes(file_get_contents($_FILES['image']['tmp_name']));
       	else
       	{
       		//add to table
-      		$mysqli -> query ("INSERT INTO Menu (Name,Ingredients,Price,Subcategory,Imagetmp) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$Image')");
+      		$mysqli -> query ("INSERT INTO Menu (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$image_name')");
       	}
 
       //close sql connection
