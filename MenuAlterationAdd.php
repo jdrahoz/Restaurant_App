@@ -4,6 +4,12 @@
 $Name = $_POST["name"];
 $Ingredients = $_POST["ingredients"];
 $Price = $_POST["price"];
+$Subcategory = $_POST["subcategory"];
+//$Image = $_POST["image"];
+
+//mess with Image
+$Image=$_FILES["image"]["name"];
+$Imagetmp=addslashes(file_get_contents($_FILES['image']['tmp_name']));
 
     //opens connection to sql
      $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -14,7 +20,7 @@ $Price = $_POST["price"];
             echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
             exit();
         }
-
+	
         //check table for name
       	$select = "SELECT * FROM Menu WHERE Name = '$Name'";
       	$result = $mysqli -> query($select);
@@ -27,12 +33,12 @@ $Price = $_POST["price"];
       	else
       	{
       		//add to table
-      		$mysqli -> query ("INSERT INTO Menu (Name,Ingredients,Price) VALUES ('$Name','$Ingredients','$Price')");
+      		$mysqli -> query ("INSERT INTO Menu (Name,Ingredients,Price,Subcategory,Imagetmp) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$Image')");
       	}
 
       //close sql connection
        $mysqli->close();
 
       //refresh html page
-       header('Location: http://people.eecs.ku.edu/~jdrahoza/subdir/eecs448/proj03/MenuAlteration.html');
+       header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/MenuAlteration.html');
 ?>

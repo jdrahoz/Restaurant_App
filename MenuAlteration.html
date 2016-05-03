@@ -4,13 +4,17 @@
  </head>
  <body>
 
-   <form action="MenuAlterationAdd.php" id="add" method = "post">
+   <form action="MenuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
         Name<br>
          <input type="text" name="name" ><br>
          Ingredients<br>
          <input type="text" name="ingredients" ><br>
          Price<br>
          <input type="number" name="price" ><br>
+		 Subcategory<br>
+         <input type="text" name="subcategory" ><br>
+		 Image<br>
+         <input type="file" name="image" ><br>
    <input type="submit" value="Add Menu Item">
    </form>
 
@@ -25,6 +29,8 @@
         <td>Name</td>
         <td>Ingredients</td>
         <td>Price</td>
+		<td>Subcategory</td>
+		<td>Image</td>
         </tr>
 
        <?php
@@ -36,7 +42,7 @@
             exit();
         }
 
-        $select = "SELECT IDNum,Name, Ingredients, Price FROM Menu";
+        $select = "SELECT IDNum,Name, Ingredients, Price,Subcategory,Image FROM Menu";
         $result = $mysqli -> query($select);
         $num = $result -> num_rows;
 
@@ -47,11 +53,15 @@
             $Name = $row ["Name"];
             $Ingredients = $row["Ingredients"];
             $Price = $row["Price"];
+			$Subcategory = $row["Subcategory"];
+			$Image = $row["Image"];
             echo "<tr>";
             echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
             echo "<td>$Name</td>";
             echo "<td>$Ingredients</td>";
             echo "<td>$Price</td>";
+			echo "<td>$Subcategory</td>";
+			echo "<td><img height='300' width='300' src='data:image;base64,".$Image."'></td>";
             echo "</tr>";
         }
 
