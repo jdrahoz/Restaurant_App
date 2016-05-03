@@ -1,3 +1,8 @@
+<?php
+    $page = $_SERVER['PHP_SELF'];
+    $sec = "60";
+?>
+
 <html>
 
     <head>
@@ -7,19 +12,47 @@
         <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
 
+        <meta http-equiv='refresh' content='<?php echo $sec?>;URL=<?php echo $page?>'>
+
     </head>
 
     <body>
 
-		<h>Enjoy your meal!</h>
 		<?php
-			$table_num = $_GET["table_num"];
+
+            $table_num = $_GET["table_num"];
+
+            // open mysql
+            $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+            // check connection
+            if ($connection === false) {
+                echo "connect failed";
+                exit ();
+            }
+
+            $done = false;
+
+            // get kitchen table
+            $select = "SELECT * FROM OrdersToCook WHERE TableNum = $table_num";
+            $result = $connection -> query ($select);
+            $num = $result -> num_rows;
+
+            // check if there are items still cooking
+            if ($num == 0) {
+                $done = true;
+            }
 
 
-            // redirect links
-			echo "<br><br><br>";
-            echo "<a href=/~jdrahoza/subdir/eecs448/proj03/menu.html>reorder?</a>";
-			echo "<a href=/~jdrahoza/subdir/eecs448/proj03/yourBill.php?table_num=$table_num>ready to pay?</a>";
+            if ($done) {
+                // redirect links
+                echo "<h>Enjoy Your Meal!</h>";
+                echo "<br><br><br>";
+                echo "<a href=menu.html>reorder?</a>";
+                echo "<a href=yourBill.php?table_num=$table_num>ready to pay?</a>";
+            } else {
+                echo "<p>waiting...</p>";
+            }
 
         ?>
 

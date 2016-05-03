@@ -45,12 +45,8 @@ for ($i = 0; $i < $num; $i++) {
 
 }
 
-// display message
-echo "<h>Your order</h> <p>has been submitted!</p>";
-
-// redirect link
-echo "<br><br><br>";
-echo "<a href=/~jdrahoza/subdir/eecs448/proj03/enjoyYourMeal.html?table_num=$table_num>food is here?</a>";
+// redirect to html file
+header ("Location: enjoyYourMeal.html?table_num=$table_num");
 
 // close mysql
 $connection -> close ();
