@@ -18,27 +18,26 @@
         <link href="carousel.css" rel="stylesheet">
 
     </head>
+    <body>
 
     <!-- navbar
     ================================================== -->
-      <body>
         <div class="navbar-wrapper">
-          <div class="container">
-
-            <nav class="navbar navbar-inverse navbar-static-top">
-              <div class="container">
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand">RestaurantApp</a>
-                </div>
-              </div>
-            </nav>
-          </div>
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">RestaurantApp</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse navbar-right">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a>Group 11</a></li>
+                                <li class="active"><a>Project 4</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </div>
 
     <!-- carousel
@@ -119,7 +118,7 @@
                     echo "<div class='carousel-caption'>";
                     echo "<h1>$rest_name</h1>";
                     echo "<p>$description</p>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='#' role='button'>log in now</a></p>";
+                    echo "<p><a class='btn btn-lg btn-primary' href='Login.html' role='button'>Log In</a></p>";
                     echo "</div></div></div>";
                 // other slides
                 } else {
@@ -129,7 +128,7 @@
                     echo "<div class='carousel-caption'>";
                     echo "<h1>$rest_name</h1>";
                     echo "<p>$description</p>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='#' role='button'>log in now</a></p>";
+                    echo "<p><a class='btn btn-lg btn-primary' href='Login.html' role='button'>Log In</a></p>";
                     echo "</div></div></div>";
                 };
 
@@ -157,27 +156,27 @@
     <!-- text features
     ================================================== -->
     <div class="container marketing">
-        <div class="container">
 
-            <!-- columns of text below the carousel -->
-            <div class="row">
+        <hr class="featurette-divider">
 
-                <div class="col-lg-6">
-                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                    <h2>Add Your Restaurant</h2>
-                    <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p>
-                    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-                </div>
-
-                <div class="col-lg-6">
-                    <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-                    <h2>Learn More about Us</h2>
-                    <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p>
-                    <p><a class="btn btn-default" href="https://github.com/jdrahoz/Restaurant_App" role="button">View details &raquo;</a></p>
-                </div>
+        <div class="row featurette">
+            <div class="col-md-12">
+                <h2 class="featurette-heading">Get started. <br> <span class="text-muted">Add your restaurant now!</span></h2>
+                <p class="lead">blah blah blah blah blah </p>
+                <p><a class="btn btn-lg btn-primary" href="CreateRestaurantLogin.html" role="button">Get Started</a></p>
             </div>
-
         </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">Learn more about us. <br> <span class="text-muted">subtitle</span></h2>
+                <p class="lead">blah blah blah blah </p>
+                <p><a class="btn btn-lg btn-primary" href="https://github.com/jdrahoz/Restaurant_App" role="button">Learn More</a></p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Bootstrap core JavaScript
