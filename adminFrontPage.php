@@ -31,7 +31,7 @@
   <a href="kitchenFront.php">kitchen</a>
   <a href="accountingFront.php">accounting</a>
   <a href="Maintenance.html">maintenance</a>
-  <a href="menu.php">Customer interation</a>
+  <a href="customerFrontPage">Customer interaction</a>
 
 </body>
 </html>

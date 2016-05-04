@@ -55,7 +55,7 @@
                 <h1>Welcome to Restaurant</h1>
                 <p>customer front page blah blah blah
                     <br>
-                    <a class="btn btn-lg btn-primary" href="menu.html" role="button">Order Now</a>
+                    <a class="btn btn-lg btn-primary" href="menu.php" role="button">Order Now</a>
                 </p>
 
             </div>
