@@ -23,7 +23,6 @@ $restaurantName = force_input($restaurantName);
 
 //built in functions to hash the password to store into database
 $hashed = password_hash($password, PASSWORD_BCRYPT, $options);
-echo $password . " became " . $hashed . "<br>";
 
 //opens connection to sql
 $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -42,7 +41,7 @@ $result = $mysqli -> query($select);
 if($result -> num_rows != 0)
 {
   echo '<p>Username duplicate, your login was not created</p><br>';
-  echo "<a href='http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/CreateRestaurantLogin.html'>Click here to create login</a>";
+  echo "<a href='createRestaurantLogin.html'>Click here to create login</a>";
 
 }
 //if OK to add
@@ -51,7 +50,7 @@ else
 	//add to table
 	$mysqli -> query ("INSERT INTO Restaurants (RestaurantName,Username,Password) VALUES ('$restaurantName','$username','$hashed')");
   echo '<p>"Login created!"</p>';
-  echo '<a href="http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/Login.html"> Click here to login</a>';
+  echo '<a href="login.html"> Click here to login</a>';
 
 
   //make restaurantName have no spaces

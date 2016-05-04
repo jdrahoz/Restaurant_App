@@ -90,7 +90,7 @@
 
   <br>
   <br>
-  <a href="adminFrontPage.html">Admin Homepage</a><br>
+  <a href="adminFrontPage.php">Admin Homepage</a><br>
 
  </body>
 </html>
