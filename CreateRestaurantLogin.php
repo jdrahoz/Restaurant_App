@@ -5,6 +5,9 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $restaurantName = $_POST["restaurant"];
 
+//make restaurantName have no spaces
+$restaurantName = preg_replace('/\s+/','',$restaurantName);
+
     //opens connection to sql
      $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
