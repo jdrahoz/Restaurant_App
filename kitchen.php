@@ -9,6 +9,9 @@ session_start();
      echo "Welcome, ";
      echo $_SESSION['login'];
    }
+
+   $username=$_SESSION['login'];
+
 //retrieves kitchen array from kitchen.html
 $kitchen = $_POST["kitchen"];
 
@@ -31,7 +34,7 @@ $kitchen = $_POST["kitchen"];
             $row = $result -> fetch_assoc ();
             $table_num = $row ["TableNum"];
             //creates table name
-            $table_name = "Bill_Table_$table_num";
+            $table_name = $username."Bill_Table_$table_num";
             //checks to see if a table exists already
             $show = "SHOW TABLES LIKE '$table_name'";
             $result = $mysqli -> query ($show);

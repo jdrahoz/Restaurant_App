@@ -53,13 +53,11 @@ else
   echo '<a href="login.html"> Click here to login</a>';
 
 
-  //make restaurantName have no spaces
-  $restaurantName = preg_replace('/\s+/','',$restaurantName);
 
 
   /****CREATE RESTAURANTNAME_MAINTENANCE TABLE******/
   //creates table name
-  $table_name = $restaurantName."_Maintenance";
+  $table_name = $username."_Maintenance";
   //checks to see if a table exists already
   $show = "SHOW TABLES LIKE '$table_name'";
   $result = $mysqli -> query ($show);
@@ -74,7 +72,7 @@ else
 
   /****CREATE RESTAURANTNAME_MENU TABLE******/
   //creates table name
-  $table_name = $restaurantName."_Menu";
+  $table_name = $username."_Menu";
   //checks to see if a table exists already
   $show = "SHOW TABLES LIKE '$table_name'";
   $result = $mysqli -> query ($show);
@@ -89,7 +87,7 @@ else
 
   /****CREATE RESTAURANTNAME_ORDERSTOCOOK TABLE******/
   //creates table name
-  $table_name = $restaurantName."_OrdersToCook";
+  $table_name = $username."_OrdersToCook";
   //checks to see if a table exists already
   $show = "SHOW TABLES LIKE '$table_name'";
   $result = $mysqli -> query ($show);
@@ -104,7 +102,7 @@ else
 
   /****CREATE RESTAURANTNAME_ACCOUNTING TABLE******/
   //creates table name
-  $table_name = $restaurantName."_Accounting";
+  $table_name = $username."_Accounting";
   //checks to see if a table exists already
   $show = "SHOW TABLES LIKE '$table_name'";
   $result = $mysqli -> query ($show);
