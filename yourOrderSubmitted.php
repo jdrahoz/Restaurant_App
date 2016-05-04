@@ -46,7 +46,7 @@ for ($i = 0; $i < $num; $i++) {
 }
 
 // redirect to html file
-header ("Location: enjoyYourMeal.html?table_num=$table_num");
+header ("Location: enjoyYourMeal.php?table_num=$table_num");
 
 // close mysql
 $connection -> close ();

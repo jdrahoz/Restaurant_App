@@ -58,6 +58,6 @@ for ($i = 0; $i < $num; $i++) {
 $connection -> close ();
 
 // redirect to html file
-header ("Location: yourOrder.html?table_num=$table_num");
+header ("Location: yourOrderFront.php?table_num=$table_num");
 
 ?>
