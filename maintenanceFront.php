@@ -5,6 +5,16 @@
   </head>
   <body>
     <?php
+    session_start();
+   if(!isset($_SESSION['login'])){
+       echo "\nMust Log in First.<br>";
+       echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+       exit();
+     }else{
+       echo "Welcome, ";
+       echo $_SESSION['login'];
+     }
+
 
          $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
