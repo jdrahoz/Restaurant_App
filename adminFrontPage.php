@@ -28,7 +28,7 @@
 
   <br><br><br>
   <a href="menuAlteration.php">menu alteration</a>
-  <a href="kitchen.html">kitchen</a>
+  <a href="kitchenFront.php">kitchen</a>
   <a href="accountingFront.php">accounting</a>
   <a href="Maintenance.html">maintenance</a>
   <a href="menu.php">Customer interation</a>
