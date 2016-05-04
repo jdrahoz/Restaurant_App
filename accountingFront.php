@@ -11,6 +11,10 @@
      echo "Welcome, ";
      echo $_SESSION['login'];
    }
+
+   $username=$_SESSION['login'];
+   $tableName=$username."_Accounting";
+
    // open mysql
    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
@@ -20,7 +24,7 @@
       exit ();
    }
    //print out the accounting table
-   $query = "SELECT * FROM Accounting";
+   $query = "SELECT * FROM $tableName";
    $result = $connection->query($query);
    $num = $result -> num_rows;
 

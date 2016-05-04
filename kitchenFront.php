@@ -8,6 +8,10 @@
      echo "Welcome, ";
      echo $_SESSION['login'];
    }
+
+    $username=$_SESSION['login'];
+   $tableName=$username."_OrdersToCook";
+
   $page = $_SERVER['PHP_SELF'];
   $sec = "30";
 
@@ -40,7 +44,7 @@
             exit();
         }
 
-        $select = "SELECT Item,TableNum,Alterations,Price,IDNum FROM OrdersToCook";
+        $select = "SELECT Item,TableNum,Alterations,Price,IDNum FROM $tableName";
         $result = $mysqli -> query($select);
         $num = $result -> num_rows;
 

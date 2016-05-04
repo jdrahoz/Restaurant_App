@@ -8,6 +8,8 @@ if(!isset($_SESSION['login'])){
     echo "Welcome, ";
     echo $_SESSION['login'];
   }
+
+  $username=$_SESSION['login'];
 ?>
 
 
@@ -39,8 +41,10 @@ $file = $_FILES['image']['tmp_name'];
             exit();
         }
 
+        $tableName=$username."_Menu";
+
         //check table for name
-      	$select = "SELECT * FROM Menu WHERE Name = '$Name'";
+      	$select = "SELECT * FROM $tableName WHERE Name = '$Name'";
       	$result = $mysqli -> query($select);
       	//if name is in table
       	if($result -> num_rows != 0)
@@ -51,7 +55,7 @@ $file = $_FILES['image']['tmp_name'];
       	else
       	{
       		//add to table
-      		$mysqli -> query ("INSERT INTO Menu (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$image_name')");
+      		$mysqli -> query ("INSERT INTO $tableName (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$image_name')");
       	}
 
       //close sql connection

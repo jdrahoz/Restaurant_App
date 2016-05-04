@@ -11,7 +11,7 @@ session_start();
    }
 
    $username=$_SESSION['login'];
-
+   $tableName=$username."_OrdersToCook";
 //retrieves kitchen array from kitchen.html
 $kitchen = $_POST["kitchen"];
 
@@ -29,7 +29,7 @@ $kitchen = $_POST["kitchen"];
         for($i=0; $i<count($kitchen);$i++)
         {
             //Select from Orders to Cook using kitchen array
-            $checkTableNum = "SELECT TableNum From OrdersToCook WHERE IDNum = '$kitchen[$i]'";
+            $checkTableNum = "SELECT TableNum From $tableName WHERE IDNum = '$kitchen[$i]'";
             $result = $mysqli -> query($checkTableNum);
             $row = $result -> fetch_assoc ();
             $table_num = $row ["TableNum"];
@@ -48,7 +48,7 @@ $kitchen = $_POST["kitchen"];
             }
 
             //selects information from OrdersToCook table
-            $select ="SELECT Item,TableNum,Alterations,Price FROM OrdersToCook WHERE IDNum='$kitchen[$i]'";
+            $select ="SELECT Item,TableNum,Alterations,Price FROM $tableName WHERE IDNum='$kitchen[$i]'";
             $result = $mysqli ->  query($select);
             $row = $result -> fetch_assoc();
             $Item = $row["Item"];
@@ -61,7 +61,7 @@ $kitchen = $_POST["kitchen"];
             $mysqli -> query($insert);
 
             //deletes information from OrdersToCookTable
-            $delete = "DELETE FROM OrdersToCook WHERE IDNum = '$kitchen[$i]'";
+            $delete = "DELETE FROM $tableName WHERE IDNum = '$kitchen[$i]'";
             $mysqli->query($delete);
         }
 

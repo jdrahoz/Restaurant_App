@@ -8,10 +8,9 @@ if(!isset($_SESSION['login'])){
     echo "Welcome, ";
     echo $_SESSION['login'];
   }
-?>
 
-<?php
-
+  $username=$_SESSION['login'];
+  $tableName=$username."_Menu";
 //Grab checked items from MenuAlteration.html
  $menuArray = $_POST["menu"];
 
@@ -27,7 +26,7 @@ if(!isset($_SESSION['login'])){
     //deletes the rows from Menu table that match in the menuArray
     for($i=0; $i<count($menuArray);$i++)
     {
-        $delete = "DELETE FROM Menu WHERE IDNum = '$menuArray[$i]'";
+        $delete = "DELETE FROM $tableName WHERE IDNum = '$menuArray[$i]'";
         $mysqli->query($delete);
     }
 

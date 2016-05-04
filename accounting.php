@@ -8,6 +8,10 @@
      echo "Welcome, ";
      echo $_SESSION['login'];
    }
+
+   $username=$_SESSION['login'];
+   $tableName=$username."_Accounting";
+
     $start_date = $_POST["start"];
     $end_date = $_POST["end"];
 
@@ -21,7 +25,7 @@
     }
 
     // select from accounting table
-    $query = "SELECT * FROM Accounting WHERE Time BETWEEN '$start_date' AND '$end_date'";
+    $query = "SELECT * FROM $tableName WHERE Time BETWEEN '$start_date' AND '$end_date'";
     $result = $connection->query($query);
     $num = $result -> num_rows;
 

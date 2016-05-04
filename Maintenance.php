@@ -1,4 +1,17 @@
 <?php
+
+session_start();
+if(!isset($_SESSION['login'])){
+   echo "\nMust Log in First.<br>";
+   echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+   exit();
+ }else{
+   echo "Welcome, ";
+   echo $_SESSION['login'];
+ }
+
+ $username=$_SESSION['login'];
+
 $Description = $_POST["description"];
 $NumberOfTables = $_POST ["numtables"];
 $Subcategory1 = $_POST ["subcategory1"];
@@ -12,8 +25,7 @@ $Subcategory1 = $_POST ["subcategory1"];
         $Subcategory9 = $_POST ["subcategory9"];
          $Subcategory10 = $_POST ["subcategory10"];
 
-    $restaurantName="123";
-    $tableName=$restaurantName."_Maintenance";
+    $tableName=$username."_Maintenance";
 
     $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 

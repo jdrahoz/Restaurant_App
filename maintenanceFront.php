@@ -15,6 +15,7 @@
        echo $_SESSION['login'];
      }
 
+      $username=$_SESSION['login'];
 
          $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
@@ -24,8 +25,7 @@
              exit();
          }
 
-         $restaurantName="123";
-         $tableName=$restaurantName."_Maintenance";
+         $tableName=$username."_Maintenance";
 
          $select = "SELECT Description,NumberOfTables,Subcategory1,Subcategory2,Subcategory3,Subcategory4,Subcategory5,Subcategory6,Subcategory7,Subcategory8,Subcategory9,Subcategory10 FROM $tableName";
          $result = $mysqli -> query($select);

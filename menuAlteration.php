@@ -15,6 +15,8 @@
        echo "Welcome, ";
        echo $_SESSION['login'];
      }
+
+     $username=$_SESSION['login'];
    ?>
 
  </h1>
@@ -57,7 +59,9 @@
           exit();
       }
 
-      $select = "SELECT IDNum,Name, Ingredients, Price,Subcategory,Image FROM Menu";
+      $tableName=$username."_Menu";
+
+      $select = "SELECT IDNum,Name, Ingredients, Price,Subcategory,Image FROM $tableName";
       $result = $mysqli -> query($select);
       $num = $result -> num_rows;
 
