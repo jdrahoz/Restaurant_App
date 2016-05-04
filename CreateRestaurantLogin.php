@@ -5,9 +5,6 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $restaurantName = $_POST["restaurant"];
 
-//make restaurantName have no spaces
-$restaurantName = preg_replace('/\s+/','',$restaurantName);
-
     //opens connection to sql
      $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
@@ -35,6 +32,9 @@ $restaurantName = preg_replace('/\s+/','',$restaurantName);
       		$mysqli -> query ("INSERT INTO Restaurants (RestaurantName,Username,Password) VALUES ('$restaurantName','$username','$password')");
           echo '<p>"Login created!"</p>';
           echo '<a href="http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/Login.html"> Click here to login</a>';
+
+          //make restaurantName have no spaces
+          $restaurantName = preg_replace('/\s+/','',$restaurantName);
 
           /****CREATE RESTAURANTNAME_MAINTENANCE TABLE******/
           //creates table name
