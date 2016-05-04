@@ -1,5 +1,13 @@
  <?php
-
+    session_start();
+ if(!isset($_SESSION['login'])){
+     echo "\nMust Log in First.<br>";
+     echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+     exit();
+   }else{
+     echo "Welcome, ";
+     echo $_SESSION['login'];
+   }
     $start_date = $_POST["start"];
     $end_date = $_POST["end"];
 
