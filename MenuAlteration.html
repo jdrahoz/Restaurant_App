@@ -1,25 +1,22 @@
 <html>
- <head>
-  <title>Admin-Menu Alteration</title>
- </head>
+    <head>
+        <title>Admin-Menu Alteration</title>
+    </head>
  <body>
 
-   <form action="MenuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
+    <form action="MenuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
         Name<br>
-         <input type="text" name="name" ><br>
-         Ingredients<br>
-         <input type="text" name="ingredients" ><br>
-         Price<br>
-         <input type="number" name="price" ><br>
-		       Subcategory<br>
-         <input type="text" name="subcategory" ><br>
-		       Image<br>
-         <input type="file" name="image" ><br>
-   <input type="submit" value="Add Menu Item">
-   </form>
-
-
-
+        <input type="text" name="name" ><br>
+        Ingredients<br>
+        <input type="text" name="ingredients" ><br>
+        Price<br>
+        <input type="number" name="price" ><br>
+		Subcategory<br>
+        <input type="text" name="subcategory" ><br>
+		Image<br>
+        <input type="file" name="image" ><br>
+        <input type="submit" value="Add Menu Item">
+    </form>
 
     <form action = "MenuAlterationDelete.php" id="delete" method = "post">
 
@@ -53,15 +50,15 @@
             $Name = $row ["Name"];
             $Ingredients = $row["Ingredients"];
             $Price = $row["Price"];
-      			$Subcategory = $row["Subcategory"];
+    		$Subcategory = $row["Subcategory"];
 
             echo "<tr>";
             echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
             echo "<td>$Name</td>";
             echo "<td>$Ingredients</td>";
             echo "<td>$Price</td>";
-      			echo "<td>$Subcategory</td>";
-      			echo '<td><<img src=getImage.php?id=$IDNum></td>';
+    		echo "<td>$Subcategory</td>";
+    		echo "<td><img src='getImage.php?id=$IDNum'></td>";
             echo "</tr>";
         }
 

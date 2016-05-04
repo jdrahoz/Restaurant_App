@@ -20,14 +20,14 @@ $password = $_POST["password"];
       	//if name is in table
       	if($result -> num_rows != 0)
       	{
-          header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/Homepage.html');
+          header('Location: adminFrontPage.html');
 
       	}
       	//if OK to add
       	else
       	{
           echo "<p>Login incorrect</p>";
-          echo "<a href='http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/Login.html'>Login correctly</a>";
+          echo "<a href='Login.html'>Login correctly</a>";
         }
 
       //close sql connection
