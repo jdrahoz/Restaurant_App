@@ -30,8 +30,8 @@
   <a href="menuAlteration.php">menu alteration</a>
   <a href="kitchenFront.php">kitchen</a>
   <a href="accountingFront.php">accounting</a>
-  <a href="Maintenance.html">maintenance</a>
-  <a href="customerFrontPage">Customer interaction</a>
+  <a href="maintenanceFront.php">maintenance</a>
+  <a href="customerFrontPage.php">Customer interaction</a>
 
 </body>
 </html>

@@ -96,19 +96,19 @@
 			$item = $row ["Name"];
 			$ingredients = $row ["Ingredients"];
 			$price = $row ["Price"];
-                $idNum = $row ["IDNum"];
+            $idNum = $row ["IDNum"];
 
-                // print row
-                echo "<br>";
+            // print row
+            echo "<br>";
 			echo "<div class='row'>";
-                echo "<div class='col-md-12'>".$item."</div>";
-                echo "<div class='row'>";
+            echo "<div class='col-md-12'>".$item."</div>";
+            echo "<div class='row'>";
 			echo "<div class='col-md-3'><input type='number' name=$idNum value=0 min=0 max=10></div>";
 			echo "<div class='col-md-6'>".$ingredients."</div>";
 			echo "<div class='col-md-3'>$".$price."</div>";
-                echo "</div>";
+            echo "</div>";
 			echo "</div>";
-                echo "<br>";
+            echo "<br>";
 		}
 
 		// close mysql

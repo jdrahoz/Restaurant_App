@@ -48,7 +48,7 @@
 
     ?>
 
-    <form action = "Maintenance.php" id="maintain" method = "post">
+    <form action = "maintenance.php" id="maintain" method = "post">
       Description <input type="text" name="description" value="<?= $Description ?>"><br>
       Number of Tables <input type="number" name="numtables" value="<?= $NumberOfTables ?>"><br>
       Subcategory1 <input type="text" name="subcategory1" value="<?= $Subcategory1 ?>"><br>

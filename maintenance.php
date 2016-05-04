@@ -35,10 +35,10 @@ $Subcategory1 = $_POST ["subcategory1"];
         exit();
     }
 
-    $mysqli -> query ("UPDATE  $tableName SET Description='$Description',NumberOfTables='$NumberOfTables',Subcategory1='$Subcategory1',Subcategory2='$Subcategory2',Subcategory3='$Subcategory3',Subcategory4='$Subcategory4',Subcategory5='$Subcategory5',Subcategory6='$Subcategory6',Subcategory7='$Subcategory7',Subcategory8='$Subcategory8',Subcategory9='$Subcategory9',Subcategory10='$Subcategory10'");
+    $mysqli -> query ("UPDATE '$tableName' SET Description='$Description',NumberOfTables='$NumberOfTables',Subcategory1='$Subcategory1',Subcategory2='$Subcategory2',Subcategory3='$Subcategory3',Subcategory4='$Subcategory4',Subcategory5='$Subcategory5',Subcategory6='$Subcategory6',Subcategory7='$Subcategory7',Subcategory8='$Subcategory8',Subcategory9='$Subcategory9',Subcategory10='$Subcategory10'");
 
     $mysqli->close();
 
-    //header('Location: http://people.eecs.ku.edu/~kstrombo/EECS_448_HTML/Restaurant_App/Maintenance.html');
+    header('Location: maintenanceFront.php');
 
  ?>
