@@ -1,14 +1,10 @@
 <?php
-    $page = $_SERVER['PHP_SELF'];
-    $sec = "60";
-
-    session_start ();
-    if (!isset ($_SESSION['login'])) {
-    	echo "\nMust Log in First.<br>";
-    	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
-    	exit ();
-    }
-
+session_start ();
+if (!isset ($_SESSION['login'])) {
+	echo "\nMust Log in First.<br>";
+	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	exit ();
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +20,7 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>Enjoy!</title>
+        <title>Thank you!</title>
 
         <!-- bootstrap css -->
         <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -50,9 +46,9 @@
                             <li><a>Welcome</a></li>
                             <li><a>Order</a></li>
                             <li><a>Confirm</a></li>
-                            <li class=active><a>Enjoy</a></li>
+                            <li><a>Enjoy</a></li>
                             <li><a>Pay</a></li>
-                            <li><a>Thanks</a></li>
+                            <li class=active><a>Thanks</a></li>
                         </ul>
                     </div>
 
@@ -63,55 +59,13 @@
         <br>
         <div class="container">
             <div class="jumbotron">
+				<h1>Thank you!</h1>
+				<br>
+				<h3>Have a great day.</h3>
+				<br>
+				<p><a class='btn btn-lg btn-primary' href='customerFrontPage.html' role='button'>Return</a></p>
 
-    		<?php
-
-
-                // get restaurant
-                $user_name = $_SESSION['login'];
-
-                // get table number
-                $table_num = $_SESSION["table_num"];
-
-                // open mysql
-                $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-
-                // check connection
-                if ($connection === false) {
-                    echo "connect failed";
-                    exit ();
-                }
-
-                $done = false;
-
-                // get kitchen table
-                $select = "SELECT * FROM $user_name_OrdersToCook WHERE TableNum = $table_num";
-                $result = $connection -> query ($select);
-                $num = $result -> num_rows;
-
-                // check if there are items still cooking
-                if ($num == 0) {
-                    $done = true;
-                }
-
-
-                if ($done) {
-
-                    // redirect links
-                    echo "<h1>Enjoy Your Meal!</h1>";
-                    echo "<br>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='menu.php' role='button'>Reorder</a></p>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='yourBill.php' role='button'>Pay Now</a></p>";
-
-
-                } else {
-
-                    echo "<h1>Waiting...</h1>";
-
-                }
-
-            ?>
-            </div>
+			</div>
         </div>
 
         <!-- bootstrap core js -->

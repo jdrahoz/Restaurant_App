@@ -1,20 +1,17 @@
 <?php
 
-echo "<title>**BILL**</title>";
+session_start ();
+if (!isset ($_SESSION['login'])) {
+	echo "\nMust Log in First.<br>";
+	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	exit ();
+}
 
-// links for styling
-echo "<link href='customer.css' rel='stylesheet' type='text/css'/>";
-echo "<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>";
-echo "<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>";
+// get restaurant
+$user_name = $_SESSION['login'];
 
 // get table number
-$table_num = $_POST["table_num"];
-$table_name = "Bill_Table_$table_num";
-
-// echo header
-echo "<h class=main>Thank You!</h>";
-echo "<br><br><br>";
-echo "<a href='customerFrontPage.php'>Have a great day.</a>";
+$table_num = $_SESSION["table_num"];
 
 // send rows from bill table to accounting table
 
@@ -45,14 +42,17 @@ for ($i = 0; $i < $num; $i++) {
 	$idNum = $row ["IDNum"];
 
 	// insert into accounting table
-	$insert = "INSERT INTO Accounting (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
+	$insert = "INSERT INTO $user_name_Accounting (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
 	$result_2 = $connection -> query ($insert);
 
 	// update orders in bill table
-	$delete = "DELETE FROM $table_name WHERE IDNum='$idNum'";
+	$delete = "DELETE FROM $user_name_Bill_Table_$table_num WHERE IDNum='$idNum'";
 	$result_2 = $connection -> query ($delete);
 
 }
 
 // close mysql
 $connection -> close ();
+
+// redirect to html file
+header ("Location: thankYouFront.php");

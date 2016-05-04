@@ -1,3 +1,12 @@
+<?php
+session_start ();
+if (!isset ($_SESSION['login'])) {
+	echo "\nMust Log in First.<br>";
+	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	exit ();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +41,17 @@
 
                     <!-- title -->
                     <div class="navbar-header">
-                        <a class="navbar-brand">Restaurant Name</a>
+                        <?php
+                            // get restaurant
+                            $user_name = $_SESSION['login'];
+
+                            $select = "SELECT * FROM Restaurants WHERE Username = $user_name";
+                            $result = $connection -> query ($select);
+                            $row = $result -> fetch_assoc ();
+                        	$rest_name = $row ["RestaurantName"];
+
+                            echo "<a class='navbar-brand'>$rest_name</a>";
+                        ?>
                     </div>
 
                     <!-- where you are -->
@@ -58,7 +77,7 @@
             <div class="page-header">
                 <h1>Your Order</h1>
             </div>
-            <h3>Add any requests / comments</h3>
+            <h3>Add any requests / comments?</h3>
 
             <!-- column titles -->
 
@@ -78,8 +97,8 @@
             <?php
 
                 // get table number
-                $table_num = $_GET["table_num"];
-                $table_name = "Cart_Table_$table_num";
+                $table_num = $_SESSION['table_num'];
+                $table_name = "$user_name_Cart_Table_$table_num";
                 echo "<input type='hidden' name='table_num' value=$table_num>";
 
                 // open mysql

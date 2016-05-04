@@ -1,11 +1,22 @@
 <?php
 
+session_start ();
+if (!isset ($_SESSION['login'])) {
+	echo "\nMust Log in First.<br>";
+	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	exit ();
+}
+
+// get restaurant
+$user_name = $_SESSION['login'];
+
 // get submitted table number
 $table_num = $_POST ["table_num"];
 $table_num = intval ($table_num);
+$_SESSION['table_num'] = $table_num;
 
 // set up name for table
-$table_name = "Cart_Table_$table_num";
+$table_name = "$user_name_Cart_Table_$table_num";
 
 // open mysql
 $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -28,7 +39,7 @@ if ($result -> num_rows == 0) {
 }
 
 // get table of menu items
-$select = "SELECT * FROM Menu";
+$select = "SELECT * FROM $user_name_Menu";
 $result = $connection -> query ($select);
 $num = $result -> num_rows;
 

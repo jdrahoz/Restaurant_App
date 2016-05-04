@@ -29,9 +29,6 @@
       echo "\nMust Log in First.<br>";
       echo "<a href=\"login.html\"><button>LOG IN</button></a>";
       exit();
-    }else{
-      echo "Welcome, ";
-      echo $_SESSION['login'];
     }
   ?>
 
@@ -77,17 +74,19 @@
         <!-- rows-->
         <?php
 
-            // open mysql
-            $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+        // open mysql
+        $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
-            // check connection
-            if ($connection === false) {
-            	echo "connect failed";
-            	exit ();
-            }
+        // check connection
+        if ($connection === false) {
+        	echo "connect failed";
+        	exit ();
+        }
+
+        $user_name = $_SESSION['login'];
 
 		// get table of menu items
-		$select = "SELECT * FROM Menu";
+		$select = "SELECT * FROM $user_name_Menu";
 		$result = $connection -> query ($select);
 		$num = $result -> num_rows;
 
