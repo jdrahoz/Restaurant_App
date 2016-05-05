@@ -51,9 +51,9 @@
         <br>
         <div class="container">
             <div class="jumbotron">
-
                 <?php
 
+                    // start session
                     session_start();
                     if(!isset($_SESSION['login'])){
                         echo "\nMust Log in First.<br>";
@@ -61,32 +61,42 @@
                         exit();
                     }
 
-                    // get restaurant
-                    $user_name = $_SESSION["login"];
+                    // get user
+                    $user_name = $_SESSION['login'];
 
                     // open mysql
                     $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
                     // check connection
                     if ($connection === false) {
-                    	echo "connect failed";
-                    	exit ();
+                        echo "connect failed";
+                        exit ();
                     }
 
-                    $select = "SELECT * FROM Restaurants WHERE Username = $user_name";
+                    // get restaurant name
+                    $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
                     $result = $connection -> query ($select);
-                    $row = $result -> fetch_assoc ();
+                    $row = $result -> fetch_assoc();
                     $rest_name = $row ["RestaurantName"];
+
+                    // print restaurant name
                     echo "<h1>Welcome to $rest_name</h1>";
 
+                    // get description
+                    $select = "SELECT * FROM " . $user_name . "_Maintenance";
+                    $result = $connection -> query ($select);
+                    $row = $result -> fetch_assoc();
+                    $desc = $row ["Description"];
+
+                    // print description
+                    echo "<p>$desc</p>";
 
                     // close mysql
                     $connection -> close ();
                 ?>
-                <p>customer front page blah blah blah
-                    <br>
-                    <a class="btn btn-lg btn-primary" href="menu.php" role="button">Order Now</a>
-                </p>
+                
+                <br>
+                <a class="btn btn-lg btn-primary" href="menu.php" role="button">Order Now</a>
 
             </div>
         </div>
