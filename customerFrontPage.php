@@ -52,7 +52,37 @@
         <div class="container">
             <div class="jumbotron">
 
-                <h1>Welcome to Restaurant</h1>
+                <?php
+
+                    session_start();
+                    if(!isset($_SESSION['login'])){
+                        echo "\nMust Log in First.<br>";
+                        echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+                        exit();
+                    }
+
+                    // get restaurant
+                    $user_name = $_SESSION["login"];
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                    	echo "connect failed";
+                    	exit ();
+                    }
+
+                    $select = "SELECT * FROM Restaurants WHERE Username = $user_name";
+                    $result = $connection -> query ($select);
+                    $row = $result -> fetch_assoc ();
+                    $rest_name = $row ["RestaurantName"];
+                    echo "<h1>Welcome to $rest_name</h1>";
+
+
+                    // close mysql
+                    $connection -> close ();
+                ?>
                 <p>customer front page blah blah blah
                     <br>
                     <a class="btn btn-lg btn-primary" href="menu.php" role="button">Order Now</a>
