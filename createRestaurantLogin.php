@@ -16,7 +16,7 @@
         <button type="submit"><b>SUBMIT</b></button>
    </form>
 
-   Or Log In Here <a href="login.html"><button>Log In</button></a>
+   Or Log In Here <a href="login.php"><button>Log In</button></a>
 
  </body>
 </html>

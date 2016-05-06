@@ -3,7 +3,7 @@ session_start ();
 if (!isset ($_SESSION['login']))
 {
     echo "\nMust Log in First.<br>";
-    echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+    echo "<a href=\"login.php\"><button>LOG IN</button></a>";
     exit ();
 } else{
     echo "Welcome, ";
@@ -43,7 +43,7 @@ $tableName= $username . "_Maintenance";
 $truncate = "TRUNCATE $tableName";
 $mysqli -> query ($truncate);
 
-// add updated information 
+// add updated information
 $insert="INSERT $tableName (Description, NumberOfTables, Subcategory1, Subcategory2, Subcategory3, Subcategory4, Subcategory5, Subcategory6, Subcategory7, Subcategory8, Subcategory9, Subcategory10) VALUES ('$Description', '$NumberOfTables', '$Sub1', '$Sub2', '$Sub3', '$Sub4', '$Sub5', '$Sub6', '$Sub7', '$Sub8', '$Sub9', '$Sub10')";
 $mysqli -> query ($insert);
 
