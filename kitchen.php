@@ -3,7 +3,7 @@
 session_start();
  if(!isset($_SESSION['login'])){
      echo "\nMust Log in First.<br>";
-     echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+     echo "<a href=\"login.php\"><button>LOG IN</button></a>";
      exit();
    }else{
      echo "Welcome, ";
@@ -34,7 +34,7 @@ $kitchen = $_POST["kitchen"];
             $row = $result -> fetch_assoc ();
             $table_num = $row ["TableNum"];
             //creates table name
-            $table_name = $username."Bill_Table_$table_num";
+            $table_name = $username."_Bill_Table_$table_num";
             //checks to see if a table exists already
             $show = "SHOW TABLES LIKE '$table_name'";
             $result = $mysqli -> query ($show);
@@ -69,5 +69,5 @@ $kitchen = $_POST["kitchen"];
        $mysqli->close();
 
        //kitchen.html refreshed after php is done
-       header('Location: http://people.eecs.ku.edu/~jdrahoza/subdir/eecs448/proj03/kitchen.html');
+       header('Location: kitchenFront.php');
 ?>

@@ -3,7 +3,7 @@
 session_start ();
 if (!isset ($_SESSION['login'])) {
 	echo "\nMust Log in First.<br>";
-	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	echo "<a href=\"login.php\"><button>LOG IN</button></a>";
 	exit ();
 }
 
@@ -12,7 +12,7 @@ $user_name = $_SESSION['login'];
 
 // get table number
 $table_num = $_SESSION["table_num"];
-$table_name = "$user_name_Cart_Table_$table_num";
+$cart_table_name = $user_name . "_Cart_Table_" . $table_num;
 
 // open mysql
 $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -24,7 +24,7 @@ if ($connection === false) {
 }
 
 // get table of ordered items
-$select = "SELECT * FROM $table_name";
+$select = "SELECT * FROM $cart_table_name";
 $result = $connection -> query ($select);
 $num = $result -> num_rows;
 
@@ -38,12 +38,14 @@ for ($i = 0; $i < $num; $i++) {
 	$idNum = $row ["IDNum"];
 	$alterations = $_POST [$idNum];
 
+	$ordersToCook_table_name = $user_name . "_OrdersToCook";
+
 	// insert into orders to cook table
-	$insert = "INSERT INTO OrdersToCook (Item, TableNum, Alterations, Price) VALUES ('$item', '$table_num', '$alterations', '$price')";
+	$insert = "INSERT INTO $ordersToCook_table_name (Item, TableNum, Alterations, Price) VALUES ('$item', '$table_num', '$alterations', '$price')";
 	$result_2 = $connection -> query ($insert);
 
 	// update orders in table table
-	$delete = "DELETE FROM $table_name WHERE IDNum='$idNum'";
+	$delete = "DELETE FROM $cart_table_name WHERE IDNum='$idNum'";
 	$result_2 = $connection -> query ($delete);
 
 }

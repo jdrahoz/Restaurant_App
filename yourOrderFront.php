@@ -2,7 +2,7 @@
 session_start ();
 if (!isset ($_SESSION['login'])) {
 	echo "\nMust Log in First.<br>";
-	echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+	echo "<a href=\"login.php\"><button>LOG IN</button></a>";
 	exit ();
 }
 ?>
@@ -41,17 +41,32 @@ if (!isset ($_SESSION['login'])) {
 
                     <!-- title -->
                     <div class="navbar-header">
+
                         <?php
                             // get restaurant
                             $user_name = $_SESSION['login'];
 
-                            $select = "SELECT * FROM Restaurants WHERE Username = $user_name";
-                            $result = $connection -> query ($select);
-                            $row = $result -> fetch_assoc ();
-                        	$rest_name = $row ["RestaurantName"];
+							// open mysql
+		                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
-                            echo "<a class='navbar-brand'>$rest_name</a>";
+		                    // check connection
+		                    if ($connection === false) {
+		                        echo "connect failed";
+		                        exit ();
+		                    }
+
+							// get restaurant name
+		                    $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
+		                    $result = $connection -> query ($select);
+		                    $row = $result -> fetch_assoc();
+		                    $rest = $row ["RestaurantName"];
+
+                            echo "<a class='navbar-brand'>$rest</a>";
+
+							// close mysql
+							$connection -> close ();
                         ?>
+
                     </div>
 
                     <!-- where you are -->
@@ -96,10 +111,12 @@ if (!isset ($_SESSION['login'])) {
 
             <?php
 
+				// get restaurant name
+				$user_name = $_SESSION['login'];
+
                 // get table number
                 $table_num = $_SESSION['table_num'];
-                $table_name = "$user_name_Cart_Table_$table_num";
-                echo "<input type='hidden' name='table_num' value=$table_num>";
+                $cart_table_name = $user_name . "_Cart_Table_" .$table_num;
 
                 // open mysql
                 $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -111,7 +128,7 @@ if (!isset ($_SESSION['login'])) {
                 }
 
                 // get table of menu items
-                $select = "SELECT * FROM $table_name";
+                $select = "SELECT * FROM $cart_table_name";
                 $result = $connection -> query ($select);
                 $num = $result -> num_rows;
 

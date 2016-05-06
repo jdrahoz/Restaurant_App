@@ -57,7 +57,7 @@
                     session_start();
                     if(!isset($_SESSION['login'])){
                         echo "\nMust Log in First.<br>";
-                        echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+                        echo "<a href=\"login.php\"><button>LOG IN</button></a>";
                         exit();
                     }
 
@@ -77,10 +77,10 @@
                     $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
                     $result = $connection -> query ($select);
                     $row = $result -> fetch_assoc();
-                    $rest_name = $row ["RestaurantName"];
+                    $rest = $row ["RestaurantName"];
 
                     // print restaurant name
-                    echo "<h1>Welcome to $rest_name</h1>";
+                    echo "<h1>Welcome to $rest</h1>";
 
                     // get description
                     $select = "SELECT * FROM " . $user_name . "_Maintenance";
@@ -94,7 +94,7 @@
                     // close mysql
                     $connection -> close ();
                 ?>
-                
+
                 <br>
                 <a class="btn btn-lg btn-primary" href="menu.php" role="button">Order Now</a>
 

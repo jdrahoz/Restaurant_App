@@ -65,7 +65,6 @@
             $result = $connection -> query ($select);
             $num = $result -> num_rows;
 
-
             // create indicator for each restaurant
             for ($i = 0; $i < $num; $i++) {
                 if ($i==0) {
@@ -80,77 +79,80 @@
 
         ?>
 
-    </ol>
+        </ol>
 
-    <!-- slides -->
-    <div class="carousel-inner" role="listbox">
+        <!-- slides -->
+        <div class="carousel-inner" role="listbox">
 
-        <?php
+            <?php
 
-            // open mysql
-            $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+                // open mysql
+                $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
-            // check connection
-            if ($connection === false) {
-                echo "connect failed";
-                exit ();
-            }
+                // check connection
+                if ($connection === false) {
+                    echo "connect failed";
+                    exit ();
+                }
 
-            // get table of restaurants
-            $select = "SELECT * FROM Restaurants";
-            $result = $connection -> query ($select);
-            $num = $result -> num_rows;
+                // get table of restaurants
+                $select = "SELECT * FROM Restaurants";
+                $result = $connection -> query ($select);
+                $num = $result -> num_rows;
 
 
-            // create slide for each restaurant
-            for ($i = 0; $i < $num; $i++) {
+                // create slide for each restaurant
+                for ($i = 0; $i < $num; $i++) {
 
-                // get variables
-                $row = $result -> fetch_assoc ();
-                $rest_name = $row ["RestaurantName"];
-                $image = $row ["Image"];
-                $description = $row ["Description"];
+                    // get variables
+                    $row = $result -> fetch_assoc ();
+                    $rest = $row ["RestaurantName"];
+                    $user_name = $row ["Username"];
 
-                // active slide
-                if ($i==0) {
-                    echo "<div class='item active'>";
-                    echo "<img class='slide' src='$image' alt='slide'>";
-                    echo "<div class='container'>";
-                    echo "<div class='carousel-caption'>";
-                    echo "<h1>$rest_name</h1>";
-                    echo "<p>$description</p>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='login.html' role='button'>Log In</a></p>";
-                    echo "</div></div></div>";
-                // other slides
-                } else {
-                    echo "<div class='item'>";
-                    echo "<img class='slide' src='$image' alt='slide'>";
-                    echo "<div class='container'>";
-                    echo "<div class='carousel-caption'>";
-                    echo "<h1>$rest_name</h1>";
-                    echo "<p>$description</p>";
-                    echo "<p><a class='btn btn-lg btn-primary' href='login.html' role='button'>Log In</a></p>";
-                    echo "</div></div></div>";
+                    // get description
+                    $select2 = "SELECT * FROM " . $user_name . "_Maintenance";
+                    $result2 = $connection -> query ($select2);
+                    $row2 = $result2 -> fetch_assoc();
+                    $desc = $row2 ["Description"];
+
+                    // active slide
+                    if ($i==0) {
+                        echo "<div class='item active'>";
+                        echo "<img class='slide' src='$image' alt='slide'>";
+                        echo "<div class='container'>";
+                        echo "<div class='carousel-caption'>";
+                        echo "<h1>$rest</h1>";
+                        echo "<p>$desc</p>";
+                        echo "</div></div></div>";
+                    // other slides
+                    } else {
+                        echo "<div class='item'>";
+                        echo "<img class='slide' src='$image' alt='slide'>";
+                        echo "<div class='container'>";
+                        echo "<div class='carousel-caption'>";
+                        echo "<h1>$rest</h1>";
+                        echo "<p>$desc</p>";
+                        echo "</div></div></div>";
+                    };
+
                 };
 
-            };
+                // close mysql
+                $connection -> close ();
 
-            // close mysql
-            $connection -> close ();
+            ?>
 
-        ?>
+        </div>
 
-    </div>
-
-    <!-- slide controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+        <!-- slide controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Prev</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
 
     </div>
 
@@ -162,17 +164,27 @@
 
         <div class="row featurette">
             <div class="col-md-12">
-                <h2 class="featurette-heading">Get started. <br> <span class="text-muted">Add your restaurant now!</span></h2>
+                <h2 class="featurette-heading">Log in now. <br> <span class="text-muted">Already joined? Sign in here.</span></h2>
                 <p class="lead">blah blah blah blah blah </p>
-                <p><a class="btn btn-lg btn-primary" href="createRestaurantLogin.html" role="button">Get Started</a></p>
+                <p><a class="btn btn-lg btn-primary" href="login.php" role="button">Log In</a></p>
             </div>
         </div>
 
         <hr class="featurette-divider">
 
         <div class="row featurette">
-            <div class="col-md-7 col-md-push-5">
-                <h2 class="featurette-heading">Learn more about us. <br> <span class="text-muted">subtitle</span></h2>
+            <div class="col-md-8 col-md-push-4">
+                <h2 class="featurette-heading">Get started. <br> <span class="text-muted">Add your restaurant now!</span></h2>
+                <p class="lead">blah blah blah blah blah </p>
+                <p><a class="btn btn-lg btn-primary" href="createRestaurantLogin.php" role="button">Get Started</a></p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-10 col-md-push-2">
+                <h2 class="featurette-heading">Learn more about us. <br> <span class="text-muted">See our code.</span></h2>
                 <p class="lead">blah blah blah blah </p>
                 <p><a class="btn btn-lg btn-primary" href="https://github.com/jdrahoz/Restaurant_App" role="button">Learn More</a></p>
             </div>
