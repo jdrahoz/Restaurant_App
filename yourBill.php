@@ -40,9 +40,34 @@ if (!isset ($_SESSION['login'])) {
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
 
-                    <!-- title -->
+					<!-- title -->
                     <div class="navbar-header">
-                        <a class="navbar-brand">Restaurant Name</a>
+
+                        <?php
+                            // get restaurant
+                            $user_name = $_SESSION['login'];
+
+							// open mysql
+		                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+		                    // check connection
+		                    if ($connection === false) {
+		                        echo "connect failed";
+		                        exit ();
+		                    }
+
+							// get restaurant name
+		                    $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
+		                    $result = $connection -> query ($select);
+		                    $row = $result -> fetch_assoc();
+		                    $rest = $row ["RestaurantName"];
+
+                            echo "<a class='navbar-brand'>$rest</a>";
+
+							// close mysql
+							$connection -> close ();
+                        ?>
+
                     </div>
 
                     <!-- where you are -->
@@ -85,12 +110,10 @@ if (!isset ($_SESSION['login'])) {
 
 			// get restaurant
 			$user_name = $_SESSION['login'];
-
 			// get table number
 			$table_num = $_SESSION["table_num"];
 
-
-			$table_name = "$user_name_Bill_Table_$table_num";
+			$bill_table_name = $user_name . "_Bill_Table_" . $table_num;
 
 			// echo form
 			echo "<form id='form' method='post' action='thankYou.php'>";
@@ -105,7 +128,7 @@ if (!isset ($_SESSION['login'])) {
 			}
 
 			// get bill
-			$select = "SELECT * FROM $table_name";
+			$select = "SELECT * FROM $bill_table_name";
 			$result = $connection -> query ($select);
 			$num = $result -> num_rows;
 			$subtotal = 0;

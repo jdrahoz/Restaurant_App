@@ -36,8 +36,33 @@ if (!isset ($_SESSION['login'])) {
                 <div class="container-fluid">
 
                     <!-- title -->
-                    <div class="navbar-header">
-                        <a class="navbar-brand">Restaurant Name</a>
+					<div class="navbar-header">
+
+                        <?php
+                            // get restaurant
+                            $user_name = $_SESSION['login'];
+
+							// open mysql
+		                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+		                    // check connection
+		                    if ($connection === false) {
+		                        echo "connect failed";
+		                        exit ();
+		                    }
+
+							// get restaurant name
+		                    $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
+		                    $result = $connection -> query ($select);
+		                    $row = $result -> fetch_assoc();
+		                    $rest = $row ["RestaurantName"];
+
+                            echo "<a class='navbar-brand'>$rest</a>";
+
+							// close mysql
+							$connection -> close ();
+                        ?>
+
                     </div>
 
                     <!-- where you are -->
@@ -63,7 +88,7 @@ if (!isset ($_SESSION['login'])) {
 				<br>
 				<h3>Have a great day.</h3>
 				<br>
-				<p><a class='btn btn-lg btn-primary' href='customerFrontPage.html' role='button'>Return</a></p>
+				<p><a class='btn btn-lg btn-primary' href='customerFrontPage.php' role='button'>Return</a></p>
 
 			</div>
         </div>

@@ -41,7 +41,32 @@
 
                     <!-- title -->
                     <div class="navbar-header">
-                        <a class="navbar-brand">Restaurant Name</a>
+
+                        <?php
+                            // get restaurant
+                            $user_name = $_SESSION['login'];
+
+							// open mysql
+		                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+		                    // check connection
+		                    if ($connection === false) {
+		                        echo "connect failed";
+		                        exit ();
+		                    }
+
+							// get restaurant name
+		                    $select = "SELECT * FROM Restaurants WHERE Username = '$user_name'";
+		                    $result = $connection -> query ($select);
+		                    $row = $result -> fetch_assoc();
+		                    $rest = $row ["RestaurantName"];
+
+                            echo "<a class='navbar-brand'>$rest</a>";
+
+							// close mysql
+							$connection -> close ();
+                        ?>
+
                     </div>
 
                     <!-- where you are -->
@@ -66,10 +91,8 @@
 
     		<?php
 
-
                 // get restaurant
                 $user_name = $_SESSION['login'];
-
                 // get table number
                 $table_num = $_SESSION["table_num"];
 
@@ -83,9 +106,10 @@
                 }
 
                 $done = false;
+                $ordersToCook_table_name = $user_name . "_OrdersToCook";
 
                 // get kitchen table
-                $select = "SELECT * FROM $user_name_OrdersToCook WHERE TableNum = $table_num";
+                $select = "SELECT * FROM $ordersToCook_table_name WHERE TableNum = $table_num";
                 $result = $connection -> query ($select);
                 $num = $result -> num_rows;
 

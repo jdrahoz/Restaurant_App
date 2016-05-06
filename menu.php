@@ -86,7 +86,7 @@
         $user_name = $_SESSION['login'];
 
 		// get table of menu items
-		$select = "SELECT * FROM $user_name_Menu";
+		$select = "SELECT * FROM " . $user_name . "_Menu";
 		$result = $connection -> query ($select);
 		$num = $result -> num_rows;
 

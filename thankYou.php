@@ -13,6 +13,10 @@ $user_name = $_SESSION['login'];
 // get table number
 $table_num = $_SESSION["table_num"];
 
+$bill_table_name = $user_name . "_Bill_Table_" . $table_num;
+$accounting_table_name = $user_name . "_Accounting";
+
+
 // send rows from bill table to accounting table
 
 // open mysql
@@ -25,7 +29,7 @@ if ($connection === false) {
 }
 
 // get table of ordered items
-$select = "SELECT * FROM $table_name";
+$select = "SELECT * FROM $bill_table_name";
 $result = $connection -> query ($select);
 $num = $result -> num_rows;
 $subtotal = 0;
@@ -41,12 +45,13 @@ for ($i = 0; $i < $num; $i++) {
 	$tax = $price * 0.09;
 	$idNum = $row ["IDNum"];
 
+
 	// insert into accounting table
-	$insert = "INSERT INTO $user_name_Accounting (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
+	$insert = "INSERT INTO $accounting_table_name (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
 	$result_2 = $connection -> query ($insert);
 
 	// update orders in bill table
-	$delete = "DELETE FROM $user_name_Bill_Table_$table_num WHERE IDNum='$idNum'";
+	$delete = "DELETE FROM $bill_table_name WHERE IDNum='$idNum'";
 	$result_2 = $connection -> query ($delete);
 
 }
