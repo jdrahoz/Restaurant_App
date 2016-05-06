@@ -10,10 +10,13 @@ if (!isset ($_SESSION['login'])) {
 // get restaurant
 $user_name = $_SESSION['login'];
 
-// get submitted table number
-$table_num = $_POST ["table_num"];
-$table_num = intval ($table_num);
-$_SESSION['table_num'] = $table_num;
+// get table number
+if ($_SESSION['table_num'] == 0) {
+	$table_num = $_POST ["table_num"];
+	$table_num = intval ($table_num);
+	$_SESSION['table_num'] = $table_num;
+}
+$table_num = $_SESSION['table_num'];
 
 // set up name for table
 $cart_table_name = $user_name . "_Cart_Table_" . $table_num;

@@ -108,9 +108,10 @@
                     $row = $result -> fetch_assoc ();
                     $rest = $row ["RestaurantName"];
                     $user_name = $row ["Username"];
+                    $maint_table_name = $user_name . "_Maintenance";
 
                     // get description
-                    $select2 = "SELECT * FROM " . $user_name . "_Maintenance";
+                    $select2 = "SELECT * FROM $maint_table_name";
                     $result2 = $connection -> query ($select2);
                     $row2 = $result2 -> fetch_assoc();
                     $desc = $row2 ["Description"];
@@ -183,7 +184,7 @@
         <hr class="featurette-divider">
 
         <div class="row featurette">
-            <div class="col-md-10 col-md-push-2">
+            <div class="col-md-12">
                 <h2 class="featurette-heading">Learn more about us. <br> <span class="text-muted">See our code.</span></h2>
                 <p class="lead">blah blah blah blah </p>
                 <p><a class="btn btn-lg btn-primary" href="https://github.com/jdrahoz/Restaurant_App" role="button">Learn More</a></p>

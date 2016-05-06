@@ -27,7 +27,7 @@
   session_start();
   if(!isset($_SESSION['login'])){
       echo "\nMust Log in First.<br>";
-      echo "<a href=\"login.php\"><button>LOG IN</button></a>";
+      echo "<a href=\"login.html\"><button>LOG IN</button></a>";
       exit();
     }
   ?>
@@ -67,52 +67,126 @@
         <!-- heading -->
         <div class="page-header">
             <h1>the Menu</h1>
-            <p class="lead">Table Number : <input type='number' name='table_num' value=1 min=1 max=10></p>
+
+            <?php
+
+                if ($_SESSION['table_num'] == 0) {
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                        echo "connect failed";
+                        exit ();
+                    }
+
+                    $user_name = $_SESSION['login'];
+                    $maint_table_name = $user_name . "_Maintenance";
+
+            		// get table of menu items
+            		$select = "SELECT * FROM $maint_table_name";
+            		$result = $connection -> query ($select);
+
+                    // get number of tables
+                    $select = "SELECT * FROM $maint_table_name";
+                    $result = $connection -> query ($select);
+                    $row = $result -> fetch_assoc();
+                    $num_tables = $row ["NumberOfTables"];
+
+                    if ($num_tables == 0) {
+                        echo "<p class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=10></p>";
+                    } else {
+                        echo "<p class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=$num_tables></p>";
+                    }
+
+                    // close mysql
+                    $connection -> close ();
+
+
+                } else {
+                    echo "<p class='lead'>Table: " . $_SESSION['table_num'] . "</p>";
+                }
+
+
+            ?>
+
         </div>
-        <h3>Menu items here</h3>
 
         <!-- rows-->
         <?php
 
-        // open mysql
-        $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+            // open mysql
+            $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
-        // check connection
-        if ($connection === false) {
-        	echo "connect failed";
-        	exit ();
-        }
+            // check connection
+            if ($connection === false) {
+            	echo "connect failed";
+            	exit ();
+            }
 
-        $user_name = $_SESSION['login'];
+    		// variablesf
+            $user_name = $_SESSION['login'];
+            $menu_table_name = $user_name . "_Menu";
 
-		// get table of menu items
-		$select = "SELECT * FROM " . $user_name . "_Menu";
-		$result = $connection -> query ($select);
-		$num = $result -> num_rows;
+    		// get subcategories from menu
+    		$select = "SELECT * FROM $menu_table_name";
+    		$result = $connection -> query ($select);
+    		$num = $result -> num_rows;
+    		$subs = array ();
 
-		// print table
-		for ($i = 0; $i < $num; $i++) {
-			$row = $result -> fetch_assoc ();
-			$item = $row ["Name"];
-			$ingredients = $row ["Ingredients"];
-			$price = $row ["Price"];
-            $idNum = $row ["IDNum"];
+    		// get array of subcategories
+    		for ($i = 0; $i < $num; $i++) {
+    			$row = $result -> fetch_assoc ();
+    			$sub = $row ["Subcategory"];
 
-            // print row
-            echo "<br>";
-			echo "<div class='row'>";
-            echo "<div class='col-md-12'>".$item."</div>";
-            echo "<div class='row'>";
-			echo "<div class='col-md-3'><input type='number' name=$idNum value=0 min=0 max=10></div>";
-			echo "<div class='col-md-6'>".$ingredients."</div>";
-			echo "<div class='col-md-3'>$".$price."</div>";
-            echo "</div>";
-			echo "</div>";
-            echo "<br>";
-		}
+    			// check if subcategory already in array
+    			$subs_length = count ($subs);
+    			if (in_array ($sub, $subs) == false) {
+    				$subs[] = $sub;
+    			}
+    		}
 
-		// close mysql
-		$connection -> close ();
+    		// display table of subcategories
+    		$subs_length = count ($subs);
+    		for ($i = 0; $i < $subs_length; $i++) {
+
+    			$sub = $subs[$i];
+    			echo "<br>";
+    			echo "<h3>" . $sub . "</h3>";
+
+    			// get table of menu items
+    			$select = "SELECT * FROM $menu_table_name WHERE Subcategory = '$sub'";
+    			$result = $connection -> query ($select);
+    			$num = $result -> num_rows;
+
+    			// print table
+    			for ($j = 0; $j < $num; $j++) {
+
+    				$row = $result -> fetch_assoc ();
+    				$item = $row ["Name"];
+    				$ingredients = $row ["Ingredients"];
+    				$price = $row ["Price"];
+    	            $idNum = $row ["IDNum"];
+
+    	            // print row
+
+    	            echo "<br>";
+    				echo "<div class='row'>";
+    	            echo "<div class='col-md-4'>" . $item . "</div>";
+    				echo "<div class='col-md-4'>" . $ingredients . "</div>";
+    				echo "<div class='col-md-2'>$" . $price . "</div>";
+    				echo "<div class='col-md-2'><input type='number' name=$idNum value=0 min=0 max=10></div>";
+
+    				echo "</div>";
+    	            echo "<br>";
+
+    			}
+
+    		}
+
+    		// close mysql
+    		$connection -> close ();
 
         ?>
 

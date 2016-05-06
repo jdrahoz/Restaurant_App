@@ -9,7 +9,7 @@
    session_start();
    if(!isset($_SESSION['login'])){
        echo "\nMust Log in First.<br>";
-       echo "<a href=\"login.php\"><button>LOG IN</button></a>";
+       echo "<a href=\"login.html\"><button>LOG IN</button></a>";
        exit();
      }else{
        echo "Welcome, ";
@@ -53,7 +53,7 @@
 
 
  <body>
-   <h2>Add items to your menu</h2>
+
   <form action="menuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
       Name<br>
       <input type="text" name="name" ><br>
@@ -79,12 +79,6 @@
       <input type="submit" value="Add Menu Item">
   </form>
 
-  <h2>Add/Update popular item to menu</h2>
-  <form action="menuAlterationPopular.php" id="popular" method = "post">
-    <input type="submit" value="Add/Update popular item">
-  </form>
-
-  <h2>Delete items from your menu</h2>
   <form action = "menuAlterationDelete.php" id="delete" method = "post">
 
   <table name="Menu">
@@ -118,8 +112,8 @@
           echo "<td>$Name</td>";
           echo "<td>$Ingredients</td>";
           echo "<td>$Price</td>";
-  		    echo "<td>$Subcategory</td>";
-          echo "<td><img src='getImage.php?id=$IDNum'></td>";
+  		echo "<td>$Subcategory</td>";
+  		echo "<td><img src='getImage.php?id=$IDNum'></td>";
           echo "</tr>";
       }
 
