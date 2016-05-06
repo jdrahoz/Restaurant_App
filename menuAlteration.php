@@ -120,7 +120,7 @@
           echo "<td>$Ingredients</td>";
           echo "<td>$Price</td>";
   		    echo "<td>$Subcategory</td>";
-          echo "<td><img src=\"$image\"></td>";
+          echo "<td><img src='\"$image\'"></td>";
           echo "</tr>";
       }
 

@@ -97,12 +97,10 @@ if (!isset ($_SESSION['login'])) {
 
             <!-- column titles -->
 
-            <br>
             <div class='row'>
                 <h3 class='col-md-6'><p>Item</p></h3>
                 <h3 class='col-md-6'><p>Price</p></h3>
             </div>
-            <br>
 
 
 
@@ -143,12 +141,10 @@ if (!isset ($_SESSION['login'])) {
 				$price = $row ["Price"];
 
 				// echo table of items
-				echo "<br>";
 				echo "<div class='row'>";
 				echo "<div class='col-md-6'><p>$item</p></div>";
 				echo "<div class='col-md-6'><p>$price</p></div>";
 				echo "</div>";
-				echo "</br>";
 
 				// update subtotal
 				$subtotal = $subtotal + $price;
@@ -159,34 +155,33 @@ if (!isset ($_SESSION['login'])) {
 			$tax = $subtotal * 0.09;
 			$total = $subtotal + $tax;
 
-			// echo table of totals
+			echo "<hr>";
 
-			echo "<br><br>";
+			// echo subtotal
 			echo "<div class='row'>";
-			echo "<h3 class='col-md-6'><p>Subtotal</p></h3>";
-			echo "<div class='col-md-6'><p>$$subtotal</p></div>";
+			echo "<p class='col-md-6'>Subtotal</p>";
+			echo "<p class='col-md-6'>$$subtotal</p>";
 			echo "</div>";
-			echo "</br>";
 
+			// echo tax
 			echo "<div class='row'>";
-			echo "<h3 class='col-md-6'><p>Tax</p></h3>";
-			echo "<div class='col-md-6'><p>$$tax</p></div>";
+			echo "<p class='col-md-6'>Tax</p>";
+			echo "<p class='col-md-6'>$$tax</p>";
 			echo "</div>";
-			echo "</br>";
 
+			echo "<hr>";
+
+			// echo total
 			echo "<div class='row'>";
-			echo "<h3 class='col-md-6'><p>Total</p></h3>";
-			echo "<div class='col-md-6'><p>$$total</p></div>";
+			echo "<h3 class='col-md-6'>Total</h3>";
+			echo "<h3 class='col-md-6'>$$total</h3>";
 			echo "</div>";
-			echo "</br>";
 
+			echo "<hr>";
 
 			// echo submit button
-			echo "<tr><th colspan=2>";
 			echo "<input class='btn btn-lg btn-primary' type=submit value='Pay'>";
-			echo "</th></tr>";
 
-			echo "</table>";
 			echo "</form>";
 
 			// close mysql
