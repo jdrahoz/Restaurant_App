@@ -56,11 +56,11 @@
    <h2>Add items to your menu</h2>
   <form action="menuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
       Name<br>
-      <input type="text" name="name" ><br>
+      <input type="text" name="name" required><br>
       Ingredients<br>
-      <input type="text" name="ingredients" ><br>
+      <input type="text" name="ingredients" required><br>
       Price<br>
-      <input type="number" name="price" ><br>
+      <input type="number" name="price" required><br>
 	     Subcategory<br>
       <select name="subcategory">
         <?php
