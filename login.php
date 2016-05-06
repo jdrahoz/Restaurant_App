@@ -16,10 +16,6 @@
 
     <div id="info"></div>
 
-    <br>
-    <a href="createRestaurantLogin.php"> Create Login</a>
-
-
   </body>
 </html>
 

@@ -108,9 +108,10 @@
                     $row = $result -> fetch_assoc ();
                     $rest = $row ["RestaurantName"];
                     $user_name = $row ["Username"];
+                    $maint_table_name = $user_name . "_Maintenance";
 
                     // get description
-                    $select2 = "SELECT * FROM " . $user_name . "_Maintenance";
+                    $select2 = "SELECT * FROM $maint_table_name";
                     $result2 = $connection -> query ($select2);
                     $row2 = $result2 -> fetch_assoc();
                     $desc = $row2 ["Description"];
@@ -166,7 +167,7 @@
             <div class="col-md-12">
                 <h2 class="featurette-heading">Log in now. <br> <span class="text-muted">Already joined? Sign in here.</span></h2>
                 <p class="lead">blah blah blah blah blah </p>
-                <p><a class="btn btn-lg btn-primary" href="login.html" role="button">Log In</a></p>
+                <p><a class="btn btn-lg btn-primary" href="login.php" role="button">Log In</a></p>
             </div>
         </div>
 
@@ -176,14 +177,14 @@
             <div class="col-md-8 col-md-push-4">
                 <h2 class="featurette-heading">Get started. <br> <span class="text-muted">Add your restaurant now!</span></h2>
                 <p class="lead">blah blah blah blah blah </p>
-                <p><a class="btn btn-lg btn-primary" href="createRestaurantLogin.html" role="button">Get Started</a></p>
+                <p><a class="btn btn-lg btn-primary" href="createRestaurantLogin.php" role="button">Get Started</a></p>
             </div>
         </div>
 
         <hr class="featurette-divider">
 
         <div class="row featurette">
-            <div class="col-md-10 col-md-push-2">
+            <div class="col-md-12">
                 <h2 class="featurette-heading">Learn more about us. <br> <span class="text-muted">See our code.</span></h2>
                 <p class="lead">blah blah blah blah </p>
                 <p><a class="btn btn-lg btn-primary" href="https://github.com/jdrahoz/Restaurant_App" role="button">Learn More</a></p>
