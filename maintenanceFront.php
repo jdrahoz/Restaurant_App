@@ -50,7 +50,7 @@
 
     <form action = "maintenance.php" id="maintain" method = "post">
       Description <input type="text" name="description" value="<?= $Description ?>"><br>
-      Number of Tables <input type="number" name="numtables" value="<?= $NumberOfTables ?>"><br>
+      Number of Tables <input type="number" name="numtables" min="1" max="50" value="<?= $NumberOfTables ?>"><br>
       Sub1 <input type="text" name="Sub1" value="<?= $Sub1 ?>"><br>
       Sub2 <input type="text" name="Sub2" value="<?= $Sub2 ?>"><br>
       Sub3 <input type="text" name="Sub3" value="<?= $Sub3 ?>"><br>
@@ -64,6 +64,8 @@
 
       <input type="submit" value="Save Changes">
     </form>
+
+    <a href="adminFrontPage.php">Admin Homepage</a>
 
   </body>
 </html>
