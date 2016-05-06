@@ -92,15 +92,15 @@ if (!isset ($_SESSION['login'])) {
 
             <!-- heading -->
             <div class="page-header">
-                <h1>Your Bill</h1>
+                <h1>the Bill</h1>
             </div>
 
             <!-- column titles -->
 
             <br>
             <div class='row'>
-                <div class='col-md-6'><p>Item</p></div>
-                <div class='col-md-6'><p>Price</p></div>
+                <h3 class='col-md-6'><p>Item</p></h3>
+                <h3 class='col-md-6'><p>Price</p></h3>
             </div>
             <br>
 
@@ -163,19 +163,19 @@ if (!isset ($_SESSION['login'])) {
 
 			echo "<br><br>";
 			echo "<div class='row'>";
-			echo "<div class='col-md-6'><p>Subtotal</p></div>";
+			echo "<h3 class='col-md-6'><p>Subtotal</p></h3>";
 			echo "<div class='col-md-6'><p>$$subtotal</p></div>";
 			echo "</div>";
 			echo "</br>";
 
 			echo "<div class='row'>";
-			echo "<div class='col-md-6'><p>Tax</p></div>";
+			echo "<h3 class='col-md-6'><p>Tax</p></h3>";
 			echo "<div class='col-md-6'><p>$$tax</p></div>";
 			echo "</div>";
 			echo "</br>";
 
 			echo "<div class='row'>";
-			echo "<div class='col-md-6'><p>Total</p></div>";
+			echo "<h3 class='col-md-6'><p>Total</p></h3>";
 			echo "<div class='col-md-6'><p>$$total</p></div>";
 			echo "</div>";
 			echo "</br>";

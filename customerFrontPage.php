@@ -64,6 +64,9 @@
                     // get user
                     $user_name = $_SESSION['login'];
 
+                    // set table num to 0
+                    $_SESSION['table_num'] = 0;
+
                     // open mysql
                     $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 

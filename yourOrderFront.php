@@ -156,7 +156,7 @@ if (!isset ($_SESSION['login'])) {
                 echo "<br>";
                 echo "<div class='row'>";
                 echo "<div class='col-md-12'>";
-                echo "<input class='btn btn-lg btn-primary' type=submit value='confirm'>";
+                echo "<input class='btn btn-lg btn-primary' type=submit value='Confirm'>";
                 echo "</div></div></tr>";
 
             ?>
