@@ -65,7 +65,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
     }
     else{
       echo "Invalid username/password.";
-      echo "<a href='login.html'>Try Again</a>";
       exit();
     }
   }

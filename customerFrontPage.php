@@ -57,7 +57,7 @@
                     session_start();
                     if(!isset($_SESSION['login'])){
                         echo "\nMust Log in First.<br>";
-                        echo "<a href=\"login.html\"><button>LOG IN</button></a>";
+                        echo "<a href=\"login.php\"><button>LOG IN</button></a>";
                         exit();
                     }
 

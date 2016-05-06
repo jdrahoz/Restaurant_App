@@ -16,6 +16,8 @@
         <button type="submit"><b>SUBMIT</b></button>
    </form>
 
+   Or Log In Here <a href="login.php"><button>Log In</button></a>
+
  </body>
 </html>
 
@@ -96,12 +98,14 @@ if(isset($_POST["restaurant"]) && isset($_POST["username"]) && isset($_POST["pas
     //checks to see if a table exists already
     $show = "SHOW TABLES LIKE '$table_name'";
     $result = $mysqli -> query ($show);
+    //make image Directory
+    mkdir("uploads/$username");
 
     //if table doesn't exist create new
     if ($result -> num_rows == 0)
     {
       //Create new table based on table number
-      $create = "CREATE TABLE $table_name (Name varchar(250), Ingredients varchar(250), Price double, Subcategory varchar(100), Image blob NULL, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
+      $create = "CREATE TABLE $table_name (Name varchar(250), Ingredients varchar(250), Price double, Subcategory varchar(100), Image varchar(100) NULL, IDNum int(11) AUTO_INCREMENT, PRIMARY KEY (IDNum))";
       $result = $mysqli -> query ($create);
     }
 
