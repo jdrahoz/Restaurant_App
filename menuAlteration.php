@@ -79,8 +79,8 @@
           echo "<td>$Name</td>";
           echo "<td>$Ingredients</td>";
           echo "<td>$Price</td>";
-  		echo "<td>$Subcategory</td>";
-  		echo "<td><img src='getImage.php?id=$IDNum'></td>";
+  		    echo "<td>$Subcategory</td>";
+          echo "<td><img src='getImage.php?id=$IDNum'></td>";
           echo "</tr>";
       }
 
