@@ -119,7 +119,7 @@
           echo "<td>$Ingredients</td>";
           echo "<td>$Price</td>";
   		    echo "<td>$Subcategory</td>";
-          echo "<td><img src='getImage.php?id=$IDNum'></td>";
+          echo "<td><img src='getImage.php?id=$IDNum'></td>";//this is where to retrieve link
           echo "</tr>";
       }
 
