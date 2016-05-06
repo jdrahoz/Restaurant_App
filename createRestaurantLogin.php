@@ -99,7 +99,7 @@ if(isset($_POST["restaurant"]) && isset($_POST["username"]) && isset($_POST["pas
     $show = "SHOW TABLES LIKE '$table_name'";
     $result = $mysqli -> query ($show);
     //make image Directory
-    mkdir("uploads/$username");
+    mkdir("uploads/$username", 0777, true);
 
     //if table doesn't exist create new
     if ($result -> num_rows == 0)
