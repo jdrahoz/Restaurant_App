@@ -21,6 +21,36 @@
 
  </h1>
 
+ <?php
+   $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+  if ($mysqli->connect_errno)
+  {
+   echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
+   exit();
+  }
+
+  $tableName=$username."_Maintenance";
+
+  $select = "SELECT Subcategory1,Subcategory2,Subcategory3,Subcategory4,Subcategory5,Subcategory6,Subcategory7,Subcategory8,Subcategory9,Subcategory10 FROM $tableName";
+  $result = $mysqli -> query($select);
+  $num = $result -> num_rows;
+
+      $row = $result -> fetch_assoc();
+      $Subcategory1 = $row["Subcategory1"];
+      $Subcategory2 = $row["Subcategory2"];
+      $Subcategory3 = $row["Subcategory3"];
+      $Subcategory4 = $row["Subcategory4"];
+      $Subcategory5 = $row["Subcategory5"];
+      $Subcategory6 = $row["Subcategory6"];
+      $Subcategory7 = $row["Subcategory7"];
+      $Subcategory8 = $row["Subcategory8"];
+      $Subcategory9 = $row["Subcategory9"];
+      $Subcategory10 = $row["Subcategory10"];
+
+      $sub = array($Subcategory1,$Subcategory2,$Subcategory3,$Subcategory4,$Subcategory5,$Subcategory6,$Subcategory7,$Subcategory8,$Subcategory9,$Subcategory10);
+?>
+
 
  <body>
 
@@ -31,9 +61,20 @@
       <input type="text" name="ingredients" ><br>
       Price<br>
       <input type="number" name="price" ><br>
-	Subcategory<br>
-      <input type="text" name="subcategory" ><br>
-	Image<br>
+	     Subcategory<br>
+      <select name="subcategory">
+        <?php
+          $subLength=count($sub);
+          for($i=0;$i<$subLength;$i++)
+          {
+            if($sub[$i]!="")
+            {
+              echo "<option value='$sub[$i]'>$sub[$i]</option>";
+            }
+          }
+        ?>
+      </select>
+	     Image<br>
       <input type="file" name="image" ><br>
       <input type="submit" value="Add Menu Item">
   </form>
@@ -51,14 +92,6 @@
       </tr>
 
      <?php
-          $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-
-      if ($mysqli->connect_errno)
-      {
-          echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
-          exit();
-      }
-
       $tableName=$username."_Menu";
 
       $select = "SELECT IDNum,Name, Ingredients, Price,Subcategory,Image FROM $tableName";
