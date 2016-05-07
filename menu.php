@@ -22,7 +22,6 @@
 
 </head>
 
-<h1>
   <?php
   session_start();
   if(!isset($_SESSION['login'])){
@@ -32,9 +31,9 @@
     }
   ?>
 
-</h1>
-
 <body>
+
+    <br>
 
     <!-- header -->
     <div class="container">
@@ -49,8 +48,7 @@
           <!-- group name -->
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li><a>Group 14</a></li>
-              <li><a href="https://github.com/jdrahoz/Restaurant_App">Project 4</a></li>
+              <li><a href="https://github.com/jdrahoz/Restaurant_App">Group 11 | Project 4</a></li>
             </ul>
           </div>
 
@@ -59,59 +57,66 @@
     </div>
 
     <!-- menu -->
+    
     <div class="container">
 
         <!-- form -->
+
         <form action="yourOrder.php" method="post" id="form">
 
         <!-- heading -->
+
         <div class="page-header">
             <h1>the Menu</h1>
+        </div>
 
-            <?php
+        <!-- table num -->
 
-                if ($_SESSION['table_num'] == 0) {
+        <?php
 
-                    // open mysql
-                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+            // session table number not set
+            if ($_SESSION['table_num'] == 0) {
 
-                    // check connection
-                    if ($connection === false) {
-                        echo "connect failed";
-                        exit ();
-                    }
+                // open mysql
+                $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
-                    $user_name = $_SESSION['login'];
-                    $maint_table_name = $user_name . "_Maintenance";
-
-            		// get table of menu items
-            		$select = "SELECT * FROM $maint_table_name";
-            		$result = $connection -> query ($select);
-
-                    // get number of tables
-                    $select = "SELECT * FROM $maint_table_name";
-                    $result = $connection -> query ($select);
-                    $row = $result -> fetch_assoc();
-                    $num_tables = $row ["NumberOfTables"];
-
-                    if ($num_tables == 0) {
-                        echo "<p class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=10></p>";
-                    } else {
-                        echo "<p class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=$num_tables></p>";
-                    }
-
-                    // close mysql
-                    $connection -> close ();
-
-
-                } else {
-                    echo "<p class='lead'>Table: " . $_SESSION['table_num'] . "</p>";
+                // check connection
+                if ($connection === false) {
+                    echo "connect failed";
+                    exit ();
                 }
 
+                // variables
+                $user_name = $_SESSION['login'];
+                $maint_table_name = $user_name . "_Maintenance";
 
-            ?>
+        		// get table of menu items
+        		$select = "SELECT * FROM $maint_table_name";
+        		$result = $connection -> query ($select);
 
-        </div>
+                // get number of tables
+                $select = "SELECT * FROM $maint_table_name";
+                $result = $connection -> query ($select);
+                $row = $result -> fetch_assoc();
+                $num_tables = $row ["NumberOfTables"];
+
+                if ($num_tables == 0) {
+                    echo "<h3 class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=10></h3>";
+                } else {
+                    echo "<h3 class='lead'>Table: <input type='number' name='table_num' value=1 min=1 max=$num_tables></h3>";
+                }
+
+                // close mysql
+                $connection -> close ();
+
+            // session table number already set
+            } else {
+                echo "<h3 class='lead'>Table: " . $_SESSION['table_num'] . "</h3>";
+            }
+
+        ?>
+
+        <hr>
 
         <!-- rows-->
         <?php
@@ -152,7 +157,6 @@
     		for ($i = 0; $i < $subs_length; $i++) {
 
     			$sub = $subs[$i];
-    			echo "<br>";
     			echo "<h3>" . $sub . "</h3>";
 
     			// get table of menu items
@@ -171,17 +175,16 @@
 
     	            // print row
 
-    	            echo "<br>";
     				echo "<div class='row'>";
     	            echo "<div class='col-md-4'>" . $item . "</div>";
     				echo "<div class='col-md-4'>" . $ingredients . "</div>";
     				echo "<div class='col-md-2'>$" . $price . "</div>";
     				echo "<div class='col-md-2'><input type='number' name=$idNum value=0 min=0 max=10></div>";
-
     				echo "</div>";
-    	            echo "<br>";
 
     			}
+
+                echo "<hr>";
 
     		}
 
@@ -191,9 +194,8 @@
         ?>
 
         <!--  submit button -->
-        <br>
         <p class="lead">
-            <input type="submit" class="btn btn-lg btn-default" value="Send to Cart">
+            <input type="submit" class="btn btn-lg btn-primary" value="Send to Cart">
         </p>
 
         </form>

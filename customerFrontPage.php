@@ -24,6 +24,8 @@
 
     <body>
 
+        <br>
+
         <!-- header -->
         <div class="container">
             <nav class="navbar navbar-default">
@@ -37,8 +39,7 @@
                     <!-- group name -->
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a>Group 14</a></li>
-                            <li><a href="https://github.com/jdrahoz/Restaurant_App">Project 4</a></li>
+                            <li><a href="https://github.com/jdrahoz/Restaurant_App">Group 11 | Project 4</a></li>
                         </ul>
                     </div>
 

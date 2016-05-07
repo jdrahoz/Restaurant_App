@@ -9,10 +9,8 @@
      echo $_SESSION['login'];
    }
 
-   $username=$_SESSION['login'];
-
-
-   /opens connection to sql
+   $username= $_SESSION['login'];
+   //opens connection to sql
     $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
 
        //if connection to sql fails
@@ -23,23 +21,68 @@
        }
 
        $tableName=$username."_Menu";
+       $pop="Popular Item";
 
-       //check table for name
-       $select = "SELECT * FROM $tableName WHERE Subcategory = 'Popular Item'";
-       $result = $mysqli -> query($select);
-       //if name is in table
-       //Update
-       if($result -> num_rows != 0)
-       {
-         echo "<p>Name already exists</p>";
-       }
-       //Insert
-       else
-       {
-         //add to table
-         $mysqli -> query ("INSERT INTO $tableName (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$image_name')");
-       }
+    $select="SELECT Name FROM $tableName WHERE Subcategory='Popular Item'";
+    $result = $mysqli -> query($select);
 
-       //refresh html page
-        header('Location: menuAlteration.php');
+    //Insert
+    if($result->num_rows==0)
+    {
+      $tableName=$username."_Accounting";
+      $accountingQuery="SELECT Item FROM $tableName GROUP BY Item ORDER BY COUNT(*) DESC LIMIT 1";
+      $result = $mysqli -> query($accountingQuery);
+      $row = $result -> fetch_assoc();
+      $popularItem = $row["Item"];
+
+      $tableName=$username."_Menu";
+
+      $select="SELECT * FROM $tableName WHERE Name='$popularItem'";
+      $result = $mysqli -> query($select);
+
+          $row = $result -> fetch_assoc();
+         $Name=$row['Name'];
+          $Ingredients=$row['Ingredients'];
+          $Price=$row['Price'];
+          $Image=$row['Image'];
+          $Subcategory=$pop;
+
+      $insert="INSERT INTO $tableName (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$Image')";
+      $mysqli -> query($insert);
+
+    }
+    //Update
+    else
+    {
+      $tableName=$username."_Accounting";
+      $accountingQuery="SELECT Item FROM $tableName GROUP BY Item ORDER BY COUNT(*) DESC LIMIT 1";
+      $result = $mysqli -> query($accountingQuery);
+      $row = $result -> fetch_assoc();
+      $popularItem = $row["Item"];
+
+      $tableName=$username."_Menu";
+
+      $select="SELECT * FROM $tableName WHERE Name='$popularItem'";
+      $result = $mysqli -> query($select);
+
+          $row = $result -> fetch_assoc();
+         $Name=$row['Name'];
+          $Ingredients=$row['Ingredients'];
+          $Price=$row['Price'];
+          $Image=$row['Image'];
+          $Subcategory=$pop;
+
+      $delete="DELETE FROM $tableName WHERE Subcategory='$Subcategory'";
+      $mysqli -> query($delete);
+
+      $insert="INSERT INTO $tableName (Name,Ingredients,Price,Subcategory,Image) VALUES ('$Name','$Ingredients','$Price','$Subcategory','$Image')";
+      $mysqli -> query($insert);
+    }
+
+       //close sql connection
+        $mysqli->close();
+
+        //refresh html page
+      header('Location: menuAlteration.php');
+
  ?>

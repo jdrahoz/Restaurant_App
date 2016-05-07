@@ -91,19 +91,19 @@ if (!isset ($_SESSION['login'])) {
             <!-- heading -->
             <div class="page-header">
                 <h1>Your Order</h1>
+				<h3>Any requests / comments?</h3>
             </div>
-            <h3>Add any requests / comments?</h3>
 
             <!-- column titles -->
 
-            <br>
             <div class='row'>
-                <div class='col-md-3'><p>Item</p></div>
-                <div class='col-md-3'><p>Ingredients</p></div>
-                <div class='col-md-3'><p>Price</p></div>
-                <div class='col-md-3'><p>Requests</p></div>
+                <h3 class='col-md-3'>Item</h3>
+                <h3 class='col-md-3'>Ingredients</h3>
+                <h3 class='col-md-3'>Price</h3>
+                <h3 class='col-md-3'>Requests</h3>
             </div>
-            <br>
+
+			<br>
 
             <!-- ordered items -->
 
@@ -139,25 +139,23 @@ if (!isset ($_SESSION['login'])) {
                     $ingredients = $row ["Ingredients"];
                     $price = $row ["Price"];
                     $idNum = $row ["IDNum"];
-                    echo "<br>";
                     echo "<div class='row'>";
                     echo "<div class='col-md-3'>".$item."</div>";
                     echo "<div class='col-md-3'>".$ingredients."</div>";
                     echo "<div class='col-md-3'>$".$price."</div>";
                     echo "<div class='col-md-3'><input type=text name=$idNum></div>";
                     echo "</div>";
-                    echo "<br>";
                 }
 
                 // close mysql
                 $connection -> close ();
 
     			// echo submit button
-                echo "<br>";
+				echo "<hr>";
                 echo "<div class='row'>";
                 echo "<div class='col-md-12'>";
                 echo "<input class='btn btn-lg btn-primary' type=submit value='Confirm'>";
-                echo "</div></div></tr>";
+                echo "</div></div>";
 
             ?>
 
