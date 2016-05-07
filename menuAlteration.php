@@ -15,7 +15,6 @@
        echo "Welcome, ";
        echo $_SESSION['login'];
      }
-
      $username=$_SESSION['login'];
    ?>
 
@@ -23,19 +22,15 @@
 
  <?php
    $mysqli = new mysqli("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-
   if ($mysqli->connect_errno)
   {
    echo "printf('Connect failed: %s\n', $mysqli->connect_error)";
    exit();
   }
-
   $tableName=$username."_Maintenance";
-
   $select = "SELECT Subcategory1,Subcategory2,Subcategory3,Subcategory4,Subcategory5,Subcategory6,Subcategory7,Subcategory8,Subcategory9,Subcategory10 FROM $tableName";
   $result = $mysqli -> query($select);
   $num = $result -> num_rows;
-
       $row = $result -> fetch_assoc();
       $Subcategory1 = $row["Subcategory1"];
       $Subcategory2 = $row["Subcategory2"];
@@ -47,7 +42,6 @@
       $Subcategory8 = $row["Subcategory8"];
       $Subcategory9 = $row["Subcategory9"];
       $Subcategory10 = $row["Subcategory10"];
-
       $sub = array($Subcategory1,$Subcategory2,$Subcategory3,$Subcategory4,$Subcategory5,$Subcategory6,$Subcategory7,$Subcategory8,$Subcategory9,$Subcategory10);
 ?>
 
@@ -56,11 +50,11 @@
    <h2>Add items to your menu</h2>
   <form action="menuAlterationAdd.php" id="add" method = "post" enctype="multipart/form-data">
       Name<br>
-      <input type="text" name="name" required><br>
+      <input type="text" name="name" ><br>
       Ingredients<br>
-      <input type="text" name="ingredients" required><br>
+      <input type="text" name="ingredients" ><br>
       Price<br>
-      <input type="number" name="price" required><br>
+      <input type="number" name="price" ><br>
 	     Subcategory<br>
       <select name="subcategory">
         <?php
@@ -99,11 +93,9 @@
 
      <?php
       $tableName=$username."_Menu";
-
       $select = "SELECT IDNum,Name, Ingredients, Price,Subcategory,Image FROM $tableName";
       $result = $mysqli -> query($select);
       $num = $result -> num_rows;
-
       for($i=0; $i<$num; $i++)
       {
           $row = $result -> fetch_assoc();
@@ -113,27 +105,22 @@
           $Price = $row["Price"];
   		    $Subcategory = $row["Subcategory"];
           $image = $row["Image"];
-
           echo "<tr>";
           echo "<td><input type='checkbox' name='menu[]' value=".$IDNum."></td>";
           echo "<td>$Name</td>";
           echo "<td>$Ingredients</td>";
           echo "<td>$Price</td>";
   		    echo "<td>$Subcategory</td>";
-          echo "<td><img src='\"$image\'"></td>";
+          echo "<td><img src=\"$image\"></td>";
           echo "</tr>";
       }
-
      $mysqli->close();
      ?>
   </table>
-
   <input type="submit" value="Delete" >
   </form>
-
   <br>
   <br>
   <a href="adminFrontPage.php">Admin Homepage</a><br>
-
  </body>
 </html>
