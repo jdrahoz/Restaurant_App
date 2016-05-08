@@ -54,7 +54,7 @@
       Ingredients<br>
       <input type="text" name="ingredients" ><br>
       Price<br>
-      <input type="number" name="price" ><br>
+      <input type="number" name="price" step="any" ><br>
 	     Subcategory<br>
       <select name="subcategory">
         <?php
