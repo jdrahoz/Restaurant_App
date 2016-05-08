@@ -1,4 +1,6 @@
 <html>
+<head>
+</head>
 <body>
 <?php
 
@@ -18,6 +20,7 @@
   <option>No Sort</option>
   <option>Time</option>
   <option>Item Counts</option>
+  <option>By Price</option>
   </select>
   <button type="submit">SUBMIT</button>
 </form>
@@ -39,8 +42,9 @@
     {
       echo "you selected Item Counts";
       sortByCounts();
-    }elseif($option == "something"){
-
+    }elseif($option == "By Price"){
+      echo "you selected By Price";
+      sortByPrice();
     }
   }
 
@@ -131,7 +135,7 @@ function sortByTime(){
   $result = $connection->query($query);
   $num = $result -> num_rows;
   // print in between dates
-  echo "<table cellspacing=\"10px\">";
+  echo "<table cellpadding=\"12px\">";
   echo "<tr>";
   echo "<th>Item</th>";
   echo "<th>alterations</th>";
@@ -184,13 +188,14 @@ function sortByCounts(){
   $num = $result -> num_rows;
 
   // print in between dates
-  echo "<table cellspacing=\"10px\">";
+  echo "<table cellpadding=\"12px\">";
   echo "<tr>";
   echo "<th>Count</th>";
   echo "<th>%</th>";
   echo "<th>Item</th>";
   echo "<th>Total Price</th>";
   echo "</tr>";
+  $sumOfPrice = 0;
   for ($i = 0; $i < $num; $i++) {
     $row = $result -> fetch_assoc();
     $item = $row["Item"];
@@ -198,6 +203,7 @@ function sortByCounts(){
     $price = $row["Price"];
     $percentage = $count * 100/$totalItems;
     $totalPrice = $price * $count;
+    $sumOfPrice += $totalPrice;
 
     echo "<tr>";
     echo "<td>$count</td>";
@@ -206,9 +212,64 @@ function sortByCounts(){
     echo "<td>$totalPrice</td>";
     echo "</tr>";
   }
+  echo "<tr>";
+  echo "<td><b>total count</b></td>";
+  echo "<td>$totalItems</td>";
+  echo "<td><b>total price</b></td>";
+  echo "<td>$sumOfPrice</td>";
+  echo "</tr>";
   echo "</table>";
   $connection -> close();
 }//End sortByCounts
+
+function sortByPrice(){
+  $username=$_SESSION['login'];
+  $tableName=$username."_Accounting";
+  // open mysql
+  $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+  // check connection
+  if ($connection === false) {
+  	exit ();
+  }
+  // select from accounting table
+  $query = "SELECT count(*) AS total,Item,Price,Price * count(*) AS totalPrice FROM $tableName GROUP BY Item ORDER BY totalPrice DESC";
+  $result = $connection->query($query);
+  $num = $result -> num_rows;
+  // print in between dates
+  echo "<table cellpadding=\"12px\">";
+  echo "<tr>";
+  echo "<th>Item</th>";
+  echo "<th>totalPrice</th>";
+  echo "<th>price</th>";
+  echo "<th>count</th>";
+  echo "</tr>";
+  $sumOfPrice = 0;
+  $sumOfCount = 0;
+  for ($i = 0; $i < $num; $i++) {
+    $row = $result -> fetch_assoc();
+    $item = $row["Item"];
+    $count = $row["total"];
+    $totalPrice = $row ["totalPrice"];
+    $price = $row["Price"];
+    $sumOfPrice += $totalPrice;
+    $sumOfCount += $count;
+
+    echo "<tr>";
+    echo "<td>$item</td>";
+    echo "<td>$totalPrice</td>";
+    echo "<td>$price</td>";
+    echo "<td>$count</td>";
+    echo "</tr>";
+  }
+  echo "<tr>";
+  echo "<td><b>total:</b></td>";
+  echo "<td>$sumOfPrice</td>";
+  echo "<td><b>total:</b></td>";
+  echo "<td>$sumOfCount</td>";
+  echo "</tr>";
+  echo "</table>";
+  $connection -> close();
+}//End sortByPrice
 
 ?>
 
