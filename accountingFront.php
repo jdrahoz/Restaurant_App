@@ -17,8 +17,7 @@
 <select name="option">
   <option>No Sort</option>
   <option>Time</option>
-  <option>Popular</option>
-  <option>albert</option>
+  <option>Item Counts</option>
   </select>
   <button type="submit">SUBMIT</button>
 </form>
@@ -27,7 +26,7 @@
   if(isset($_POST["option"])){
     $option = $_POST["option"];
     if($option == "Time"){
-      echo "you selected time";
+      echo "Result will be given Between and not Including the start and end date.";
       // add form to narrow down dates
       echo "<form id='form' method='post' action='?'>";
       echo "<p>start date</p><input type='date' name='start'>";
@@ -36,9 +35,10 @@
       echo "<br>";
       echo "</form>";
     }
-    elseif($option == "Popular")
+    elseif($option == "Item Counts")
     {
-      echo "you selected 123123";
+      echo "you selected Item Counts";
+      sortByCounts();
     }elseif($option == "something"){
 
     }
@@ -49,6 +49,7 @@
   //if certain post conditions are met call various functions defined below
 if(isset($_POST['start']) && isset($_POST['end']))
 {
+  $option = "Time";
   sortByTime();
 }
 
@@ -162,7 +163,52 @@ function sortByTime(){
 }//End sortByTime
 
 
+function sortByCounts(){
+  $username=$_SESSION['login'];
+  $tableName=$username."_Accounting";
+  // open mysql
+  $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+  // check connection
+  if ($connection === false) {
+  	exit ();
+  }
+  // select total amount of items from accounting table
+  $select = "SELECT count(*) AS total FROM $tableName";
+  $result = $connection -> query($select);
+  $row = $result -> fetch_assoc();
+  $totalItems = $row["total"];
 
+  //select count of each individual item and sort result in descending order by the count
+  $query = "SELECT count(*) AS total,Item,Price FROM $tableName GROUP BY Item ORDER BY total DESC";
+  $result = $connection->query($query);
+  $num = $result -> num_rows;
+
+  // print in between dates
+  echo "<table cellspacing=\"10px\">";
+  echo "<tr>";
+  echo "<th>Count</th>";
+  echo "<th>%</th>";
+  echo "<th>Item</th>";
+  echo "<th>Total Price</th>";
+  echo "</tr>";
+  for ($i = 0; $i < $num; $i++) {
+    $row = $result -> fetch_assoc();
+    $item = $row["Item"];
+    $count = $row["total"];
+    $price = $row["Price"];
+    $percentage = $count * 100/$totalItems;
+    $totalPrice = $price * $count;
+
+    echo "<tr>";
+    echo "<td>$count</td>";
+    echo "<td>" . round($percentage,2) . "</td>";
+    echo "<td>$item</td>";
+    echo "<td>$totalPrice</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+  $connection -> close();
+}//End sortByCounts
 
 ?>
 
