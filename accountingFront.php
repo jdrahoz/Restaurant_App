@@ -190,10 +190,10 @@ function sortByCounts(){
   // print in between dates
   echo "<table cellpadding=\"12px\">";
   echo "<tr>";
+  echo "<th>Item</th>";
   echo "<th>Count</th>";
   echo "<th>%</th>";
-  echo "<th>Item</th>";
-  echo "<th>Total Price</th>";
+  echo "<th>Revenue</th>";
   echo "</tr>";
   $sumOfPrice = 0;
   for ($i = 0; $i < $num; $i++) {
@@ -206,16 +206,16 @@ function sortByCounts(){
     $sumOfPrice += $totalPrice;
 
     echo "<tr>";
+    echo "<td>$item</td>";
     echo "<td>$count</td>";
     echo "<td>" . round($percentage,2) . "</td>";
-    echo "<td>$item</td>";
     echo "<td>$totalPrice</td>";
     echo "</tr>";
   }
   echo "<tr>";
-  echo "<td><b>total count</b></td>";
+  echo "<td><b>total:</b></td>";
   echo "<td>$totalItems</td>";
-  echo "<td><b>total price</b></td>";
+  echo "<td><b>total:</b></td>";
   echo "<td>$sumOfPrice</td>";
   echo "</tr>";
   echo "</table>";
@@ -239,7 +239,7 @@ function sortByPrice(){
   echo "<table cellpadding=\"12px\">";
   echo "<tr>";
   echo "<th>Item</th>";
-  echo "<th>totalPrice</th>";
+  echo "<th>Revenue</th>";
   echo "<th>price</th>";
   echo "<th>count</th>";
   echo "</tr>";
