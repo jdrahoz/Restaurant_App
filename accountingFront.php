@@ -15,6 +15,7 @@
    }
 ?>
 
+<!--form to select which sort to display, reloads same page -->
 <form method="post" action="?">
 <select name="option">
   <option>No Sort</option>
@@ -26,11 +27,13 @@
 </form>
 
 <?php
+//if option has been posted, determine which option and display accordingly.
   if(isset($_POST["option"])){
     $option = $_POST["option"];
     if($option == "Time"){
+      //print out a form to select dates to show the data
       echo "Result will be given Between and not Including the start and end date.";
-      // add form to narrow down dates
+      // add form to narrow down dates, this will reload same page with new $_POST variables set
       echo "<form id='form' method='post' action='?'>";
       echo "<p>start date</p><input type='date' name='start'>";
       echo "<p>end date</p><input type='date' name='end'>";
@@ -49,11 +52,10 @@
   }
 
 
-
-  //if certain post conditions are met call various functions defined below
+//load this on load of page if start and end variables set
 if(isset($_POST['start']) && isset($_POST['end']))
 {
-  $option = "Time";
+  $option = "Time";//this will keep the no sorts option from being displayed after filling out the dates form
   sortByTime();
 }
 
@@ -119,6 +121,9 @@ if(!isset($option) || $option == "No Sort")
    $connection -> close();
 }
 
+//Return: void
+//No parameters
+//prints out table sorted the input start time and end time
 function sortByTime(){
   $username=$_SESSION['login'];
   $tableName=$username."_Accounting";
@@ -144,6 +149,7 @@ function sortByTime(){
   echo "<th>tax</th>";
   echo "<th>time</th>";
   echo "</tr>";
+  //cycle through the rows and print out data from table
   for ($i = 0; $i < $num; $i++) {
     $row = $result -> fetch_assoc();
     $item = $row["Item"];
@@ -166,7 +172,9 @@ function sortByTime(){
   $connection -> close();
 }//End sortByTime
 
-
+//Return: void
+//No parameters
+//prints out table sorted by count of items
 function sortByCounts(){
   $username=$_SESSION['login'];
   $tableName=$username."_Accounting";
@@ -187,7 +195,7 @@ function sortByCounts(){
   $result = $connection->query($query);
   $num = $result -> num_rows;
 
-  // print in between dates
+  // print table corresponding to output of the query
   echo "<table cellpadding=\"12px\">";
   echo "<tr>";
   echo "<th>Item</th>";
@@ -196,6 +204,7 @@ function sortByCounts(){
   echo "<th>Revenue</th>";
   echo "</tr>";
   $sumOfPrice = 0;
+  //cycle through each result row and print out to table
   for ($i = 0; $i < $num; $i++) {
     $row = $result -> fetch_assoc();
     $item = $row["Item"];
@@ -222,6 +231,9 @@ function sortByCounts(){
   $connection -> close();
 }//End sortByCounts
 
+//Return: void
+//No parameters
+//prints out table sorted by total prices accrued by each items
 function sortByPrice(){
   $username=$_SESSION['login'];
   $tableName=$username."_Accounting";
@@ -245,6 +257,7 @@ function sortByPrice(){
   echo "</tr>";
   $sumOfPrice = 0;
   $sumOfCount = 0;
+  //fetch each row and print results to table
   for ($i = 0; $i < $num; $i++) {
     $row = $result -> fetch_assoc();
     $item = $row["Item"];
