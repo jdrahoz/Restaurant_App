@@ -23,18 +23,25 @@
     	echo "connect failed";
     	exit ();
     }
-
     // select from accounting table
-    $query = "SELECT * FROM $tableName WHERE Time BETWEEN '$start_date' AND '$end_date'";
+    $query = "SELECT * FROM $tableName WHERE theTime BETWEEN '$start_date' AND '$end_date'";
     $result = $connection->query($query);
     $num = $result -> num_rows;
 
     // print in between dates
-    echo "<table>";
+    echo "<table cellspacing=\"10px\">";
+    echo "<tr>";
+    echo "<th>Item</th>";
+    echo "<th>alterations</th>";
+    echo "<th>tableNum</th>";
+    echo "<th>price</th>";
+    echo "<th>tax</th>";
+    echo "<th>time</th>";
+    echo "</tr>";
     for ($i = 0; $i < $num; $i++) {
         $row = $result -> fetch_assoc();
         $item = $row["Item"];
-        $time = $row["Time"];
+        $time = $row["theTime"];
         $alterations = $row ["Alterations"];
         $price = $row["Price"];
         $tax = $row["Tax"];

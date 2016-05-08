@@ -30,19 +30,26 @@
 
    // display table of all ordered items
    $total = 0;
-   echo "<table>";
+   echo "<table cellspacing=\"10px\">";
+   echo "<tr>";
+   echo "<th>Item</th>";
+   echo "<th>Alterations</th>";
+   echo "<th>TableNum</th>";
+   echo "<th>Price</th>";
+   echo "<th>Tax</th>";
+   echo "<th>Time</th>";
+   echo "</tr>";
    for($i=0; $i<$num; $i++)
    {
        $row = $result -> fetch_assoc();
        $Item = $row["Item"];
-       $Time = $row["Time"];
+       $Time = $row["theTime"];
        $Alterations = $row ["Alterations"];
        $Price = $row["Price"];
        $Tax = $row["Tax"];
        $TableNum = $row["TableNum"];
 
        $total = $total + $Price + $Tax;
-
        echo "<tr>";
        echo "<td>$Item</td>";
        echo "<td>$Alterations</td>";
