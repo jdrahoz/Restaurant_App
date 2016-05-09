@@ -176,6 +176,16 @@
 
             <h3>Delete Items from Menu</h3>
 
+            <div class="row">
+            <div class="col-md-1"><p>Delete?</p></div>
+            <div class="col-md-2"><p>Item</p></div>
+            <div class="col-md-2"><p>Subcategory</p></div>
+            <div class="col-md-2"><p>Ingredients</p></div>
+            <div class="col-md-1"><p>Price</p></div>
+            <div class="col-md-2"><p>Image</p></div>
+
+            </div>
+
             <?php
 
                 // get table name
@@ -198,10 +208,10 @@
                     $Image = $row["Image"];
                     echo "<div class='row'>";
                     echo "<div class='col-md-1'><input type='checkbox' name='menu[]' value=".$IDNum."></div>";
-                    echo "<div class='col-md-3'>$Name</div>";
+                    echo "<div class='col-md-2'>$Name</div>";
+                    echo "<div class='col-md-2'>$Subcategory</div>";
                     echo "<div class='col-md-2'>$Ingredients</div>";
-                    echo "<div class='col-md-2'>$Price</div>";
-		            echo "<div class='col-md-2'>$Subcategory</div>";
+                    echo "<div class='col-md-1'>$Price</div>";
                     echo "<div class='col-md-2'><img src=\"$Image\"></div>";
                     echo "</div>";
                 }

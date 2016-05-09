@@ -94,4 +94,4 @@ $mysqli->close();
 // redirect to front page
 header('Location: menuAlteration.php');
 
- ?>
+?>
