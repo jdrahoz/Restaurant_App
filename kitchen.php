@@ -44,9 +44,7 @@ for ($i=0; $i < count ($kitchen); $i++)
 
     // check to see if a table exists already
     $show = "SHOW TABLES LIKE '$table_name'";
-    $result = $mysqli -> query ($show);
-
-    // if table doesn't exist create new table
+    $result = $mysqli -> query ($show);able
     if ($result -> num_rows == 0)
     {
         // create new table based on table number

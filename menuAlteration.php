@@ -57,7 +57,7 @@
                             <li><a href="maintenanceFront.php">Maintenance</a></li>
                             <li class="active"><a href="menuAlteration.php">Menu</a></li>
                             <li><a href="kitchenFront.php">Kitchen</a></li>
-                            <li><a hrif connection to sql failsef="accountingFront.php">Accounting</a></li>
+                            <li><a href="accountingFront.php">Accounting</a></li>
                             <li><a href="logout.php">Exit</a></li>
                         </ul>
                     </div>

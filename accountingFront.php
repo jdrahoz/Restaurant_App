@@ -1,293 +1,407 @@
-<html>
-<head>
-</head>
-<body>
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-   session_start();
- if(!isset($_SESSION['login'])){
-     echo "\nMust Log in First.<br>";
-     echo "<a href=\"login.php\"><button>LOG IN</button></a>";
-     exit();
-   }else{
-     echo "Welcome, ";
-     echo $_SESSION['login'];
-   }
-?>
+    <head>
 
-<!--form to select which sort to display, reloads same page -->
-<form method="post" action="?">
-<select name="option">
-  <option>No Sort</option>
-  <option>Time</option>
-  <option>Item Counts</option>
-  <option>By Price</option>
-  </select>
-  <button type="submit">SUBMIT</button>
-</form>
+        <!-- meta  -->
 
-<?php
-//if option has been posted, determine which option and display accordingly.
-  if(isset($_POST["option"])){
-    $option = $_POST["option"];
-    if($option == "Time"){
-      //print out a form to select dates to show the data
-      echo "Result will be given Between and not Including the start and end date.";
-      // add form to narrow down dates, this will reload same page with new $_POST variables set
-      echo "<form id='form' method='post' action='?'>";
-      echo "<p>start date</p><input type='date' name='start'>";
-      echo "<p>end date</p><input type='date' name='end'>";
-      echo "<input type=submit>";
-      echo "<br>";
-      echo "</form>";
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../../favicon.ico">
+
+        <!-- title -->
+
+        <title>Accounting</title>
+
+        <!-- bootstrap css -->
+
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-3.3.6-dist/navbar.css" rel="stylesheet">
+
+    </head>
+
+    <!-- start session -->
+
+    <?php
+        session_start ();
+        if (!isset ($_SESSION['login'])) {
+            echo "<div class='container'><div class='jumbotron'>";
+            echo "<h1>Oops!</h1><h2>You're not logged in.</h2>";
+            echo "<hr>";
+            echo "<a class='btn btn-lg btn-primary' href='login.php' role='button'>Log In</a>";
+            echo "</div></div>";
+            exit ();
     }
-    elseif($option == "Item Counts")
-    {
-      echo "you selected Item Counts";
-      sortByCounts();
-    }elseif($option == "By Price"){
-      echo "you selected By Price";
-      sortByPrice();
-    }
-  }
+    ?>
 
+    <body>
 
-//load this on load of page if start and end variables set
-if(isset($_POST['start']) && isset($_POST['end']))
-{
-  $option = "Time";//this will keep the no sorts option from being displayed after filling out the dates form
-  sortByTime();
-}
+        <!-- header -->
 
-?>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
 
+                    <!-- title -->
 
-<?php
-if(!isset($option) || $option == "No Sort")
-{
-   $username=$_SESSION['login'];
-   $tableName=$username."_Accounting";
+                    <div class="navbar-header">
+                        <a class='navbar-brand'>RestaurantApp</a>
+                    </div>
 
-   // open mysql
-   $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+                    <!-- where you are -->
 
-   // check connection
-   if ($connection === false) {
-      echo "connect failed";
-      exit ();
-   }
-   //print out the accounting table
-   $query = "SELECT * FROM $tableName";
-   $result = $connection->query($query);
-   $num = $result -> num_rows;
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="adminFrontPage.php">Home</a></li>
+                            <li><a href="maintenanceFront.php">Maintenance</a></li>
+                            <li><a href="menuAlteration.php">Menu</a></li>
+                            <li><a href="kitchenFront.php">Kitchen</a></li>
+                            <li class="active"><a href="accountingFront.php">Accounting</a></li>
+                            <li><a href="logout.php">Exit</a></li>
+                        </ul>
+                    </div>
 
-   // display table of all ordered items
-   $total = 0;
-   echo "<table cellspacing=\"10px\">";
-   echo "<caption><b>Table of Every Item Bought In Your Restaurant</b></caption>";
-   echo "<tr>";
-   echo "<th>Item</th>";
-   echo "<th>Alterations</th>";
-   echo "<th>TableNum</th>";
-   echo "<th>Price</th>";
-   echo "<th>Tax</th>";
-   echo "<th>Time</th>";
-   echo "</tr>";
-   for($i=0; $i<$num; $i++)
-   {
-       $row = $result -> fetch_assoc();
-       $Item = $row["Item"];
-       $Time = $row["theTime"];
-       $Alterations = $row ["Alterations"];
-       $Price = $row["Price"];
-       $Tax = $row["Tax"];
-       $TableNum = $row["TableNum"];
+                </div>
+            </nav>
+        </div>
 
-       $total = $total + $Price + $Tax;
-       echo "<tr>";
-       echo "<td>$Item</td>";
-       echo "<td>$Alterations</td>";
-       echo "<td>$TableNum</td>";
-       echo "<td>$Price</td>";
-       echo "<td>$Tax</td>";
-       echo "<td>$Time</td>";
-       echo "</tr>";
-   }
-   // display total
-   echo "<tr><td colspan=3>Total</td>";
-   echo "<td colspan=3>$total</td>";
-   echo "</table>";
+        <div class="container">
 
-   $connection -> close();
-}
+            <div class="page-header">
+                <h1>Accounting</h1>
+            </div>
 
-//Return: void
-//No parameters
-//prints out table sorted the input start time and end time
-function sortByTime(){
-  $username=$_SESSION['login'];
-  $tableName=$username."_Accounting";
-  $start_date = $_POST["start"];
-  $end_date = $_POST["end"];
-  // open mysql
-  $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-  // check connection
-  if ($connection === false) {
-  	exit ();
-  }
-  // select from accounting table
-  $query = "SELECT * FROM $tableName WHERE theTime BETWEEN '$start_date' AND '$end_date'";
-  $result = $connection->query($query);
-  $num = $result -> num_rows;
-  // print in between dates
-  echo "<table cellpadding=\"12px\">";
-  echo "<tr>";
-  echo "<th>Item</th>";
-  echo "<th>alterations</th>";
-  echo "<th>tableNum</th>";
-  echo "<th>price</th>";
-  echo "<th>tax</th>";
-  echo "<th>time</th>";
-  echo "</tr>";
-  //cycle through the rows and print out data from table
-  for ($i = 0; $i < $num; $i++) {
-    $row = $result -> fetch_assoc();
-    $item = $row["Item"];
-    $time = $row["theTime"];
-    $alterations = $row ["Alterations"];
-    $price = $row["Price"];
-    $tax = $row["Tax"];
-    $tableNum = $row["TableNum"];
+            <!-- sort items -->
 
-    echo "<tr>";
-    echo "<td>$item</td>";
-    echo "<td>$alterations</td>";
-    echo "<td>$tableNum</td>";
-    echo "<td>$price</td>";
-    echo "<td>$tax</td>";
-    echo "<td>$time</td>";
-    echo "</tr>";
-  }
-  echo "</table>";
-  $connection -> close();
-}//End sortByTime
+            <form method="post" action="?">
+            <p><select name="option">
+                <option>No Sort</option>
+                <option>Time</option>
+                <option>Item Counts</option>
+                <option>By Price</option>
+            </select></p>
+            <input class='btn btn-lg btn-primary' type='submit' value='Sort'>
+            </form>
 
-//Return: void
-//No parameters
-//prints out table sorted by count of items
-function sortByCounts(){
-  $username=$_SESSION['login'];
-  $tableName=$username."_Accounting";
-  // open mysql
-  $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-  // check connection
-  if ($connection === false) {
-  	exit ();
-  }
-  // select total amount of items from accounting table
-  $select = "SELECT count(*) AS total FROM $tableName";
-  $result = $connection -> query($select);
-  $row = $result -> fetch_assoc();
-  $totalItems = $row["total"];
+            <hr>
 
-  //select count of each individual item and sort result in descending order by the count
-  $query = "SELECT count(*) AS total,Item,Price FROM $tableName GROUP BY Item ORDER BY total DESC";
-  $result = $connection->query($query);
-  $num = $result -> num_rows;
+            <?php
 
-  // print table corresponding to output of the query
-  echo "<table cellpadding=\"12px\">";
-  echo "<tr>";
-  echo "<th>Item</th>";
-  echo "<th>Count</th>";
-  echo "<th>%</th>";
-  echo "<th>Revenue</th>";
-  echo "</tr>";
-  $sumOfPrice = 0;
-  //cycle through each result row and print out to table
-  for ($i = 0; $i < $num; $i++) {
-    $row = $result -> fetch_assoc();
-    $item = $row["Item"];
-    $count = $row["total"];
-    $price = $row["Price"];
-    $percentage = $count * 100/$totalItems;
-    $totalPrice = $price * $count;
-    $sumOfPrice += $totalPrice;
+                // get option and display accordingly
+                if(isset($_POST["option"])){
+                    $option = $_POST["option"];
 
-    echo "<tr>";
-    echo "<td>$item</td>";
-    echo "<td>$count</td>";
-    echo "<td>" . round($percentage,2) . "</td>";
-    echo "<td>$totalPrice</td>";
-    echo "</tr>";
-  }
-  echo "<tr>";
-  echo "<td><b>total:</b></td>";
-  echo "<td>$totalItems</td>";
-  echo "<td><b>total:</b></td>";
-  echo "<td>$sumOfPrice</td>";
-  echo "</tr>";
-  echo "</table>";
-  $connection -> close();
-}//End sortByCounts
+                    // sort by time
+                    if($option == "Time"){
 
-//Return: void
-//No parameters
-//prints out table sorted by total prices accrued by each items
-function sortByPrice(){
-  $username=$_SESSION['login'];
-  $tableName=$username."_Accounting";
-  // open mysql
-  $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
-  // check connection
-  if ($connection === false) {
-  	exit ();
-  }
-  // select from accounting table
-  $query = "SELECT count(*) AS total,Item,Price,Price * count(*) AS totalPrice FROM $tableName GROUP BY Item ORDER BY totalPrice DESC";
-  $result = $connection->query($query);
-  $num = $result -> num_rows;
-  // print in between dates
-  echo "<table cellpadding=\"12px\">";
-  echo "<tr>";
-  echo "<th>Item</th>";
-  echo "<th>Revenue</th>";
-  echo "<th>price</th>";
-  echo "<th>count</th>";
-  echo "</tr>";
-  $sumOfPrice = 0;
-  $sumOfCount = 0;
-  //fetch each row and print results to table
-  for ($i = 0; $i < $num; $i++) {
-    $row = $result -> fetch_assoc();
-    $item = $row["Item"];
-    $count = $row["total"];
-    $totalPrice = $row ["totalPrice"];
-    $price = $row["Price"];
-    $sumOfPrice += $totalPrice;
-    $sumOfCount += $count;
+                        // print out form to select dates to show data
+                        echo "<h3>Sorting by Time</h3>";
+                        echo "<p>Results given between and not including start and end date</p>";
 
-    echo "<tr>";
-    echo "<td>$item</td>";
-    echo "<td>$totalPrice</td>";
-    echo "<td>$price</td>";
-    echo "<td>$count</td>";
-    echo "</tr>";
-  }
-  echo "<tr>";
-  echo "<td><b>total:</b></td>";
-  echo "<td>$sumOfPrice</td>";
-  echo "<td><b>total:</b></td>";
-  echo "<td>$sumOfCount</td>";
-  echo "</tr>";
-  echo "</table>";
-  $connection -> close();
-}//End sortByPrice
+                        // form to narrow down dates
+                        echo "<form id='form' method='post' action='?'>";
+                        echo "<p>start date</p>";
+                        echo "<p><input type='date' name='start'>";
+                        echo "<p>end date</p>";
+                        echo "<p><input type='date' name='end'></p>";
 
-?>
+                        // submit button
+                        echo "<br>";
+                        echo "<input class='btn btn-lg btn-primary' type='submit' value='Sort'>";
+                        echo "</form>";
 
-<br>
-<br>
-<a href="adminFrontPage.php">Admin Homepage</a><br>
-</body>
+                    }
+
+                    // sort by count
+                    elseif ($option == "Item Counts")
+                    {
+                        echo "<h3>Sorting by Item Counts</h3>";
+                        sortByCounts();
+
+                    // sort by price
+                    } elseif($option == "By Price"){
+                        echo "<h3>Sorting by Price</h3>";
+                        sortByPrice();
+                    }
+                }
+
+                // sort by time if start and end variables set
+                if(isset($_POST['start']) && isset($_POST['end']))
+                {
+                    // require start and end set before sorting
+                    $option = "Time";
+                    sortByTime();
+                }
+
+                // display unsorted table
+                if(!isset($option) || $option == "No Sort")
+                {
+                    // get username
+                    $username=$_SESSION['login'];
+                    $tableName=$username."_Accounting";
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                        echo "connect failed";
+                        exit ();
+                    }
+
+                    // print out the accounting table
+                    $query = "SELECT * FROM $tableName";
+                    $result = $connection->query($query);
+                    $num = $result -> num_rows;
+
+                    // display table of all ordered items
+                    $total = 0;
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-3'><p>Item</p></div>";
+                    echo "<div class='col-md-2'><p>Alterations</p></div>";
+                    echo "<div class='col-md-1'><p>TableNum</p></div>";
+                    echo "<div class='col-md-1'><p>Price</p></div>";
+                    echo "<div class='col-md-1'><p>Tax</p></div>";
+                    echo "<div class='col-md-2'><p>Time</p></div>";
+                    echo "</div>";
+
+                    // loop through each result row and print to table
+                    for($i=0; $i<$num; $i++)
+                    {
+                        $row = $result -> fetch_assoc();
+                        $Item = $row["Item"];
+                        $Time = $row["theTime"];
+                        $Alterations = $row ["Alterations"];
+                        $Price = $row["Price"];
+                        $Tax = $row["Tax"];
+                        $TableNum = $row["TableNum"];
+                        $total = $total + $Price + $Tax;
+                        echo "<div class='row'>";
+                        echo "<div class='col-md-3'>$Item</div>";
+                        echo "<div class='col-md-2'>$Alterations</div>";
+                        echo "<div class='col-md-1'>$TableNum</div>";
+                        echo "<div class='col-md-1'>$Price</div>";
+                        echo "<div class='col-md-1'>$Tax</div>";
+                        echo "<div class='col-md-2'>$Time</div>";
+                        echo "</div>";
+                    }
+
+                    // display totals
+                    echo "<br>";
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-1 col-md-push-5'><p>Total:</p></div>";
+                    echo "<div class='col-md-1 col-md-push-5'>$total</div>";
+                    echo "</div>";
+
+                   $connection -> close();
+
+                }
+
+                // return: void
+                // parameters: none
+                // print out table sorted by start time and end time
+
+                function sortByTime(){
+
+                    // get username
+                    $username = $_SESSION['login'];
+
+                    // get table name
+                    $tableName = $username."_Accounting";
+
+                    // get start and end from form
+                    $start_date = $_POST["start"];
+                    $end_date = $_POST["end"];
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                       exit ();
+                    }
+
+                    // select from accounting table
+                    $query = "SELECT * FROM $tableName WHERE theTime BETWEEN '$start_date' AND '$end_date'";
+                    $result = $connection->query($query);
+                    $num = $result -> num_rows;
+
+                    // echo table
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-3'><p>Item</p></div>";
+                    echo "<div class='col-md-2'><p>Alterations</p></div>";
+                    echo "<div class='col-md-1'><p>TableNum</p></div>";
+                    echo "<div class='col-md-1'><p>Price</p></div>";
+                    echo "<div class='col-md-1'><p>Tax</p></div>";
+                    echo "<div class='col-md-2'><p>Time</p></div>";
+                    echo "</div>";
+
+                    // loop through the rows and print out data from table
+                    for ($i = 0; $i < $num; $i++) {
+                        $row = $result -> fetch_assoc();
+                        $item = $row["Item"];
+                        $time = $row["theTime"];
+                        $alterations = $row ["Alterations"];
+                        $price = $row["Price"];
+                        $tax = $row["Tax"];
+                        $tableNum = $row["TableNum"];
+
+                        echo "<div class='row'>";
+                        echo "<div class='col-md-3'>$item</div>";
+                        echo "<div class='col-md-2'>$alterations</div>";
+                        echo "<div class='col-md-1'>$tableNum</div>";
+                        echo "<div class='col-md-1'>$price</div>";
+                        echo "<div class='col-md-1'>$tax</div>";
+                        echo "<div class='col-md-2'>$time</div>";
+                        echo "</div>";
+                    }
+
+                    // close mysql
+                    $connection -> close();
+                }
+
+                // return: void
+                // parameters: none
+                // print out table sorted by count of times ordered
+
+                function sortByCounts(){
+
+                    // get username
+                    $username=$_SESSION['login'];
+
+                    // get table name
+                    $tableName=$username."_Accounting";
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                       exit ();
+                    }
+
+                    // select total amount of items from accounting table
+                    $select = "SELECT count(*) AS total FROM $tableName";
+                    $result = $connection -> query($select);
+                    $row = $result -> fetch_assoc();
+                    $totalItems = $row["total"];
+
+                    // select count of each individual item and sort result in descending order by the count
+                    $query = "SELECT count(*) AS total,Item,Price FROM $tableName GROUP BY Item ORDER BY total DESC";
+                    $result = $connection->query($query);
+                    $num = $result -> num_rows;
+
+                    // echo table
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-2'><p>Item</p></div>";
+                    echo "<div class='col-md-2'><p>Count</p></div>";
+                    echo "<div class='col-md-2'><p>%</p></div>";
+                    echo "<div class='col-md-2'><p>Revenue</p></div>";
+                    echo "</div>";
+                    $sumOfPrice = 0;
+
+                    // loop through each result row and print to table
+                    for ($i = 0; $i < $num; $i++) {
+                        $row = $result -> fetch_assoc();
+                        $item = $row["Item"];
+                        $count = $row["total"];
+                        $price = $row["Price"];
+                        $percentage = $count * 100/$totalItems;
+                        $totalPrice = $price * $count;
+                        $sumOfPrice += $totalPrice;
+                        echo "<div class='row'>";
+                        echo "<div class='col-md-2'>$item</div>";
+                        echo "<div class='col-md-2'>$count</div>";
+                        echo "<div class='col-md-2'>" . round($percentage,2) . "</div>";
+                        echo "<div class='col-md-2'>$totalPrice</div>";
+                        echo "</div>";
+
+                    }
+
+                    // display totals
+                    echo "<br>";
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p>$totalItems</p></div>";
+                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p>$sumOfPrice</p></div>";
+                    echo "</div>";
+
+                    // close mysql
+                    $connection -> close();
+
+                }
+
+                // return: void
+                // parameters: none
+                // print out table sorted by count of times ordered
+
+                function sortByPrice(){
+
+                    // get username
+                    $username=$_SESSION['login'];
+
+                    // get table name
+                    $tableName=$username."_Accounting";
+
+                    // open mysql
+                    $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
+
+                    // check connection
+                    if ($connection === false) {
+                       exit ();
+                     }
+
+                    // select from accounting table
+                    $query = "SELECT count(*) AS total,Item,Price,Price * count(*) AS totalPrice FROM $tableName GROUP BY Item ORDER BY totalPrice DESC";
+                    $result = $connection->query($query);
+                    $num = $result -> num_rows;
+
+                    // echo table
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-2'><p>Item</p></div>";
+                    echo "<div class='col-md-2'><p>Revenue</p></div>";
+                    echo "<div class='col-md-2'><p>Price</p></div>";
+                    echo "<div class='col-md-2'><p>Count</p></div>";
+                    echo "</div>";
+                    $sumOfPrice = 0;
+                    $sumOfCount = 0;
+
+                    // loop through each result row and print to table
+                    for ($i = 0; $i < $num; $i++) {
+                        $row = $result -> fetch_assoc();
+                        $item = $row["Item"];
+                        $count = $row["total"];
+                        $totalPrice = $row ["totalPrice"];
+                        $price = $row["Price"];
+                        $sumOfPrice += $totalPrice;
+                        $sumOfCount += $count;
+                        echo "<div class='row'>";
+                        echo "<div class='col-md-2'><p>$item</p></div>";
+                        echo "<div class='col-md-2'><p>$totalPrice</p></div>";
+                        echo "<div class='col-md-2'><p>$price</p></div>";
+                        echo "<div class='col-md-2'><p>$count</p></div>";
+                        echo "</div>";
+                    }
+
+                    // display totals
+                    echo "<div class='row'>";
+                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p>$sumOfPrice</p></div>";
+                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p>$sumOfCount</p></div>";
+                    echo "</div>";
+                    echo "</table>";
+
+                    // close mysql
+                    $connection -> close();
+                }
+
+            ?>
+
+        </div>
+
+    </body>
+
 </html>

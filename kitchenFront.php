@@ -42,7 +42,6 @@
     }
     ?>
 
-
     <body>
 
         <!-- header -->
@@ -73,7 +72,6 @@
                 </div>
             </nav>
         </div>
-
 
         <div class="container">
 
