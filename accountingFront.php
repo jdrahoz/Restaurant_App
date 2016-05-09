@@ -76,10 +76,10 @@
 
             <form method="post" action="?">
             <p><select name="option">
-                <option>No Sort</option>
+                <option>None</option>
                 <option>Time</option>
-                <option>Item Counts</option>
-                <option>By Price</option>
+                <option>Count</option>
+                <option>Price</option>
             </select></p>
             <input class='btn btn-lg btn-primary' type='submit' value='Sort'>
             </form>
@@ -114,13 +114,13 @@
                     }
 
                     // sort by count
-                    elseif ($option == "Item Counts")
+                    elseif ($option == "Count")
                     {
                         echo "<h3>Sorting by Item Counts</h3>";
                         sortByCounts();
 
                     // sort by price
-                    } elseif($option == "By Price"){
+                    } elseif($option == "Price"){
                         echo "<h3>Sorting by Price</h3>";
                         sortByPrice();
                     }
@@ -135,7 +135,7 @@
                 }
 
                 // display unsorted table
-                if(!isset($option) || $option == "No Sort")
+                if(!isset($option) || $option == "None")
                 {
                     // get username
                     $username=$_SESSION['login'];
@@ -378,14 +378,15 @@
                         $sumOfPrice += $totalPrice;
                         $sumOfCount += $count;
                         echo "<div class='row'>";
-                        echo "<div class='col-md-2'><p>$item</p></div>";
-                        echo "<div class='col-md-2'><p>$totalPrice</p></div>";
-                        echo "<div class='col-md-2'><p>$price</p></div>";
-                        echo "<div class='col-md-2'><p>$count</p></div>";
+                        echo "<div class='col-md-2'>$item</div>";
+                        echo "<div class='col-md-2'>$totalPrice</div>";
+                        echo "<div class='col-md-2'>$price</div>";
+                        echo "<div class='col-md-2'>$count</div>";
                         echo "</div>";
                     }
 
                     // display totals
+                    echo "<br>";
                     echo "<div class='row'>";
                     echo "<div class='col-md-2'><p>Total:</p></div>";
                     echo "<div class='col-md-2'><p>$sumOfPrice</p></div>";
