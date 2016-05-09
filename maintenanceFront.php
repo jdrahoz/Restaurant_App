@@ -111,13 +111,15 @@
 
         ?>
 
-        <!-- main maintenance information -->
-
         <div class="container">
+
+            <!-- header-->
 
             <div class="page-header">
                 <h1>Maintenance</h1>
             </div>
+
+            <!-- main maintenance info -->
 
             <form action = "maintenance.php" id="maintain" method = "post">
 
