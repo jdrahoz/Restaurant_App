@@ -1,45 +1,50 @@
-<?php
-session_start ();
-if (!isset ($_SESSION['login'])) {
-	echo "\nMust Log in First.<br>";
-	echo "<a href=\"login.php\"><button>LOG IN</button></a>";
-	exit ();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
 
-        <!-- meta tags -->
+        <!-- meta  -->
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
         <!-- title -->
+
         <title>Your Order</title>
 
-        <!-- bootstrap core css -->
-        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- bootstrap css -->
 
-        <!-- custom css for template -->
-        <link href="navbar.css" rel="stylesheet">
-        <link href="grid.css" rel="stylesheet">
+        <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap-3.3.6-dist/navbar.css" rel="stylesheet">
 
     </head>
+
+	<!-- start session -->
+
+    <?php
+        session_start ();
+        if (!isset ($_SESSION['login'])) {
+            echo "<div class='container'><div class='jumbotron'>";
+            echo "<h1>Oops!</h1><h2>You're not logged in.</h2>";
+            echo "<hr>";
+            echo "<a class='btn btn-lg btn-primary' href='login.php' role='button'>Log In</a>";
+            echo "</div></div>";
+            exit ();
+    }
+    ?>
 
     <body>
 
         <!-- header -->
+
         <div class="container">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
 
                     <!-- title -->
+
                     <div class="navbar-header">
 
                         <?php
@@ -61,6 +66,7 @@ if (!isset ($_SESSION['login'])) {
 		                    $row = $result -> fetch_assoc();
 		                    $rest = $row ["RestaurantName"];
 
+							// echo restaurant name
                             echo "<a class='navbar-brand'>$rest</a>";
 
 							// close mysql
@@ -70,6 +76,7 @@ if (!isset ($_SESSION['login'])) {
                     </div>
 
                     <!-- where you are -->
+
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>Welcome</a></li>
@@ -86,9 +93,11 @@ if (!isset ($_SESSION['login'])) {
         </div>
 
         <!-- menu -->
+
         <div class="container">
 
-            <!-- heading -->
+            <!-- header -->
+
             <div class="page-header">
                 <h1>Your Order</h1>
 				<h3>Any requests / comments?</h3>
@@ -134,30 +143,33 @@ if (!isset ($_SESSION['login'])) {
 
                 // print table of menu items
                 for ($i = 0; $i < $num; $i++) {
+
+					// variables
                     $row = $result -> fetch_assoc ();
                     $item = $row ["Item"];
                     $ingredients = $row ["Ingredients"];
                     $price = $row ["Price"];
                     $idNum = $row ["IDNum"];
+
+					// echo row
                     echo "<div class='row'>";
                     echo "<div class='col-md-3'>".$item."</div>";
                     echo "<div class='col-md-3'>".$ingredients."</div>";
                     echo "<div class='col-md-3'>$".$price."</div>";
-                    echo "<div class='col-md-3'><input type=text name=$idNum></div>";
+                    echo "<div class='col-md-3'><input type=text name=alter" . $idNum . "></div>";
                     echo "</div>";
                 }
 
                 // close mysql
                 $connection -> close ();
 
-    			// echo submit button
-				echo "<hr>";
-                echo "<div class='row'>";
-                echo "<div class='col-md-12'>";
-                echo "<input class='btn btn-lg btn-primary' type=submit value='Confirm'>";
-                echo "</div></div>";
-
             ?>
+
+
+			<!--  submit button -->
+
+			<hr>
+    		<input class='btn btn-lg btn-primary' type=submit value='Confirm'>
 
         </form>
 

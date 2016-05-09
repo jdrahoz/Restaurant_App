@@ -1,9 +1,14 @@
 <?php
 
+// start session
+
 session_start ();
 if (!isset ($_SESSION['login'])) {
-	echo "\nMust Log in First.<br>";
-	echo "<a href=\"login.php\"><button>LOG IN</button></a>";
+	echo "<div class='container'><div class='jumbotron'>";
+	echo "<h1>Oops!</h1><h2>You're not logged in.</h2>";
+	echo "<hr>";
+	echo "<a class='btn btn-lg btn-primary' href='login.php' role='button'>Log In</a>";
+	echo "</div></div>";
 	exit ();
 }
 
@@ -13,11 +18,9 @@ $user_name = $_SESSION['login'];
 // get table number
 $table_num = $_SESSION["table_num"];
 
+// get table names
 $bill_table_name = $user_name . "_Bill_Table_" . $table_num;
 $accounting_table_name = $user_name . "_Accounting";
-
-
-// send rows from bill table to accounting table
 
 // open mysql
 $connection = new mysqli ("mysql.eecs.ku.edu", "jdrahoza", "Hello", "jdrahoza");
@@ -50,7 +53,7 @@ for ($i = 0; $i < $num; $i++) {
 	$insert = "INSERT INTO $accounting_table_name (Item, TableNum, Alterations, Price, Tax) VALUES ('$item', '$table_num', '$alterations', '$price', '$tax')";
 	$result_2 = $connection -> query ($insert);
 
-	// update orders in bill table
+	// delete orders from bill table
 	$delete = "DELETE FROM $bill_table_name WHERE IDNum='$idNum'";
 	$result_2 = $connection -> query ($delete);
 

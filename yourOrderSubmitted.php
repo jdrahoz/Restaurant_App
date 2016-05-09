@@ -2,15 +2,18 @@
 
 session_start ();
 if (!isset ($_SESSION['login'])) {
-	echo "\nMust Log in First.<br>";
-	echo "<a href=\"login.php\"><button>LOG IN</button></a>";
+	echo "<div class='container'><div class='jumbotron'>";
+	echo "<h1>Oops!</h1><h2>You're not logged in.</h2>";
+	echo "<hr>";
+	echo "<a class='btn btn-lg btn-primary' href='login.php' role='button'>Log In</a>";
+	echo "</div></div>";
 	exit ();
 }
 
 // get restaurant
 $user_name = $_SESSION['login'];
 
-// get table number
+// get table number and name
 $table_num = $_SESSION["table_num"];
 $cart_table_name = $user_name . "_Cart_Table_" . $table_num;
 
@@ -38,6 +41,7 @@ for ($i = 0; $i < $num; $i++) {
 	$idNum = $row ["IDNum"];
 	$alterations = $_POST [$idNum];
 
+	// get table name
 	$ordersToCook_table_name = $user_name . "_OrdersToCook";
 
 	// insert into orders to cook table
@@ -50,7 +54,7 @@ for ($i = 0; $i < $num; $i++) {
 
 }
 
-// redirect to html file
+// redirect to next file
 header ("Location: enjoyYourMeal.php");
 
 // close mysql
