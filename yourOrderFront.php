@@ -165,10 +165,10 @@
 
             ?>
 
-
-			<!--  submit button -->
-
 			<hr>
+
+            <!--  submit button -->
+
     		<input class='btn btn-lg btn-primary' type=submit value='Confirm'>
 
         </form>
