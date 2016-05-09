@@ -75,13 +75,21 @@
             <!-- sort items -->
 
             <form method="post" action="?">
+
+            <h3>Sorting Method</h3>
+
             <p><select name="option">
                 <option>None</option>
                 <option>Time</option>
                 <option>Count</option>
                 <option>Price</option>
             </select></p>
+
+            <!-- submit button -->
+
+            <br>
             <input class='btn btn-lg btn-primary' type='submit' value='Sort'>
+
             </form>
 
             <hr>

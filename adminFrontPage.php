@@ -54,7 +54,7 @@
 
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class=active><a>Home</a></li>
+                            <li class=active href="adminFronPage"><a>Home</a></li>
                             <li><a href="maintenanceFront.php">Maintenance</a></li>
                             <li><a href="menuAlteration.php">Menu</a></li>
                             <li><a href="kitchenFront.php">Kitchen</a></li>

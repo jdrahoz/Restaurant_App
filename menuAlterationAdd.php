@@ -105,7 +105,7 @@ else
 $mysqli->close();
 
 //return to the menu alteration page
-echo '<a class="btn btn-default" href="menuAlteration.php" role="button">back to menu alteration</a><br>';
-//header('Location: menuAlteration.php');
+//echo '<a class="btn btn-default" href="menuAlteration.php" role="button">back to menu alteration</a><br>';
+header('Location: menuAlteration.php');
 
 ?>

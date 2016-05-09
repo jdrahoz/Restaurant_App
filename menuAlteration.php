@@ -66,7 +66,6 @@
             </nav>
         </div>
 
-
         <?php
 
             // get username
