@@ -17,7 +17,7 @@
 
         <!-- title -->
 
-        <title>Enjoy!</title>
+        <title>Enjoy</title>
 
         <!-- bootstrap css -->
 

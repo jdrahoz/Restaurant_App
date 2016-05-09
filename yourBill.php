@@ -12,7 +12,7 @@
 
         <!-- title -->
 
-        <title>Your Bill</title>
+        <title>Pay</title>
 
         <!-- bootstrap css -->
         <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">

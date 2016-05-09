@@ -12,7 +12,7 @@
 
         <!-- title -->
 
-        <title>Your Order</title>
+        <title>Confirm</title>
 
         <!-- bootstrap css -->
 

@@ -12,7 +12,7 @@
 
         <!-- title -->
 
-        <title>Menu</title>
+        <title>Order</title>
 
         <!-- bootstrap css -->
 

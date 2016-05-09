@@ -12,7 +12,7 @@
 
 		<!-- title -->
 
-        <title>Thank you!</title>
+        <title>Thanks</title>
 
         <!-- bootstrap css -->
 
