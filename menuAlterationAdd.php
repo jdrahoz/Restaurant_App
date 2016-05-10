@@ -25,6 +25,17 @@ $Ingredients = $_POST["ingredients"];
 $Price = $_POST["price"];
 $Subcategory = $_POST["subcategory"];
 
+
+function force_input($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+$Name = force_input($Name);
+$Name = force_input($Ingredients);
+
 // save the image to server
 $target_dir = "uploads/".$username."/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
