@@ -37,7 +37,7 @@ $Name = force_input($Name);
 $Ingredients = force_input($Ingredients);
 
 // save the image to server
-$target_dir = "uploads/".$username."/";
+$target_dir = "uploads/" . $username . "/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);

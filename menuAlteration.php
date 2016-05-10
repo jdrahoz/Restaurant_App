@@ -211,7 +211,7 @@
                     echo "<div class='col-md-2'>$Subcategory</div>";
                     echo "<div class='col-md-2'>$Ingredients</div>";
                     echo "<div class='col-md-1'>$Price</div>";
-                    echo "<div class='col-md-2'><img src=\"$Image\"></div>";
+                    echo "<div class='col-md-2'><img src='$Image' height='100' width='100'></div>";
                     echo "</div>";
                 }
 
