@@ -59,7 +59,7 @@
 
                 <div class="page-header">
                     <h2>Log in now!</h2>
-                    <p>Enter your username & password</p>
+                    <p>Enter your username & password.</p>
                 </div>
 
                 <form action="?" id="login" method="post">

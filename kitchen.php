@@ -44,7 +44,7 @@ for ($i=0; $i < count ($kitchen); $i++)
 
     // check to see if a table exists already
     $show = "SHOW TABLES LIKE '$table_name'";
-    $result = $mysqli -> query ($show);able
+    $result = $mysqli -> query ($show);
     if ($result -> num_rows == 0)
     {
         // create new table based on table number
@@ -74,5 +74,5 @@ for ($i=0; $i < count ($kitchen); $i++)
 $mysqli->close();
 
 // redirect to front page
-       header('Location: kitchenFront.php');
+header('Location: kitchenFront.php');
 ?>

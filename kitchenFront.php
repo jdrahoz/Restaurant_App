@@ -1,7 +1,7 @@
 <?php
 
     $page = $_SERVER['PHP_SELF'];
-    $sec = "30";
+    $sec = "10";
 
 ?>
 
@@ -16,6 +16,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="../../favicon.ico">
+
+        <!-- auto refresh -->
+
+        <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 
         <!-- title -->
 
