@@ -165,13 +165,13 @@
 				// echo subtotal
 				echo "<div class='row'>";
 				echo "<p class='col-md-6'>Subtotal</p>";
-				echo "<p class='col-md-6'>$$subtotal</p>";
+				echo "<p class='col-md-6'>$" . round($subtotal,2) ."</p>";
 				echo "</div>";
 
 				// echo tax
 				echo "<div class='row'>";
 				echo "<p class='col-md-6'>Tax</p>";
-				echo "<p class='col-md-6'>$$tax</p>";
+				echo "<p class='col-md-6'>$" . round($tax,2) ."</p>";
 				echo "</div>";
 
 				echo "<hr>";
@@ -179,7 +179,7 @@
 				// echo total
 				echo "<div class='row'>";
 				echo "<h3 class='col-md-6'>Total</h3>";
-				echo "<h3 class='col-md-6'>$$total</h3>";
+				echo "<h3 class='col-md-6'>$" . round($total,2) ."</h3>";
 				echo "</div>";
 
 				echo "<hr>";
