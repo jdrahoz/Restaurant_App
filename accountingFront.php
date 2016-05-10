@@ -199,7 +199,7 @@
                     echo "<br>";
                     echo "<div class='row'>";
                     echo "<div class='col-md-1 col-md-push-5'><p>Total:</p></div>";
-                    echo "<div class='col-md-1 col-md-push-5'>$total</div>";
+                    echo "<div class='col-md-1 col-md-push-5'>" . round($total,2) . "</div>";
                     echo "</div>";
 
                    $connection -> close();
