@@ -330,9 +330,9 @@
                     // display totals
                     echo "<br>";
                     echo "<div class='row'>";
-                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p><b>Total:</b></p></div>";
                     echo "<div class='col-md-2'><p>$totalItems</p></div>";
-                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p><b>Total:</b></p></div>";
                     echo "<div class='col-md-2'><p>$sumOfPrice</p></div>";
                     echo "</div>";
 
@@ -396,9 +396,9 @@
                     // display totals
                     echo "<br>";
                     echo "<div class='row'>";
-                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p><b>Total:</b></p></div>";
                     echo "<div class='col-md-2'><p>$sumOfPrice</p></div>";
-                    echo "<div class='col-md-2'><p>Total:</p></div>";
+                    echo "<div class='col-md-2'><p><b>Total:</b></p></div>";
                     echo "<div class='col-md-2'><p>$sumOfCount</p></div>";
                     echo "</div>";
                     echo "</table>";
