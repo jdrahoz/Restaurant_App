@@ -185,7 +185,9 @@
 				echo "<hr>";
 
 				// echo submit button
-				echo "<input class='btn btn-lg btn-primary' type=submit value='Pay Now'>";
+        echo "<p>Tip: $<input type='number' name='price' step='any' min='0' max='1000'>10% = " . round($total*.1,2) .", 15% = " . round($total*.15,2) . ", 20% = ". round($total*.2,2) . "</p>";
+				echo "<P>Credit Card Number: <input type='number' step = 'any' min='0'></p>";
+        echo "<input class='btn btn-lg btn-primary' type=submit value='Pay Now'>";
 
 				echo "</form>";
 
