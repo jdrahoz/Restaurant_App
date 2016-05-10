@@ -122,10 +122,10 @@
             <h3>Add Items to Menu</h3>
 
             <p>Name</p>
-            <p><input type="text" name="name"></p>
+            <p><input type="text" name="name" required></p>
 
             <p>Ingredients</p>
-            <p><input type="text" name="ingredients"></p>
+            <p><input type="text" name="ingredients" required></p>
 
             <p>Price</p>
             <p><input type="number" name="price" step="any" min="0" max="200"></p>
