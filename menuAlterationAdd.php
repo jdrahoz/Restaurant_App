@@ -34,7 +34,7 @@ function force_input($data){
 }
 
 $Name = force_input($Name);
-$Name = force_input($Ingredients);
+$Ingredients = force_input($Ingredients);
 
 // save the image to server
 $target_dir = "uploads/".$username."/";
