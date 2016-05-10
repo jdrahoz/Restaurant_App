@@ -74,5 +74,5 @@ for ($i=0; $i < count ($kitchen); $i++)
 $mysqli->close();
 
 // redirect to front page
-       header('Location: kitchenFront.php');
+header('Location: kitchenFront.php');
 ?>

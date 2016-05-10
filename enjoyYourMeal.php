@@ -1,6 +1,6 @@
 <?php
     $page = $_SERVER['PHP_SELF'];
-    $sec = "60";
+    $sec = "10";
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="../../favicon.ico">
+
+        <!-- auto refresh -->
+
+        <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
 
         <!-- title -->
 
@@ -38,7 +42,7 @@
             echo "</div></div>";
             exit ();
     }
-    ?>        <link href="navbar.css" rel="stylesheet">
+    ?>
 
 
         <div class="container">
@@ -122,7 +126,7 @@
                 $ordersToCook_table_name = $user_name . "_OrdersToCook";
 
                 // get kitchen table
-                $select = "SELECT * FROM $ordersToCook_table_name WHERE TableNum = $table_num";
+                $select = "SELECT * FROM $ordersToCook_table_name WHERE TableNum = '$table_num'";
                 $result = $connection -> query ($select);
                 $num = $result -> num_rows;
 
