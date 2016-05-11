@@ -11,26 +11,232 @@
 
 		<h>Restaurant App | Documentation</h>
 
+        <br><br><br>
+
+        <p>------------ Home Page ------------</p>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>restaurantApp.html</th></tr>
+			<tr><th>pre:</th><td>None</td></tr>
+			<tr><th>post:</th><td>User welcomed</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>get table of restaurants from mysql</td></tr>
+			<tr><td colspan=2>display slides with restaurant names, descriptions, and images</td></tr>
+			<tr><td colspan=2>link to login.php</td></tr>
+            <tr><td colspan=2>link to createRestaurantLogin.php</td></tr>
+            <tr><td colspan=2>link to GitHub repository</td></tr>
+
+		</table>
+
 		<br><br><br>
+
+        <table>
+
+			<tr><th colspan=2>login.php</th></tr>
+			<tr><th>pre:</th><td>Restaurants table exists</td></tr>
+			<tr><th>post:</th><td>Admin logged in</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>form to log in</td></tr>
+			<tr><td colspan=2>input username</td></tr>
+			<tr><td colspan=2>input password</td></tr>
+            <tr><td colspan=2>submit - run php to check for match in Restaurants table</td></tr>
+            <tr><td colspan=2>display message if failed</td></tr>
+            <tr><td colspan=2>link to adminFrontPage.php if passed</td></tr>
+
+		</table>
+
+		<br><br><br>
+
+        <table>
+
+			<tr><th colspan=2>createRestaurantLogin.php</th></tr>
+			<tr><th>pre:</th><td>Restaurants table exists</td></tr>
+			<tr><th>post:</th><td>Restaurant and admin log in added to Restaurants table</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>form to create new log in</td></tr>
+            <tr><td colspan=2>input restaurant name</td></tr>
+			<tr><td colspan=2>input username</td></tr>
+			<tr><td colspan=2>input password</td></tr>
+            <tr><td colspan=2>submit - run php to check add to restaurants table</td></tr>
+            <tr><td colspan=2>display message if failed</td></tr>
+            <tr><td colspan=2>create Restaurant_Maintenance</td></tr>
+            <tr><td colspan=2>create Restaurant_Menu</td></tr>
+            <tr><td colspan=2>create Restaurant_OrdersToCook</td></tr>
+            <tr><td colspan=2>create Restaurant_Accounting</td></tr>
+            <tr><td colspan=2>redirect to adminFrontPage.php if passed</td></tr>
+            <tr><td colspan=2>link to login.php</td></tr>
+
+		</table>
+
+		<br><br><br>
+
+        <br><br><br>
+
+        <table>
+
+            <tr><th colspan=2>logout.php</th></tr>
+            <tr><th>pre:</th><td>Admin logged in</td></tr>
+            <tr><th>post:</th><td>Admin logged out</td></tr>
+            <tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>clear session[username]</td></tr>
+            <tr><td colspan=2>redirect to restaurantApp.html</td></tr>
+
+        </table>
+
+        <p>------------ Admin ------------</p>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>adminFrontPage.php</th></tr>
+			<tr><th>pre:</th><td>Restaurant, username, and password in Restaurants table</td></tr>
+			<tr><th>post:</th><td>Admin welcomed</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>set session[username] to entered username from login.php</td></tr>
+			<tr><td colspan=2>print heading</td></tr>
+            <tr><td colspan=2>link to maintenanceFront.php</td></tr>
+			<tr><td colspan=2>link to menuAlteration.php</td></tr>
+            <tr><td colspan=2>link to kitchenFront.php</td></tr>
+            <tr><td colspan=2>link to accountingFront.php</td></tr>
+            <tr><td colspan=2>link to customerFrontPage.php</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>menuAlteration.php</th></tr>
+			<tr><th>pre:</th><td>Session set, Restaurant_Menu table exists</td></tr>
+			<tr><th>post:</th><td>Restaurant_Menu table modified</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+			<tr><td colspan=2>form to add</td></tr>
+			<tr><td colspan=2>input info for new item</td></tr>
+            <tr><td colspan=2>submit - run MenuAlterationAdd.php</td></tr>
+            <tr><td colspan=2>form to update popular</td></tr>
+            <tr><td colspan=2>input info to update popular</td></tr>
+            <tr><td colspan=2>submit - run MenuAlterationPopular.php</td></tr>
+            <tr><td colspan=2>form to delete</td></tr>
+			<tr><td colspan=2>input info to delete</td></tr>
+            <tr><td colspan=2>submit - run MenuAlterationDelete.php</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>menuAlterationAdd.php</th></tr>
+			<tr><th>pre:</th><td>Form submitted with new info</td></tr>
+			<tr><th>post:</th><td>Restaurant_Menu table modified</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>check if item already exists</td></tr>
+			<tr><td colspan=2>add new row to Menu table on mysql</td></tr>
+            <tr><td colspan=2>redirect to menuAlteration.php</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>menuAlterationDelete.php</th></tr>
+			<tr><th>pre:</th><td>Form submitted with info to delete</td></tr>
+			<tr><th>post:</th><td>Restaurant_Menu table modified</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+			<tr><td colspan=2>delete item from Menu table on mysql</td></tr>
+            <tr><td colspan=2>redirect to menuAlteration.php</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+        <table>
+
+			<tr><th colspan=2>menuAlterationPopular.php</th></tr>
+			<tr><th>pre:</th><td>Form submitted with info to update</td></tr>
+			<tr><th>post:</th><td>Restaurant_Menu table modified</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>get popular item from Accounting table on mysql</td></tr>
+			<tr><td colspan=2>delete popular item from Menu table on mysql</td></tr>
+            <tr><td colspan=2>add new popular item from Menu table on mysql</td></tr>
+            <tr><td colspan=2>redirect to menuAlteration.php</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>accountingFront.php</th></tr>
+			<tr><th>pre:</th><td>Session set, Restaurant_Accounting table exists</td></tr>
+			<tr><th>post:</th><td>Restaurant_Accounting table displayed</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+			<tr><td colspan=2>get Accounting table from mysql</td></tr>
+			<tr><td colspan=2>print Accounting table</td></tr>
+            <tr><td colspan=2>form to sort</td></tr>
+            <tr><td colspan=2>submit - run php script to sort</td></tr>
+            <tr><td colspan=2>form to sort by time</td></tr>
+            <tr><td colspan=2>submit - run php script to sort by time</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>kitchenFront.php</th></tr>
+			<tr><th>pre:</th><td>Session set, Restaurant_OrdersToCook table exists</td></tr>
+			<tr><th>post:</th><td>Finished orders removed</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+			<tr><td colspan=2>get OrdersToCook table</td></tr>
+			<tr><td colspan=2>display OrdersToCook table</td></tr>
+            <tr><td colspan=2>form to select items</td></tr>
+            <tr><td colspan=2>submit - run kitchen.php</td></tr>
+            <tr><td colspan=2>refresh every 30 seconds</td></tr>
+
+		</table>
+
+        <br><br><br>
+
+		<table>
+
+			<tr><th colspan=2>kitchen.php</th></tr>
+			<tr><th>pre:</th><td>Restaurant_OrdersToCook table exists and form submitted with finished orders</td></tr>
+			<tr><th>post:</th><td>Finished orders removed and orders sent to Restaurant_Bill_tableNum table</td></tr>
+			<tr><th colspan=2>methods:</th></tr>
+			<tr><td colspan=2>get OrdersToCook table</td></tr>
+			<tr><td colspan=2>delete each item from OrdersToCook table by id</td></tr>
+            <tr><td colspan=2>send each item to Bill table</td></tr>
+            <tr><td colspan=2>redirect to kitchenFront.php</td></tr>
+
+		</table>
 
         <p>------------ Customer ------------</p>
 
         <br><br><br>
 
 		<table>
-			<tr><th colspan=2>customerFrontPage.html</th></tr>
-			<tr><th>pre:</th><td>None</td></tr>
+			<tr><th colspan=2>customerFrontPage.php</th></tr>
+			<tr><th>pre:</th><td>Session set</td></tr>
 			<tr><th>post:</th><td>Customer welcomed</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
+            <tr><td colspan=2>set session[tableNum] to 0</td></tr>
+            <tr><td colspan=2>get Restaurant_Maintenance table from mysql</td></tr>
+            <tr><td colspan=2>print restaurant name and description</td></tr>
 			<tr><td colspan=2>print welcome message</td></tr>
-			<tr><td colspan=2>link to menu.html</td></tr>
+			<tr><td colspan=2>link to menu.php</td></tr>
 		</table>
 
 		<br><br><br>
 
 		<table>
-			<tr><th colspan=2>menu.html</th></tr>
-			<tr><th>pre:</th><td>Menu table exists</td></tr>
+			<tr><th colspan=2>menu.php</th></tr>
+			<tr><th>pre:</th><td>Session set, Restaurant_Menu table exists</td></tr>
 			<tr><th>post:</th><td>Form submitted with table number and ordered items</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>print heading</td></tr>
@@ -48,12 +254,13 @@
 
 			<tr><th colspan=2>yourOrder.php</th></tr>
 			<tr><th>pre:</th><td>Form submitted with table number and ordered items</td></tr>
-			<tr><th>post:</th><td>Ordered items added to new Cart table by table number</td></tr>
+			<tr><th>post:</th><td>Ordered items added to new Restaurant_Cart_tableNum table by table number</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>print heading</td></tr>
+            <tr><td colspan=2>set session[tableNum] to submitted tableNum</td></tr>
 			<tr><td colspan=2>create Cart table (if necessary)</td></tr>
             <tr><td colspan=2>insert ordered menu items into Cart table</td></tr>
-            <tr><td colspan=2>redirect to yourOrder.html</td></tr>
+            <tr><td colspan=2>redirect to yourOrderFront.php</td></tr>
 
 		</table>
 
@@ -62,7 +269,7 @@
 		<table>
 
 			<tr><th colspan=2>yourOrder.php</th></tr>
-			<tr><th>pre:</th><td>Cart table created by table number and orders added</td></tr>
+			<tr><th>pre:</th><td>Restaurant_Cart_tableNum table created by table number and orders added</td></tr>
 			<tr><th>post:</th><td>Form submitted with special requests</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>print heading</td></tr>
@@ -78,15 +285,15 @@
 		<table>
 
 			<tr><th colspan=2>yourOrderSubmitted.php</th></tr>
-			<tr><th>pre:</th><td>Table created by table number and orders and requests</td></tr>
-			<tr><th>post:</th><td>Items sent to OrdersToCook table and Cart table cleared</td></tr>
+			<tr><th>pre:</th><td>Restaurant_Cart_tableNum created with orders and requests</td></tr>
+			<tr><th>post:</th><td>Items sent to Restaurant_OrdersToCook table and Restaurant_Cart_tableNum table cleared</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>get Cart table from mysql</td></tr>
 			<tr><td colspan=2>get each item from Cart table</td></tr>
-            <tr><td colspan=2>insert each item into OrdersToCook table</td></tr>
+            <tr><td colspan=2>insert each item into Restaurant_OrdersToCook table</td></tr>
             <tr><td colspan=2>clear each item from Cart table</td></tr>
             <tr><td colspan=2>print heading</td></tr>
-            <tr><td colspan=2>link to enjoyYourMeal.html</td></tr>
+            <tr><td colspan=2>link to enjoyYourMeal.php</td></tr>
 
 
 		</table>
@@ -95,11 +302,13 @@
 
 		<table>
 
-			<tr><th colspan=2>enjoyYourMeal.html</th></tr>
-			<tr><th>pre:</th><td>Order sent to OrdersToCook table</td></tr>
+			<tr><th colspan=2>enjoyYourMeal.php</th></tr>
+			<tr><th>pre:</th><td>Order sent to Restaurant_OrdersToCook table</td></tr>
 			<tr><th>post:</th><td>Message displayed</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>display message</td></tr>
+            <tr><td colspan=2>refresh every 10 seconds</td></tr>
+            <tr><td colspan=2>if done:</td></tr>
 			<tr><td colspan=2>link to menu.html</td></tr>
             <tr><td colspan=2>link to yourBill.php</td></tr>
 
@@ -110,7 +319,7 @@
 		<table>
 
 			<tr><th colspan=2>yourBill.php</th></tr>
-			<tr><th>pre:</th><td>Bill table exists</td></tr>
+			<tr><th>pre:</th><td>Restaurant_Bill_tableNum table exists</td></tr>
 			<tr><th>post:</th><td>Bill displayed and total calculated</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>print heading</td></tr>
@@ -126,8 +335,8 @@
 		<table>
 
 			<tr><th colspan=2>thankYou.php</th></tr>
-			<tr><th>pre:</th><td>Bill table exists</td></tr>
-			<tr><th>post:</th><td>Order sent to Accounting table</td></tr>
+			<tr><th>pre:</th><td>Restaurant_Bill_tableNum table exists</td></tr>
+			<tr><th>post:</th><td>Order sent to Restaurant_Accounting table</td></tr>
 			<tr><th colspan=2>methods:</th></tr>
 			<tr><td colspan=2>print heading</td></tr>
 			<tr><td colspan=2>get Bill table from mysql</td></tr>
@@ -137,130 +346,6 @@
 		</table>
 
         <br><br><br>
-
-        <p>------------ Admin ------------</p>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>adminFrontPage.html</th></tr>
-			<tr><th>pre:</th><td>None</td></tr>
-			<tr><th>post:</th><td>Admin welcomed</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>print heading</td></tr>
-			<tr><td colspan=2>link to MenuAlteration.html</td></tr>
-            <tr><td colspan=2>link to kitchen.html</td></tr>
-            <tr><td colspan=2>link to accounting.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>MenuAlteration.html</th></tr>
-			<tr><th>pre:</th><td>Menu table exists</td></tr>
-			<tr><th>post:</th><td>Menu table modified</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>form to add</td></tr>
-			<tr><td colspan=2>input info for new item</td></tr>
-            <tr><td colspan=2>submit - run MenuAlterationAdd.php</td></tr>
-            <tr><td colspan=2>form to delete</td></tr>
-			<tr><td colspan=2>input info to delete</td></tr>
-            <tr><td colspan=2>submit - run MenuAlterationDelete.php</td></tr>
-            <tr><td colspan=2>link to adminFrontPage.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>MenuAlterationAdd.php</th></tr>
-			<tr><th>pre:</th><td>Form submitted with new info</td></tr>
-			<tr><th>post:</th><td>Menu table modified</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-            <tr><td colspan=2>check if item already exists</td></tr>
-			<tr><td colspan=2>add new row to Menu table on mysql</td></tr>
-            <tr><td colspan=2>redirect to MenuAlteration.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>MenuAlterationDelete.php</th></tr>
-			<tr><th>pre:</th><td>Form submitted with info to delete</td></tr>
-			<tr><th>post:</th><td>Menu table modified</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>delete item from Menu table on mysql</td></tr>
-            <tr><td colspan=2>redirect to MenuAlteration.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>accounting.html</th></tr>
-			<tr><th>pre:</th><td>Accounting table exists</td></tr>
-			<tr><th>post:</th><td>Accounting table displayed</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>get Accounting table from mysql</td></tr>
-			<tr><td colspan=2>print Accounting table</td></tr>
-            <tr><td colspan=2>form to narrow down time</td></tr>
-            <tr><td colspan=2>submit - run accounting.php</td></tr>
-            <tr><td colspan=2>link to adminFrontPage.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>accounting.php</th></tr>
-			<tr><th>pre:</th><td>Accounting table exists and form submitted with dates</td></tr>
-			<tr><th>post:</th><td>Accounting table displayed between dates</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>get Accounting table from mysql between dates</td></tr>
-			<tr><td colspan=2>print Accounting table</td></tr>
-            <tr><td colspan=2>link to adminFrontPage.html</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>kitchen.html</th></tr>
-			<tr><th>pre:</th><td>OrdersToCook table exists</td></tr>
-			<tr><th>post:</th><td>Finished orders removed</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>get OrdersToCook table</td></tr>
-			<tr><td colspan=2>display OrdersToCook table</td></tr>
-            <tr><td colspan=2>form to select items</td></tr>
-            <tr><td colspan=2>submit - run kitchen.php</td></tr>
-            <tr><td colspan=2>link to adminFrontPage.html</td></tr>
-            <tr><td colspan=2>refresh every 30 seconds</td></tr>
-
-		</table>
-
-        <br><br><br>
-
-		<table>
-
-			<tr><th colspan=2>kitchen.php</th></tr>
-			<tr><th>pre:</th><td>OrdersToCook table exists and form submitted with finished orders</td></tr>
-			<tr><th>post:</th><td>Finished orders removed and orders sent to Bill table</td></tr>
-			<tr><th colspan=2>methods:</th></tr>
-			<tr><td colspan=2>get OrdersToCook table</td></tr>
-			<tr><td colspan=2>delete each item from OrdersToCook table by id</td></tr>
-            <tr><td colspan=2>send each item to Bill table</td></tr>
-            <tr><td colspan=2>redirect to kitchen.html</td></tr>
-
-		</table>
 
     </body>
 
