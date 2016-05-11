@@ -215,11 +215,11 @@
 
         	            // echo row
         				echo "<div class='row'>";
-        	            echo "<div class='col-md-4'>" . $item . "</div>";
-        				echo "<div class='col-md-4'>" . $ingredients . "</div>";
+        	            echo "<div class='col-md-3'>" . $item . "</div>";
+        				echo "<div class='col-md-3'>" . $ingredients . "</div>";
         				echo "<div class='col-md-2'>$" . $price . "</div>";
         				echo "<div class='col-md-2'><input type='number' name=$idNum value=0 min=0 max=10></div>";
-                echo "<img src='$image' height='100' width='100'>";
+                        echo "<div class='col-md-2'><img src='$image' height='100' width='100'></div>";
         				echo "</div>";
 
         			}
