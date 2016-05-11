@@ -1,5 +1,21 @@
-spaces entry
+when inputting menu items in the administrator side, we force that there must be an entry
+  in the name field but the user is able to put spaces and it will still appear as a no-name item.
 
-customer going back to admin side
+customers from the customer side of the loggin are able to either type in URL of admin frontpage and get
+  to the admin side, or press the back button enough times to get back to admin side.
 
-if no picture uploaded shows a blank square
+if no picture uploaded shows a blank square where the picture would usually show.
+
+Picture Permissions are defaulted to user only, even when using chmod and setting allowance upon
+  initialization it will inconsistently work, pictures has been an enourmous struggle since they
+  would sometimes work and sometimes not based upon extremely exact circumstances. We have got
+  pictures to work now fairly consistently if we manually go into the images folder and set
+  permissions after every upload of an image.
+
+Timezone of Mysql is in a very far off timezone, when attempting to alter the time zone that it
+  is in it does not accept the changel
+
+Inconsistent logging into application. For example I can login to mine when on eecs computers
+  but unable to log onto any of my teammembers unless I am in incognito mode. They can all however
+  log into mine. when I attempt to get onto my hosted version on my mobile device I cannot unless
+  I am in incognito, but I am able to get into theirs without having to be in incognito.
