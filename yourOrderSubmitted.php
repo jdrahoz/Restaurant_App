@@ -10,6 +10,13 @@ if (!isset ($_SESSION['login'])) {
 	exit ();
 }
 
+function force_input($data){
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+}
+
 // get restaurant
 $user_name = $_SESSION['login'];
 
@@ -39,7 +46,8 @@ for ($i = 0; $i < $num; $i++) {
 	$item = $row ["Item"];
 	$price = $row ["Price"];
 	$idNum = $row ["IDNum"];
-	$alterations = $_POST [$idNum];
+	$alterations = $_POST ["alter".$idNum];
+	$alterations = force_input($alterations);
 
 	// get table name
 	$ordersToCook_table_name = $user_name . "_OrdersToCook";

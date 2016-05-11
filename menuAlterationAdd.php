@@ -39,6 +39,7 @@ $Ingredients = force_input($Ingredients);
 // save the image to server
 $target_dir = "uploads/" . $username . "/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+chmod("$target_file",0755);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // check if image file is a actual image or fake image

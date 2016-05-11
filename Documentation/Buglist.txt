@@ -1,1 +1,5 @@
-picture permissions
+spaces entry
+
+customer going back to admin side
+
+if no picture uploaded shows a blank square
