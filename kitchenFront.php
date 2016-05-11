@@ -69,6 +69,7 @@
                             <li><a href="menuAlteration.php">Menu</a></li>
                             <li class="active"><a href="kitchenFront.php">Kitchen</a></li>
                             <li><a href="accountingFront.php">Accounting</a></li>
+                            <li><a href="customerFrontPage.php">Customers</a></li>
                             <li><a href="logout.php">Exit</a></li>
                         </ul>
                     </div>
